@@ -1,0 +1,37 @@
+From python:3.8
+
+COPY . /app
+WORKDIR /app
+
+RUN pip3 install --upgrade pip
+
+RUN apt-get update
+RUN apt-get install nano
+
+RUN apt-get install postgresql -y
+
+RUN cp -f postgresql.conf /etc/postgresql/11/main/postgresql.conf
+RUN cp -f pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
+
+RUN service postgresql start
+
+RUN pip install -r requirement.txt
+
+ENV AIRFLOW_HOME=/root/airflow
+ENV AIRFLOW_USER=airflow
+ENV AIRFLOW_PASSWORD=12345678
+ENV AIRFLOW_EMAIL=airflow@example.com
+
+# install from pypi using pip
+RUN pip install 'apache-airflow[celery,async,ssh,samba,redis,password,rabbitmq,postgres,mysql]'
+
+EXPOSE 8080
+EXPOSE 5432
+
+# start the web server, default port is 8080
+
+RUN airflow db init
+
+# start the web server, default port is 8080
+CMD bash startup.sh
+

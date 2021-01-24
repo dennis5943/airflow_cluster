@@ -1,0 +1,6 @@
+numpy
+celery
+Cython
+paramiko
+sshtunnel
+requests
