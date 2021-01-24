@@ -50,4 +50,4 @@ services:
       - '8989:8080'
     #command: bash startup.sh
 
-#docker stack deploy -c docker-compose.yml airflow2
+#docker stack deploy -c docker-compose.yml airflow_cluster
