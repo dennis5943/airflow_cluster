@@ -1,53 +1,53 @@
 version: '3.7'
 services:
-  RabbitMQ:
-    image: rabbitmq:management
-    ports: 
-      - 5672:5672
-      - 15672:15672
+  flower:
+    image: airflow
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
         constraints: [node.labels.pi4==true]
-  postgres_adminer:
-    image: adminer
-    restart: always
-    deploy:
-      replicas: 1  # 從這個image開5個instance
-      placement:
-        constraints: [node.labels.pi4==true]
+    volumes:
+      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - ./workspace/resetdb.sh:/app/restdb.sh
     ports:
-      - 8080:8080
-  postgres_db:
+      - '5555:5555'
+    command: airflow celery flower
+  worker:
     image: airflow
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
         constraints: [node.labels.pi4==true]
-    ports: 
-      - 5432:5432
-    depends_on: 
-      - postgres
-    environment: 
-      - POSTGRES_USER=airflow
-      - POSTGRES_PASSWORD=12345678
-      - POSTGRES_DB=airflow
-    command: bash startup_postgresql.sh
-  airflow:
+    volumes:
+      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - ./workspace/resetdb.sh:/app/restdb.sh
+    command: airflow celery worker
+  scheduler:
     image: airflow
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
         constraints: [node.labels.pi4==true]
-    depends_on: 
-      - postgres_db
-    volumes: 
-      #- ./workspace/dags:/root/airflow/dags
-      #- ./workspace/logs:/root/airflow/logs
-      #- ./workspace/jobs:/root/airflow/jobs
-      - ./workspace/airflow.cfg:/app/airflow.cfg
+    volumes:
+      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - ./workspace/resetdb.sh:/app/restdb.sh
+    command: airflow scheduler
+  web:
+    image: airflow
+    deploy:
+      replicas: 1  # 從這個image開5個instance
+      placement:
+        constraints: [node.labels.pi4==true]
+    volumes:
+      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - ./workspace/resetdb.sh:/app/restdb.sh
     ports:
       - '8989:8080'
-    #command: bash startup.sh
+    command: airflow webserver
 
+#部署
 #docker stack deploy -c docker-compose.yml airflow_cluster
+
+#重新產生資料表
+#bash restdb.sh
+#airflow flower
