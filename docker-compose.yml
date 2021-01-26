@@ -20,7 +20,6 @@ services:
         constraints: [node.labels.pi4==true]
     volumes:
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
-      - ./workspace/resetdb.sh:/app/restdb.sh
     command: airflow celery worker
   scheduler:
     image: airflow
@@ -30,7 +29,6 @@ services:
         constraints: [node.labels.pi4==true]
     volumes:
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
-      - ./workspace/resetdb.sh:/app/restdb.sh
     command: airflow scheduler
   web:
     image: airflow
@@ -40,7 +38,6 @@ services:
         constraints: [node.labels.pi4==true]
     volumes:
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
-      - ./workspace/resetdb.sh:/app/restdb.sh
     ports:
       - '8989:8080'
     command: airflow webserver
