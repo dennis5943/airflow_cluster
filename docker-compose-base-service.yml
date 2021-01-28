@@ -26,6 +26,7 @@ services:
     ports: 
       - 5432:5432
     volumes: 
+      #- ./workspace/database:/var/lib/postgresql/11/main/base
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
     command: bash startup_postgresql.sh
 

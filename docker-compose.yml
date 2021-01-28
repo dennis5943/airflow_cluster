@@ -8,7 +8,6 @@ services:
         constraints: [node.labels.pi4==true]
     volumes:
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
-      - ./workspace/resetdb.sh:/app/restdb.sh
     ports:
       - '5555:5555'
     command: airflow celery flower
