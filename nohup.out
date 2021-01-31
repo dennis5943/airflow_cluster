@@ -2638,3 +2638,29 @@ Collecting pynacl>=1.0.1
     Preparing wheel metadata: finished with status 'done'
 Collecting cryptography>=2.5
   Downloading cryptography-3.3.1-cp36-abi3-manylinux2014_aarch64.whl (2.6 MB)
+Collecting bcrypt>=3.1.3
+  Downloading bcrypt-3.2.0-cp36-abi3-manylinux2014_aarch64.whl (56 kB)
+Collecting cffi>=1.1
+  Using cached cffi-1.14.4-cp38-cp38-manylinux2014_aarch64.whl (208 kB)
+Collecting pycparser
+  Using cached pycparser-2.20-py2.py3-none-any.whl (112 kB)
+Collecting certifi>=2017.4.17
+  Downloading certifi-2020.12.5-py2.py3-none-any.whl (147 kB)
+Collecting chardet<5,>=3.0.2
+  Downloading chardet-4.0.0-py2.py3-none-any.whl (178 kB)
+Collecting idna<3,>=2.5
+  Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.3-py2.py3-none-any.whl (137 kB)
+Collecting wcwidth
+  Downloading wcwidth-0.2.5-py2.py3-none-any.whl (30 kB)
+Building wheels for collected packages: click-didyoumean, pynacl
+  Building wheel for click-didyoumean (setup.py): started
+  Building wheel for click-didyoumean (setup.py): finished with status 'done'
+  Created wheel for click-didyoumean: filename=click_didyoumean-0.0.3-py3-none-any.whl size=2146 sha256=ad537add4f992fc179da21c0cd941d9c2034306a042ba3d003cea1e43b252f77
+  Stored in directory: /root/.cache/pip/wheels/c2/97/1e/c7dda0b8e9616dcd8df2a2882e556ef62879967ac31e0e3d04
+  Building wheel for pynacl (PEP 517): started
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
