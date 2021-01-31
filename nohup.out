@@ -2664,3 +2664,605 @@ Building wheels for collected packages: click-didyoumean, pynacl
   Building wheel for pynacl (PEP 517): still running...
   Building wheel for pynacl (PEP 517): still running...
   Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): finished with status 'done'
+  Created wheel for pynacl: filename=PyNaCl-1.4.0-cp38-cp38-linux_aarch64.whl size=665444 sha256=bd0f3f4275dc196e9d90634ad1556d9d0895a419553b95863532de9f8c853a38
+  Stored in directory: /root/.cache/pip/wheels/10/23/c0/f42041fbad88c47b268b6119919130b407b48e24b41a349684
+Successfully built click-didyoumean pynacl
+Installing collected packages: pycparser, wcwidth, vine, six, cffi, pynacl, prompt-toolkit, cryptography, click, bcrypt, amqp, urllib3, pytz, paramiko, kombu, idna, click-repl, click-plugins, click-didyoumean, chardet, certifi, billiard, sshtunnel, requests, numpy, Cython, celery
+Successfully installed Cython-0.29.21 amqp-5.0.5 bcrypt-3.2.0 billiard-3.6.3.0 celery-5.0.5 certifi-2020.12.5 cffi-1.14.4 chardet-4.0.0 click-7.1.2 click-didyoumean-0.0.3 click-plugins-1.1.1 click-repl-0.1.6 cryptography-3.3.1 idna-2.10 kombu-5.0.2 numpy-1.20.0 paramiko-2.7.2 prompt-toolkit-3.0.14 pycparser-2.20 pynacl-1.4.0 pytz-2020.5 requests-2.25.1 six-1.15.0 sshtunnel-0.4.0 urllib3-1.26.3 vine-5.0.0 wcwidth-0.2.5
+Removing intermediate container 53ee611aaa18
+ ---> a618a292b265
+Step 13/22 : ENV AIRFLOW_HOME=/root/airflow
+ ---> Running in bf46c9de3829
+Removing intermediate container bf46c9de3829
+ ---> f6ed6f9672ce
+Step 14/22 : ENV AIRFLOW_USER=airflow
+ ---> Running in f5470020db9a
+Removing intermediate container f5470020db9a
+ ---> f7896fef8ad2
+Step 15/22 : ENV AIRFLOW_PASSWORD=12345678
+ ---> Running in df682250d83c
+Removing intermediate container df682250d83c
+ ---> 67eb1a24ea24
+Step 16/22 : ENV AIRFLOW_EMAIL=airflow@example.com
+ ---> Running in e314ae32fb09
+Removing intermediate container e314ae32fb09
+ ---> 25857bf6b5ad
+Step 17/22 : ENV POSTGRES_DATA=/postgresql/data
+ ---> Running in 449edbe6439f
+Removing intermediate container 449edbe6439f
+ ---> 183ee7458b83
+Step 18/22 : RUN pip install 'apache-airflow[celery,async,ssh,samba,redis,password,rabbitmq,postgres,mysql]'
+ ---> Running in 6f16c3295358
+Collecting apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]
+  Downloading apache_airflow-2.0.0-py3-none-any.whl (4.5 MB)
+Collecting funcsigs<2.0.0,>=1.0.0
+  Downloading funcsigs-1.0.2-py2.py3-none-any.whl (17 kB)
+Collecting pandas<2.0,>=0.17.1
+  Downloading pandas-1.2.1-cp38-cp38-manylinux2014_aarch64.whl (10.0 MB)
+Collecting sqlalchemy-jsonfield~=1.0
+  Downloading SQLAlchemy_JSONField-1.0.0-py3-none-any.whl (10 kB)
+Collecting importlib-metadata~=1.7
+  Downloading importlib_metadata-1.7.0-py2.py3-none-any.whl (31 kB)
+Collecting rich==9.2.0
+  Downloading rich-9.2.0-py3-none-any.whl (164 kB)
+Collecting json-merge-patch==0.2
+  Downloading json-merge-patch-0.2.tar.gz (3.1 kB)
+Collecting apache-airflow-providers-ftp
+  Downloading apache_airflow_providers_ftp-1.0.0-py3-none-any.whl (17 kB)
+Collecting apache-airflow-providers-imap
+  Downloading apache_airflow_providers_imap-1.0.0-py3-none-any.whl (18 kB)
+Collecting graphviz>=0.12
+  Downloading graphviz-0.16-py2.py3-none-any.whl (19 kB)
+Collecting lockfile>=0.12.2
+  Downloading lockfile-0.12.2-py2.py3-none-any.whl (13 kB)
+Collecting tabulate<0.9,>=0.7.5
+  Downloading tabulate-0.8.7-py3-none-any.whl (24 kB)
+Collecting cached-property~=1.5
+  Downloading cached_property-1.5.2-py2.py3-none-any.whl (7.6 kB)
+Collecting pygments<3.0,>=2.0.1
+  Downloading Pygments-2.7.4-py3-none-any.whl (950 kB)
+Collecting urllib3<1.26
+  Downloading urllib3-1.25.11-py2.py3-none-any.whl (127 kB)
+Collecting psutil<6.0.0,>=4.2.0
+  Downloading psutil-5.8.0.tar.gz (470 kB)
+Collecting marshmallow-oneofschema>=2.0.1
+  Downloading marshmallow_oneofschema-2.1.0-py2.py3-none-any.whl (5.7 kB)
+Collecting sqlalchemy<2,>=1.3.18
+  Downloading SQLAlchemy-1.3.22-cp38-cp38-manylinux2014_aarch64.whl (1.3 MB)
+Collecting lazy-object-proxy<1.5.0
+  Downloading lazy-object-proxy-1.4.3.tar.gz (34 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting apache-airflow-providers-http
+  Downloading apache_airflow_providers_http-1.0.0-py3-none-any.whl (24 kB)
+Collecting python-daemon>=2.1.1
+  Downloading python_daemon-2.2.4-py2.py3-none-any.whl (35 kB)
+Collecting gunicorn<20.0,>=19.5.0
+  Downloading gunicorn-19.10.0-py2.py3-none-any.whl (113 kB)
+Collecting importlib-resources~=1.4
+  Downloading importlib_resources-1.5.0-py2.py3-none-any.whl (21 kB)
+Collecting pendulum~=2.0
+  Downloading pendulum-2.1.2.tar.gz (81 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting flask-login<0.5,>=0.3
+  Downloading Flask-Login-0.4.1.tar.gz (14 kB)
+Collecting markupsafe<2.0,>=1.1.1
+  Downloading MarkupSafe-1.1.1-cp38-cp38-manylinux2014_aarch64.whl (33 kB)
+Collecting python-slugify<5.0,>=3.0.0
+  Downloading python-slugify-4.0.1.tar.gz (11 kB)
+Collecting tzlocal<2.0.0,>=1.4
+  Downloading tzlocal-1.5.1.tar.gz (16 kB)
+Collecting cattrs<2.0,>=1.0
+  Downloading cattrs-1.2.0-py3-none-any.whl (17 kB)
+Collecting dill<0.4,>=0.2.2
+  Downloading dill-0.3.3-py2.py3-none-any.whl (81 kB)
+Requirement already satisfied: cryptography>=0.9.3 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.3.1)
+Collecting iso8601>=0.1.12
+  Downloading iso8601-0.1.13-py3-none-any.whl (9.3 kB)
+Collecting termcolor>=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Collecting flask-swagger==0.2.13
+  Downloading flask-swagger-0.2.13.tar.gz (8.0 kB)
+Collecting tenacity~=6.2.0
+  Downloading tenacity-6.2.0-py2.py3-none-any.whl (24 kB)
+Collecting thrift>=0.9.2
+  Downloading thrift-0.13.0.tar.gz (59 kB)
+Collecting flask-wtf<0.15,>=0.14.3
+  Downloading Flask_WTF-0.14.3-py2.py3-none-any.whl (13 kB)
+Collecting requests<2.24.0,>=2.20.0
+  Downloading requests-2.23.0-py2.py3-none-any.whl (58 kB)
+Collecting jinja2<2.12.0,>=2.10.1
+  Downloading Jinja2-2.11.3-py2.py3-none-any.whl (125 kB)
+Collecting flask-appbuilder~=3.1.1
+  Downloading Flask_AppBuilder-3.1.1-py3-none-any.whl (1.7 MB)
+Collecting alembic<2.0,>=1.2
+  Downloading alembic-1.5.3.tar.gz (1.1 MB)
+Collecting python-dateutil<3,>=2.3
+  Downloading python_dateutil-2.8.1-py2.py3-none-any.whl (227 kB)
+Collecting argcomplete~=1.10
+  Downloading argcomplete-1.12.2-py2.py3-none-any.whl (38 kB)
+Collecting flask-caching<2.0.0,>=1.5.0
+  Downloading Flask_Caching-1.9.0-py2.py3-none-any.whl (33 kB)
+Collecting python-nvd3~=0.15.0
+  Downloading python-nvd3-0.15.0.tar.gz (31 kB)
+Collecting unicodecsv>=0.14.1
+  Downloading unicodecsv-0.14.1.tar.gz (10 kB)
+Collecting apache-airflow-providers-sqlite
+  Downloading apache_airflow_providers_sqlite-1.0.0-py3-none-any.whl (15 kB)
+Collecting flask<2.0,>=1.1.0
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting markdown<4.0,>=2.5.2
+  Downloading Markdown-3.3.3-py3-none-any.whl (96 kB)
+Collecting connexion[flask,swagger-ui]<3,>=2.6.0
+  Downloading connexion-2.7.0-py2.py3-none-any.whl (77 kB)
+Collecting croniter<0.4,>=0.3.17
+  Downloading croniter-0.3.37-py2.py3-none-any.whl (13 kB)
+Collecting itsdangerous>=1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting werkzeug>=1.0.1,~=1.0
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting setproctitle<2,>=1.1.8
+  Downloading setproctitle-1.2.2-cp38-cp38-manylinux2014_aarch64.whl (36 kB)
+Collecting jsonschema~=3.0
+  Downloading jsonschema-3.2.0-py2.py3-none-any.whl (56 kB)
+Collecting colorlog==4.0.2
+  Downloading colorlog-4.0.2-py2.py3-none-any.whl (17 kB)
+Collecting attrs<21.0,>=20.0
+  Downloading attrs-20.3.0-py2.py3-none-any.whl (49 kB)
+Collecting apache-airflow-providers-celery
+  Downloading apache_airflow_providers_celery-1.0.0-py3-none-any.whl (13 kB)
+Collecting flower<1.0,>=0.7.3
+  Downloading flower-0.9.7-py2.py3-none-any.whl (456 kB)
+Collecting celery~=4.4.2
+  Downloading celery-4.4.7-py2.py3-none-any.whl (427 kB)
+Collecting vine~=1.3
+  Downloading vine-1.3.0-py2.py3-none-any.whl (14 kB)
+Collecting redis~=3.2
+  Downloading redis-3.5.3-py2.py3-none-any.whl (72 kB)
+Collecting apache-airflow-providers-redis
+  Downloading apache_airflow_providers_redis-1.0.0-py3-none-any.whl (19 kB)
+Collecting pysmbclient>=0.1.3
+  Downloading PySmbClient-0.1.5.tar.gz (6.3 kB)
+Collecting apache-airflow-providers-samba
+  Downloading apache_airflow_providers_samba-1.0.0-py3-none-any.whl (13 kB)
+Requirement already satisfied: bcrypt>=2.0.0 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.2.0)
+Collecting flask-bcrypt>=0.7.1
+  Downloading Flask-Bcrypt-0.7.1.tar.gz (5.1 kB)
+Collecting amqp<5.0.0
+  Downloading amqp-2.6.1-py2.py3-none-any.whl (48 kB)
+Collecting sshtunnel<0.2,>=0.1.4
+  Downloading sshtunnel-0.1.5-py2.py3-none-any.whl (23 kB)
+Collecting pysftp>=0.2.9
+  Downloading pysftp-0.2.9.tar.gz (25 kB)
+Collecting apache-airflow-providers-ssh
+  Downloading apache_airflow_providers_ssh-1.0.0-py3-none-any.whl (19 kB)
+Requirement already satisfied: paramiko>=2.6.0 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.7.2)
+Collecting greenlet>=0.4.9
+  Downloading greenlet-1.0.0-cp38-cp38-manylinux2014_aarch64.whl (165 kB)
+Collecting gevent>=0.13
+  Downloading gevent-21.1.2-cp38-cp38-manylinux2014_aarch64.whl (5.1 MB)
+Collecting eventlet>=0.9.7
+  Downloading eventlet-0.30.0-py2.py3-none-any.whl (224 kB)
+Collecting apache-airflow-providers-postgres
+  Downloading apache_airflow_providers_postgres-1.0.0-py3-none-any.whl (19 kB)
+Collecting psycopg2-binary>=2.7.4
+  Downloading psycopg2-binary-2.8.6.tar.gz (384 kB)
+Collecting mysqlclient<1.4,>=1.3.6
+  Downloading mysqlclient-1.3.14.tar.gz (91 kB)
+Collecting mysql-connector-python<=8.0.18,>=8.0.11
+  Downloading mysql_connector_python-8.0.18-py2.py3-none-any.whl (346 kB)
+Collecting apache-airflow-providers-mysql
+  Downloading apache_airflow_providers_mysql-1.0.0-py3-none-any.whl (27 kB)
+Collecting PyYAML>=3.0
+  Downloading PyYAML-5.4.1.tar.gz (175 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting colorama<0.5.0,>=0.4.0
+  Downloading colorama-0.4.4-py2.py3-none-any.whl (16 kB)
+Collecting commonmark<0.10.0,>=0.9.0
+  Downloading commonmark-0.9.1-py2.py3-none-any.whl (51 kB)
+Collecting typing-extensions<4.0.0,>=3.7.4
+  Downloading typing_extensions-3.7.4.3-py3-none-any.whl (22 kB)
+Collecting Mako
+  Downloading Mako-1.1.4.tar.gz (479 kB)
+Collecting python-editor>=0.3
+  Downloading python_editor-1.0.4-py3-none-any.whl (4.9 kB)
+Requirement already satisfied: six>=1.4.1 in /usr/local/lib/python3.8/site-packages (from bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.15.0)
+Requirement already satisfied: cffi>=1.1 in /usr/local/lib/python3.8/site-packages (from bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.14.4)
+Requirement already satisfied: pytz>dev in /usr/local/lib/python3.8/site-packages (from celery~=4.4.2->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2020.5)
+Requirement already satisfied: billiard<4.0,>=3.6.3.0 in /usr/local/lib/python3.8/site-packages (from celery~=4.4.2->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.6.3.0)
+Collecting kombu<4.7,>=4.6.10
+  Downloading kombu-4.6.11-py2.py3-none-any.whl (184 kB)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.8/site-packages (from cffi>=1.1->bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.20)
+Collecting inflection>=0.3.1
+  Downloading inflection-0.5.1-py2.py3-none-any.whl (9.5 kB)
+Collecting openapi-spec-validator>=0.2.4
+  Downloading openapi_spec_validator-0.2.9-py3-none-any.whl (25 kB)
+Collecting clickclick>=1.2
+  Downloading clickclick-20.10.2-py2.py3-none-any.whl (7.4 kB)
+Collecting swagger-ui-bundle>=0.0.2
+  Downloading swagger_ui_bundle-0.0.8-py3-none-any.whl (3.8 MB)
+Requirement already satisfied: click>=4.0 in /usr/local/lib/python3.8/site-packages (from clickclick>=1.2->connexion[flask,swagger-ui]<3,>=2.6.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (7.1.2)
+Collecting natsort
+  Downloading natsort-7.1.1-py3-none-any.whl (35 kB)
+Collecting dnspython<2.0.0,>=1.15.0
+  Downloading dnspython-1.16.0-py2.py3-none-any.whl (188 kB)
+Collecting Flask-JWT-Extended<4,>=3.18
+  Downloading Flask-JWT-Extended-3.25.0.tar.gz (31 kB)
+Collecting marshmallow-sqlalchemy<0.24.0,>=0.22.0
+  Downloading marshmallow_sqlalchemy-0.23.1-py2.py3-none-any.whl (18 kB)
+Collecting prison<1.0.0,>=0.1.3
+  Downloading prison-0.1.3-py2.py3-none-any.whl (5.8 kB)
+Collecting Flask-Babel<2,>=1
+  Downloading Flask_Babel-1.0.0-py3-none-any.whl (9.5 kB)
+Collecting PyJWT>=1.7.1
+  Downloading PyJWT-2.0.1-py3-none-any.whl (15 kB)
+Collecting email-validator<2,>=1.0.5
+  Downloading email_validator-1.1.2-py2.py3-none-any.whl (17 kB)
+Collecting apispec[yaml]<4,>=3.3
+  Downloading apispec-3.3.2-py2.py3-none-any.whl (27 kB)
+Collecting Flask-OpenID<2,>=1.2.5
+  Downloading Flask-OpenID-1.2.5.tar.gz (43 kB)
+Collecting marshmallow-enum<2,>=1.5.1
+  Downloading marshmallow_enum-1.5.1-py2.py3-none-any.whl (4.2 kB)
+Collecting Flask-SQLAlchemy<3,>=2.4
+  Downloading Flask_SQLAlchemy-2.4.4-py2.py3-none-any.whl (17 kB)
+Collecting sqlalchemy-utils<1,>=0.32.21
+  Downloading SQLAlchemy-Utils-0.36.8.tar.gz (138 kB)
+Collecting marshmallow<4,>=3
+  Downloading marshmallow-3.10.0-py2.py3-none-any.whl (46 kB)
+Requirement already satisfied: idna>=2.0.0 in /usr/local/lib/python3.8/site-packages (from email-validator<2,>=1.0.5->flask-appbuilder~=3.1.1->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.10)
+Collecting Babel>=2.3
+  Downloading Babel-2.9.0-py2.py3-none-any.whl (8.8 MB)
+Collecting PyJWT>=1.7.1
+  Downloading PyJWT-1.7.1-py2.py3-none-any.whl (18 kB)
+Collecting python3-openid>=2.0
+  Downloading python3_openid-3.2.0-py3-none-any.whl (133 kB)
+Collecting WTForms
+  Downloading WTForms-2.3.3-py2.py3-none-any.whl (169 kB)
+Collecting prometheus-client==0.8.0
+  Downloading prometheus_client-0.8.0-py2.py3-none-any.whl (53 kB)
+Collecting tornado<7.0.0,>=5.0.0
+  Downloading tornado-6.1-cp38-cp38-manylinux2014_aarch64.whl (427 kB)
+Collecting humanize
+  Downloading humanize-3.2.0-py3-none-any.whl (70 kB)
+Collecting zope.interface
+  Downloading zope.interface-5.2.0-cp38-cp38-manylinux2014_aarch64.whl (245 kB)
+Collecting zope.event
+  Downloading zope.event-4.5.0-py2.py3-none-any.whl (6.8 kB)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.8/site-packages (from gevent>=0.13->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (51.1.2)
+Collecting zipp>=0.5
+  Downloading zipp-3.4.0-py3-none-any.whl (5.2 kB)
+Collecting pyrsistent>=0.14.0
+  Downloading pyrsistent-0.17.3.tar.gz (106 kB)
+Collecting protobuf>=3.0.0
+  Downloading protobuf-3.14.0-py2.py3-none-any.whl (173 kB)
+Requirement already satisfied: numpy>=1.16.5 in /usr/local/lib/python3.8/site-packages (from pandas<2.0,>=0.17.1->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.20.0)
+Requirement already satisfied: pynacl>=1.0.1 in /usr/local/lib/python3.8/site-packages (from paramiko>=2.6.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.4.0)
+Collecting pytzdata>=2020.1
+  Downloading pytzdata-2020.1-py2.py3-none-any.whl (489 kB)
+Collecting docutils
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting text-unidecode>=1.3
+  Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+Collecting defusedxml
+  Downloading defusedxml-0.6.0-py2.py3-none-any.whl (23 kB)
+Collecting chardet<4,>=3.0.2
+  Downloading chardet-3.0.4-py2.py3-none-any.whl (133 kB)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.8/site-packages (from requests<2.24.0,>=2.20.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2020.12.5)
+Building wheels for collected packages: flask-swagger, json-merge-patch, alembic, flask-bcrypt, Flask-JWT-Extended, flask-login, Flask-OpenID, lazy-object-proxy, mysqlclient, pendulum, psutil, psycopg2-binary, pyrsistent, pysftp, pysmbclient, python-nvd3, python-slugify, PyYAML, sqlalchemy-utils, termcolor, thrift, tzlocal, unicodecsv, Mako
+  Building wheel for flask-swagger (setup.py): started
+  Building wheel for flask-swagger (setup.py): finished with status 'done'
+  Created wheel for flask-swagger: filename=flask_swagger-0.2.13-py3-none-any.whl size=7243 sha256=50b7ed6f4cd3710e625b7f553dedc8ef6da100ae4b991a6821d940755031d7c1
+  Stored in directory: /root/.cache/pip/wheels/9d/bb/52/8852672dded137c75200ff0f39f31587acd86e97bf5bcc047f
+  Building wheel for json-merge-patch (setup.py): started
+  Building wheel for json-merge-patch (setup.py): finished with status 'done'
+  Created wheel for json-merge-patch: filename=json_merge_patch-0.2-py3-none-any.whl size=4394 sha256=5657e17f9f6e50536eaf97d6e09acbcf91744da118dd3d02a5abae9a27b4c93f
+  Stored in directory: /root/.cache/pip/wheels/3a/56/54/0056d796b798c014146fd1bed9e75d6dcaea22416e816658c1
+  Building wheel for alembic (setup.py): started
+  Building wheel for alembic (setup.py): finished with status 'done'
+  Created wheel for alembic: filename=alembic-1.5.3-py2.py3-none-any.whl size=155547 sha256=b433ddcbe566d1b96e4bdfa404ff42fb43479b68e32f92667ad4a125bf9ab5bc
+  Stored in directory: /root/.cache/pip/wheels/61/2e/cd/814f09d42d1393cb9da66eaee97325fb88814eb2b9dd0fab66
+  Building wheel for flask-bcrypt (setup.py): started
+  Building wheel for flask-bcrypt (setup.py): finished with status 'done'
+  Created wheel for flask-bcrypt: filename=Flask_Bcrypt-0.7.1-py3-none-any.whl size=5009 sha256=5da3f9d97cde002056016ec506619c87a32d7f7e2da342f729f758437875f61a
+  Stored in directory: /root/.cache/pip/wheels/8a/d9/0e/dc762c4ebc76f581397a2e25991db6efd148640b5616ab9210
+  Building wheel for Flask-JWT-Extended (setup.py): started
+  Building wheel for Flask-JWT-Extended (setup.py): finished with status 'done'
+  Created wheel for Flask-JWT-Extended: filename=Flask_JWT_Extended-3.25.0-py2.py3-none-any.whl size=21569 sha256=8c42ebfb828dc28c868faeb3ec64530f3a2b69ff99c69060c96b5146fbf23d0a
+  Stored in directory: /root/.cache/pip/wheels/f0/53/54/ec3db050e12900460634d2f7badb842fa29af7508a5b84557d
+  Building wheel for flask-login (setup.py): started
+  Building wheel for flask-login (setup.py): finished with status 'done'
+  Created wheel for flask-login: filename=Flask_Login-0.4.1-py2.py3-none-any.whl size=15936 sha256=7dcccf90daf9f6678a75be38be29e7c539c5223fff99db88a7a6513e47e751ff
+  Stored in directory: /root/.cache/pip/wheels/ec/8e/42/16110a8b4f17e4ef4bd0abd42969fc1fc38229348de9f071df
+  Building wheel for Flask-OpenID (setup.py): started
+  Building wheel for Flask-OpenID (setup.py): finished with status 'done'
+  Created wheel for Flask-OpenID: filename=Flask_OpenID-1.2.5-py3-none-any.whl size=9121 sha256=2957791d675e7cecd21e6ffd239573ef245409e03025cde2943a2dc05fcc8b93
+  Stored in directory: /root/.cache/pip/wheels/a1/b3/ee/1bb518a7bcea32f7ae913ca5db6e68324f5cc09f1e13b81e96
+  Building wheel for lazy-object-proxy (PEP 517): started
+  Building wheel for lazy-object-proxy (PEP 517): finished with status 'done'
+  Created wheel for lazy-object-proxy: filename=lazy_object_proxy-1.4.3-cp38-cp38-linux_aarch64.whl size=58536 sha256=c2a7ba057a70e5f69caf197839cf4f24fd54c34203487232ae9429a020cd9d5b
+  Stored in directory: /root/.cache/pip/wheels/d7/f7/3b/6853df4a25a106662f20e70ad6bd448c8ae07d12ce80fb9063
+  Building wheel for mysqlclient (setup.py): started
+  Building wheel for mysqlclient (setup.py): finished with status 'done'
+  Created wheel for mysqlclient: filename=mysqlclient-1.3.14-cp38-cp38-linux_aarch64.whl size=125600 sha256=73f9ad297bc8f1ea7dad693674f09da86e60ddeb7d82c83bcebaf1a3786f87c8
+  Stored in directory: /root/.cache/pip/wheels/42/db/89/b51c9514fe0d840d467810fcd350e29322efa9e150b96342e4
+  Building wheel for pendulum (PEP 517): started
+  Building wheel for pendulum (PEP 517): finished with status 'done'
+  Created wheel for pendulum: filename=pendulum-2.1.2-cp38-cp38-manylinux2014_aarch64.whl size=168503 sha256=f4bddda5f9f9078ea052e0ae851b1847561004e01121fcc85bfa519695a2a191
+  Stored in directory: /root/.cache/pip/wheels/b7/90/a1/1a5560d954c0f60185b7603dc8e39dc59ca7e35d12108a74e7
+  Building wheel for psutil (setup.py): started
+  Building wheel for psutil (setup.py): finished with status 'done'
+  Created wheel for psutil: filename=psutil-5.8.0-cp38-cp38-linux_aarch64.whl size=298604 sha256=8f4515c5789d62febba7a84b2c85f01d976bcb244d29ec5e171f189622f4d35b
+  Stored in directory: /root/.cache/pip/wheels/a9/92/74/7694cd5d3f10ea335ef507c10e877b2150de20975a986782b9
+  Building wheel for psycopg2-binary (setup.py): started
+  Building wheel for psycopg2-binary (setup.py): finished with status 'done'
+  Created wheel for psycopg2-binary: filename=psycopg2_binary-2.8.6-cp38-cp38-linux_aarch64.whl size=503080 sha256=7b2117f95403a66a7404a2eda9aab5f46e234c2c446f8da01fb1af4fc1beb75b
+  Stored in directory: /root/.cache/pip/wheels/15/d7/13/ef37b82cf1de521c82c129a16ad8007a81b4eab0f23b22c7b3
+  Building wheel for pyrsistent (setup.py): started
+  Building wheel for pyrsistent (setup.py): finished with status 'done'
+  Created wheel for pyrsistent: filename=pyrsistent-0.17.3-cp38-cp38-linux_aarch64.whl size=126164 sha256=7c76ea68b61ba3a5253e33b104eba68e8a8b1080b3fbd27e668d7f3f1de5f6ab
+  Stored in directory: /root/.cache/pip/wheels/3d/22/08/7042eb6309c650c7b53615d5df5cc61f1ea9680e7edd3a08d2
+  Building wheel for pysftp (setup.py): started
+  Building wheel for pysftp (setup.py): finished with status 'done'
+  Created wheel for pysftp: filename=pysftp-0.2.9-py3-none-any.whl size=15481 sha256=e760c7adbd7a367bb3f9b5c2024eee4dad65465201118299951859773f3b050e
+  Stored in directory: /root/.cache/pip/wheels/2b/ca/f6/862aaecc17fb92230cad02822949e8856d741e5c12ef55fb10
+  Building wheel for pysmbclient (setup.py): started
+  Building wheel for pysmbclient (setup.py): finished with status 'done'
+  Created wheel for pysmbclient: filename=PySmbClient-0.1.5-py3-none-any.whl size=6864 sha256=b1140c945ef0aaabc0517d5497e2b51913c600b4d23e7fb313f694d84f234a2f
+  Stored in directory: /root/.cache/pip/wheels/3c/30/f3/fdcaeb56b4f2e38ab61476e962d9f3fcdf88f1a34445ba4387
+  Building wheel for python-nvd3 (setup.py): started
+  Building wheel for python-nvd3 (setup.py): finished with status 'done'
+  Created wheel for python-nvd3: filename=python_nvd3-0.15.0-py3-none-any.whl size=38156 sha256=c0d7e61b46bbf3045b37f9bc602cbd51a86c86c226a4974dca432068a6e76bf1
+  Stored in directory: /root/.cache/pip/wheels/8c/92/61/c1d567a155a1f15d2e1a633eef32ed3a7c7906c323d49fa3a2
+  Building wheel for python-slugify (setup.py): started
+  Building wheel for python-slugify (setup.py): finished with status 'done'
+  Created wheel for python-slugify: filename=python_slugify-4.0.1-py2.py3-none-any.whl size=6769 sha256=3514f69b07204dfb3d03f23c9f6e86a331861bd46c1fdeb6ce51ec0d53ce8fc2
+  Stored in directory: /root/.cache/pip/wheels/91/4d/4f/e740a68c215791688c46c4d6251770a570e8dfea91af1acb5c
+  Building wheel for PyYAML (PEP 517): started
+  Building wheel for PyYAML (PEP 517): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.4.1-cp38-cp38-linux_aarch64.whl size=554416 sha256=dda111db60e02f4bbe4ec1fd5cb65b87e5dfbacbfd94b444a22208f07ea35bda
+  Stored in directory: /root/.cache/pip/wheels/dd/c5/1d/5d7436173d3efd4a14dcb510eb0b29525ecb6b0e41489e716e
+  Building wheel for sqlalchemy-utils (setup.py): started
+  Building wheel for sqlalchemy-utils (setup.py): finished with status 'done'
+  Created wheel for sqlalchemy-utils: filename=SQLAlchemy_Utils-0.36.8-py2.py3-none-any.whl size=93220 sha256=c2085f2df82cb2f5b2e798dfb9220dc62787d89040a3730a1266c8831bc6b0b3
+  Stored in directory: /root/.cache/pip/wheels/e2/1e/3b/50c4d0d200bfe25d2686016f72859a5bd97822815065478358
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4829 sha256=2999387a5c91e3f4e76459671c191fc6817ebbce03a711051fc76febab25b043
+  Stored in directory: /root/.cache/pip/wheels/a0/16/9c/5473df82468f958445479c59e784896fa24f4a5fc024b0f501
+  Building wheel for thrift (setup.py): started
+  Building wheel for thrift (setup.py): finished with status 'done'
+  Created wheel for thrift: filename=thrift-0.13.0-cp38-cp38-linux_aarch64.whl size=489002 sha256=31c9781fa06fe4b5c0ee135b0efcac6f078da07d01201c93180267449fd04b80
+  Stored in directory: /root/.cache/pip/wheels/0a/52/7e/8054b57725b8f2b9ddbaacb81b271b939681cc03f8231e6ebc
+  Building wheel for tzlocal (setup.py): started
+  Building wheel for tzlocal (setup.py): finished with status 'done'
+  Created wheel for tzlocal: filename=tzlocal-1.5.1-py3-none-any.whl size=17541 sha256=70d953833c0f1ed2bb7e829b3093a65e154935512cc8800e48822e5b800a9511
+  Stored in directory: /root/.cache/pip/wheels/3a/14/ce/9c504116f6b89e4a05ce0bc0f41983df280d7e00f463481900
+  Building wheel for unicodecsv (setup.py): started
+  Building wheel for unicodecsv (setup.py): finished with status 'done'
+  Created wheel for unicodecsv: filename=unicodecsv-0.14.1-py3-none-any.whl size=10767 sha256=be7668579592eaa41522a965e1f6883530d105f039dc43664e759bd15ed23361
+  Stored in directory: /root/.cache/pip/wheels/35/dd/44/ccb37563a01457f5de74ccedccaee81b01a53e12addeab5e0f
+  Building wheel for Mako (setup.py): started
+  Building wheel for Mako (setup.py): finished with status 'done'
+  Created wheel for Mako: filename=Mako-1.1.4-py2.py3-none-any.whl size=75675 sha256=82f0dbb69bc72319ddaf5bc52120f833cd92d84b5888aa7308663fc62e7f775c
+  Stored in directory: /root/.cache/pip/wheels/17/bc/50/621fe4100d907a7296cc00c21371402b068b648820f6ff5812
+Successfully built flask-swagger json-merge-patch alembic flask-bcrypt Flask-JWT-Extended flask-login Flask-OpenID lazy-object-proxy mysqlclient pendulum psutil psycopg2-binary pyrsistent pysftp pysmbclient python-nvd3 python-slugify PyYAML sqlalchemy-utils termcolor thrift tzlocal unicodecsv Mako
+Installing collected packages: pyrsistent, markupsafe, attrs, werkzeug, vine, urllib3, PyYAML, jsonschema, jinja2, itsdangerous, defusedxml, chardet, WTForms, text-unidecode, sqlalchemy, requests, python3-openid, PyJWT, openapi-spec-validator, marshmallow, inflection, flask, dnspython, clickclick, Babel, apispec, amqp, zipp, typing-extensions, swagger-ui-bundle, sqlalchemy-utils, pytzdata, python-slugify, python-editor, python-dateutil, pygments, prison, natsort, marshmallow-sqlalchemy, marshmallow-enum, Mako, lockfile, kombu, flask-wtf, Flask-SQLAlchemy, Flask-OpenID, flask-login, Flask-JWT-Extended, Flask-Babel, email-validator, docutils, connexion, commonmark, colorama, unicodecsv, tzlocal, tornado, thrift, termcolor, tenacity, tabulate, sqlalchemy-jsonfield, setproctitle, rich, python-nvd3, python-daemon, psutil, protobuf, prometheus-client, pendulum, pandas, marshmallow-oneofschema, markdown, lazy-object-proxy, json-merge-patch, iso8601, importlib-resources, importlib-metadata, humanize, gunicorn, graphviz, funcsigs, flask-swagger, flask-caching, flask-appbuilder, dill, croniter, colorlog, celery, cattrs, cached-property, argcomplete, apache-airflow-providers-sqlite, apache-airflow-providers-imap, apache-airflow-providers-http, apache-airflow-providers-ftp, alembic, zope.interface, zope.event, sshtunnel, redis, pysmbclient, pysftp, psycopg2-binary, mysqlclient, mysql-connector-python, greenlet, flower, apache-airflow, gevent, flask-bcrypt, eventlet, apache-airflow-providers-ssh, apache-airflow-providers-samba, apache-airflow-providers-redis, apache-airflow-providers-postgres, apache-airflow-providers-mysql, apache-airflow-providers-celery
+  Attempting uninstall: vine
+    Found existing installation: vine 5.0.0
+    Uninstalling vine-5.0.0:
+      Successfully uninstalled vine-5.0.0
+  Attempting uninstall: urllib3
+    Found existing installation: urllib3 1.26.3
+    Uninstalling urllib3-1.26.3:
+      Successfully uninstalled urllib3-1.26.3
+  Attempting uninstall: chardet
+    Found existing installation: chardet 4.0.0
+    Uninstalling chardet-4.0.0:
+      Successfully uninstalled chardet-4.0.0
+  Attempting uninstall: requests
+    Found existing installation: requests 2.25.1
+    Uninstalling requests-2.25.1:
+      Successfully uninstalled requests-2.25.1
+  Attempting uninstall: amqp
+    Found existing installation: amqp 5.0.5
+    Uninstalling amqp-5.0.5:
+      Successfully uninstalled amqp-5.0.5
+  Attempting uninstall: kombu
+    Found existing installation: kombu 5.0.2
+    Uninstalling kombu-5.0.2:
+      Successfully uninstalled kombu-5.0.2
+  Attempting uninstall: celery
+    Found existing installation: celery 5.0.5
+    Uninstalling celery-5.0.5:
+      Successfully uninstalled celery-5.0.5
+  Attempting uninstall: sshtunnel
+    Found existing installation: sshtunnel 0.4.0
+    Uninstalling sshtunnel-0.4.0:
+      Successfully uninstalled sshtunnel-0.4.0
+Successfully installed Babel-2.9.0 Flask-Babel-1.0.0 Flask-JWT-Extended-3.25.0 Flask-OpenID-1.2.5 Flask-SQLAlchemy-2.4.4 Mako-1.1.4 PyJWT-1.7.1 PyYAML-5.4.1 WTForms-2.3.3 alembic-1.5.3 amqp-2.6.1 apache-airflow-2.0.0 apache-airflow-providers-celery-1.0.0 apache-airflow-providers-ftp-1.0.0 apache-airflow-providers-http-1.0.0 apache-airflow-providers-imap-1.0.0 apache-airflow-providers-mysql-1.0.0 apache-airflow-providers-postgres-1.0.0 apache-airflow-providers-redis-1.0.0 apache-airflow-providers-samba-1.0.0 apache-airflow-providers-sqlite-1.0.0 apache-airflow-providers-ssh-1.0.0 apispec-3.3.2 argcomplete-1.12.2 attrs-20.3.0 cached-property-1.5.2 cattrs-1.2.0 celery-4.4.7 chardet-3.0.4 clickclick-20.10.2 colorama-0.4.4 colorlog-4.0.2 commonmark-0.9.1 connexion-2.7.0 croniter-0.3.37 defusedxml-0.6.0 dill-0.3.3 dnspython-1.16.0 docutils-0.16 email-validator-1.1.2 eventlet-0.30.0 flask-1.1.2 flask-appbuilder-3.1.1 flask-bcrypt-0.7.1 flask-caching-1.9.0 flask-login-0.4.1 flask-swagger-0.2.13 flask-wtf-0.14.3 flower-0.9.7 funcsigs-1.0.2 gevent-21.1.2 graphviz-0.16 greenlet-1.0.0 gunicorn-19.10.0 humanize-3.2.0 importlib-metadata-1.7.0 importlib-resources-1.5.0 inflection-0.5.1 iso8601-0.1.13 itsdangerous-1.1.0 jinja2-2.11.3 json-merge-patch-0.2 jsonschema-3.2.0 kombu-4.6.11 lazy-object-proxy-1.4.3 lockfile-0.12.2 markdown-3.3.3 markupsafe-1.1.1 marshmallow-3.10.0 marshmallow-enum-1.5.1 marshmallow-oneofschema-2.1.0 marshmallow-sqlalchemy-0.23.1 mysql-connector-python-8.0.18 mysqlclient-1.3.14 natsort-7.1.1 openapi-spec-validator-0.2.9 pandas-1.2.1 pendulum-2.1.2 prison-0.1.3 prometheus-client-0.8.0 protobuf-3.14.0 psutil-5.8.0 psycopg2-binary-2.8.6 pygments-2.7.4 pyrsistent-0.17.3 pysftp-0.2.9 pysmbclient-0.1.5 python-daemon-2.2.4 python-dateutil-2.8.1 python-editor-1.0.4 python-nvd3-0.15.0 python-slugify-4.0.1 python3-openid-3.2.0 pytzdata-2020.1 redis-3.5.3 requests-2.23.0 rich-9.2.0 setproctitle-1.2.2 sqlalchemy-1.3.22 sqlalchemy-jsonfield-1.0.0 sqlalchemy-utils-0.36.8 sshtunnel-0.1.5 swagger-ui-bundle-0.0.8 tabulate-0.8.7 tenacity-6.2.0 termcolor-1.1.0 text-unidecode-1.3 thrift-0.13.0 tornado-6.1 typing-extensions-3.7.4.3 tzlocal-1.5.1 unicodecsv-0.14.1 urllib3-1.25.11 vine-1.3.0 werkzeug-1.0.1 zipp-3.4.0 zope.event-4.5.0 zope.interface-5.2.0
+Removing intermediate container 6f16c3295358
+ ---> 8e3cfe90bd45
+Step 19/22 : EXPOSE 8080
+ ---> Running in 854d4009cb52
+Removing intermediate container 854d4009cb52
+ ---> ae3aa480d171
+Step 20/22 : EXPOSE 5432
+ ---> Running in 64d38b7488b4
+Removing intermediate container 64d38b7488b4
+ ---> dfb467ea248b
+Step 21/22 : RUN airflow db init
+ ---> Running in 812008bb1ccf
+DB: sqlite:////root/airflow/airflow.db
+[2021-01-31 17:23:40,983] {db.py:678} INFO - Creating tables
+[91mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade  -> e3a246e0dc1, current schema
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e3a246e0dc1 -> 1507a7289a2f, create is_encrypted
+[0m[91m/usr/local/lib/python3.8/site-packages/alembic/ddl/sqlite.py:43 UserWarning: Skipping unsupported ALTER for creation of implicit constraintPlease refer to the batch mode feature which allows for SQLite migrations using a copy-and-move strategy.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1507a7289a2f -> 13eb55f81627, maintain history for compatibility with earlier migrations
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 13eb55f81627 -> 338e90f54d61, More logging into task_instance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 338e90f54d61 -> 52d714495f0, job_id indices
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 52d714495f0 -> 502898887f84, Adding extra to Log
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 502898887f84 -> 1b38cef5b76e, add dagrun
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1b38cef5b76e -> 2e541a1dcfed, task_duration
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 2e541a1dcfed -> 40e67319e3a9, dagrun_config
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 40e67319e3a9 -> 561833c1c74b, add password column to user
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 561833c1c74b -> 4446e08588, dagrun start end
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 4446e08588 -> bbc73705a13e, Add notification_sent column to sla_miss
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bbc73705a13e -> bba5a7cfc896, Add a column to track the encryption state of the 'Extra' field in connection
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bba5a7cfc896 -> 1968acfc09e3, add is_encrypted column to variable table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1968acfc09e3 -> 2e82aab8ef20, rename user table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 2e82aab8ef20 -> 211e584da130, add TI state index
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 211e584da130 -> 64de9cddf6c9, add task fails journal table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 64de9cddf6c9 -> f2ca10b85618, add dag_stats table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade f2ca10b85618 -> 4addfa1236f1, Add fractional seconds to mysql tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 4addfa1236f1 -> 8504051e801b, xcom dag task indices
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8504051e801b -> 5e7d17757c7a, add pid field to TaskInstance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 5e7d17757c7a -> 127d2bf2dfa7, Add dag_id/state index on dag_run table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 127d2bf2dfa7 -> cc1e65623dc7, add max tries column to task instance
+[0m[91mWARNI [unusual_prefix_47426960b0abd86f863137cb7358403ab274d060_example_kubernetes_executor_config] Could not import DAGs in example_kubernetes_executor_config.py: No module named 'kubernetes'
+[0m[91mWARNI [unusual_prefix_47426960b0abd86f863137cb7358403ab274d060_example_kubernetes_executor_config] Install kubernetes dependencies with: pip install apache-airflow['cncf.kubernetes']
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade cc1e65623dc7 -> bdaa763e6c56, Make xcom value column a large binary
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bdaa763e6c56 -> 947454bf1dff, add ti job_id index
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 947454bf1dff -> d2ae31099d61, Increase text size for MySQL (not relevant for other DBs' text types)
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d2ae31099d61 -> 0e2a74e0fc9f, Add time zone awareness
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d2ae31099d61 -> 33ae817a1ff4, kubernetes_resource_checkpointing
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 33ae817a1ff4 -> 27c6a30d7c24, kubernetes_resource_checkpointing
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 27c6a30d7c24 -> 86770d1215c0, add kubernetes scheduler uniqueness
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 86770d1215c0, 0e2a74e0fc9f -> 05f30312d566, merge heads
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 05f30312d566 -> f23433877c24, fix mysql not null constraint
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade f23433877c24 -> 856955da8476, fix sqlite foreign key
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 856955da8476 -> 9635ae0956e7, index-faskfail
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 9635ae0956e7 -> dd25f486b8ea, add idx_log_dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade dd25f486b8ea -> bf00311e1990, add index to taskinstance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 9635ae0956e7 -> 0a2a5b66e19d, add task_reschedule table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 0a2a5b66e19d, bf00311e1990 -> 03bc53e68815, merge_heads_2
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 03bc53e68815 -> 41f5f12752f8, add superuser field
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 41f5f12752f8 -> c8ffec048a3b, add fields to dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade c8ffec048a3b -> dd4ecb8fbee3, Add schedule interval to dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade dd4ecb8fbee3 -> 939bb1e647c8, task reschedule fk on cascade delete
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 939bb1e647c8 -> 6e96a59344a4, Make TaskInstance.pool not nullable
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 6e96a59344a4 -> d38e04c12aa2, add serialized_dag table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d38e04c12aa2 -> b3b105409875, add root_dag_id to DAG
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 6e96a59344a4 -> 74effc47d867, change datetime to datetime2(6) on MSSQL tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 939bb1e647c8 -> 004c1210f153, increase queue name size limit
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade c8ffec048a3b -> a56c9515abdc, Remove dag_stat table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a56c9515abdc, 004c1210f153, 74effc47d867, b3b105409875 -> 08364691d074, Merge the four heads back together
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 08364691d074 -> fe461863935f, increase_length_for_connection_password
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade fe461863935f -> 7939bcff74ba, Add DagTags table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 7939bcff74ba -> a4c2fd67d16b, add pool_slots field to task_instance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a4c2fd67d16b -> 852ae6c715af, Add RenderedTaskInstanceFields table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 852ae6c715af -> 952da73b5eff, add dag_code table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 952da73b5eff -> a66efa278eea, Add Precision to execution_date in RenderedTaskInstanceFields table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a66efa278eea -> da3f683c3a5a, Add dag_hash Column to serialized_dag table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade da3f683c3a5a -> 92c57b58940d, Create FAB Tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 92c57b58940d -> 03afc6b6f902, Increase length of FAB ab_view_menu.name column
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 03afc6b6f902 -> cf5dc11e79ad, drop_user_and_chart
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade cf5dc11e79ad -> bbf4a7ad0465, Remove id column from xcom
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bbf4a7ad0465 -> b25a55525161, Increase length of pool name
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade b25a55525161 -> 3c20cacc0044, Add DagRun run_type
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 3c20cacc0044 -> 8f966b9c467a, Set conn_type as non-nullable
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8f966b9c467a -> 8d48763f6d53, add unique constraint to conn_id
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8d48763f6d53 -> e38be357a868, Add sensor_instance table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e38be357a868 -> b247b1e3d1ed, Add queued by Job ID to TI
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade b247b1e3d1ed -> e1a11ece99cc, Add external executor ID to TI
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e1a11ece99cc -> bef4f3d11e8b, Drop KubeResourceVersion and KubeWorkerId
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bef4f3d11e8b -> 98271e7606e2, Add scheduling_decision to DagRun and DAG
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 98271e7606e2 -> 52d53670a240, fix_mssql_exec_date_rendered_task_instance_fields_for_MSSQL
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 52d53670a240 -> 364159666cbd, Add creating_job_id to DagRun table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 364159666cbd -> 45ba3f1493b9, add-k8s-yaml-to-rendered-templates
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 45ba3f1493b9 -> 849da589634d, Prefix DAG permissions.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 849da589634d -> 2c6edca13270, Resource based permissions.
+[0m[2021-01-31 17:23:49,392] {manager.py:727} WARNING - No user yet created, use flask fab command to do it.
+[2021-01-31 17:24:03,927] {migration.py:555} INFO - Running upgrade 2c6edca13270 -> 61ec73d9401f, Add description field to connection
+[2021-01-31 17:24:03,956] {migration.py:555} INFO - Running upgrade 61ec73d9401f -> 64a7d6477aae, fix description field in connection to be text
+[2021-01-31 17:24:03,974] {migration.py:555} INFO - Running upgrade 64a7d6477aae -> e959f08ac86c, Change field in DagCode to MEDIUMTEXT for MySql
+[2021-01-31 17:24:05,210] {dagbag.py:440} INFO - Filling up the DagBag from /root/airflow/dags
+[2021-01-31 17:24:05,311] {example_kubernetes_executor_config.py:174} WARNING - Could not import DAGs in example_kubernetes_executor_config.py: No module named 'kubernetes'
+[2021-01-31 17:24:05,311] {example_kubernetes_executor_config.py:175} WARNING - Install kubernetes dependencies with: pip install apache-airflow['cncf.kubernetes']
+[2021-01-31 17:24:05,431] {dag.py:1813} INFO - Sync 28 DAGs
+[2021-01-31 17:24:05,448] {dag.py:1832} INFO - Creating ORM DAG for example_trigger_controller_dag
+[2021-01-31 17:24:05,449] {dag.py:1832} INFO - Creating ORM DAG for example_short_circuit_operator
+[2021-01-31 17:24:05,451] {dag.py:1832} INFO - Creating ORM DAG for example_bash_operator
+[2021-01-31 17:24:05,453] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator.section-2
+[2021-01-31 17:24:05,454] {dag.py:1832} INFO - Creating ORM DAG for example_complex
+[2021-01-31 17:24:05,456] {dag.py:1832} INFO - Creating ORM DAG for tutorial
+[2021-01-31 17:24:05,458] {dag.py:1832} INFO - Creating ORM DAG for example_branch_dop_operator_v3
+[2021-01-31 17:24:05,459] {dag.py:1832} INFO - Creating ORM DAG for example_nested_branch_dag
+[2021-01-31 17:24:05,461] {dag.py:1832} INFO - Creating ORM DAG for example_external_task_marker_parent
+[2021-01-31 17:24:05,462] {dag.py:1832} INFO - Creating ORM DAG for example_branch_operator
+[2021-01-31 17:24:05,464] {dag.py:1832} INFO - Creating ORM DAG for example_trigger_target_dag
+[2021-01-31 17:24:05,466] {dag.py:1832} INFO - Creating ORM DAG for example_task_group
+[2021-01-31 17:24:05,467] {dag.py:1832} INFO - Creating ORM DAG for latest_only
+[2021-01-31 17:24:05,469] {dag.py:1832} INFO - Creating ORM DAG for example_dag_decorator
+[2021-01-31 17:24:05,471] {dag.py:1832} INFO - Creating ORM DAG for test_utils
+[2021-01-31 17:24:05,472] {dag.py:1832} INFO - Creating ORM DAG for example_xcom
+[2021-01-31 17:24:05,474] {dag.py:1832} INFO - Creating ORM DAG for example_passing_params_via_test_command
+[2021-01-31 17:24:05,476] {dag.py:1832} INFO - Creating ORM DAG for example_kubernetes_executor
+[2021-01-31 17:24:05,477] {dag.py:1832} INFO - Creating ORM DAG for example_python_operator
+[2021-01-31 17:24:05,479] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator.section-1
+[2021-01-31 17:24:05,480] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator
+[2021-01-31 17:24:05,482] {dag.py:1832} INFO - Creating ORM DAG for example_xcom_args
+[2021-01-31 17:24:05,483] {dag.py:1832} INFO - Creating ORM DAG for example_skip_dag
+[2021-01-31 17:24:05,485] {dag.py:1832} INFO - Creating ORM DAG for tutorial_etl_dag
+[2021-01-31 17:24:05,487] {dag.py:1832} INFO - Creating ORM DAG for latest_only_with_trigger
+[2021-01-31 17:24:05,488] {dag.py:1832} INFO - Creating ORM DAG for example_xcom_args_with_operators
+[2021-01-31 17:24:05,490] {dag.py:1832} INFO - Creating ORM DAG for tutorial_taskflow_api_etl
+[2021-01-31 17:24:05,491] {dag.py:1832} INFO - Creating ORM DAG for example_external_task_marker_child
+[2021-01-31 17:24:05,525] {dag.py:2266} INFO - Setting next_dagrun for example_bash_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,584] {dag.py:2266} INFO - Setting next_dagrun for example_branch_dop_operator_v3 to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,609] {dag.py:2266} INFO - Setting next_dagrun for example_branch_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,610] {dag.py:2266} INFO - Setting next_dagrun for example_complex to None
+[2021-01-31 17:24:05,612] {dag.py:2266} INFO - Setting next_dagrun for example_dag_decorator to None
+[2021-01-31 17:24:05,614] {dag.py:2266} INFO - Setting next_dagrun for example_external_task_marker_child to None
+[2021-01-31 17:24:05,615] {dag.py:2266} INFO - Setting next_dagrun for example_external_task_marker_parent to None
+[2021-01-31 17:24:05,617] {dag.py:2266} INFO - Setting next_dagrun for example_kubernetes_executor to None
+[2021-01-31 17:24:05,641] {dag.py:2266} INFO - Setting next_dagrun for example_nested_branch_dag to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,695] {dag.py:2266} INFO - Setting next_dagrun for example_passing_params_via_test_command to 2021-01-30 00:00:00+00:00
+[2021-01-31 17:24:05,696] {dag.py:2266} INFO - Setting next_dagrun for example_python_operator to None
+[2021-01-31 17:24:05,698] {dag.py:2266} INFO - Setting next_dagrun for example_short_circuit_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,700] {dag.py:2266} INFO - Setting next_dagrun for example_skip_dag to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,701] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,703] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-1 to None
+[2021-01-31 17:24:05,704] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-2 to None
+[2021-01-31 17:24:05,705] {dag.py:2266} INFO - Setting next_dagrun for example_task_group to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,707] {dag.py:2266} INFO - Setting next_dagrun for example_trigger_controller_dag to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,708] {dag.py:2266} INFO - Setting next_dagrun for example_trigger_target_dag to None
+[2021-01-31 17:24:05,710] {dag.py:2266} INFO - Setting next_dagrun for example_xcom to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,711] {dag.py:2266} INFO - Setting next_dagrun for example_xcom_args to None
+[2021-01-31 17:24:05,713] {dag.py:2266} INFO - Setting next_dagrun for example_xcom_args_with_operators to None
+[2021-01-31 17:24:05,715] {dag.py:2266} INFO - Setting next_dagrun for latest_only to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,717] {dag.py:2266} INFO - Setting next_dagrun for latest_only_with_trigger to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,718] {dag.py:2266} INFO - Setting next_dagrun for test_utils to None
+[2021-01-31 17:24:05,720] {dag.py:2266} INFO - Setting next_dagrun for tutorial to 2021-01-29 00:00:00+00:00
+[2021-01-31 17:24:05,722] {dag.py:2266} INFO - Setting next_dagrun for tutorial_etl_dag to None
+[2021-01-31 17:24:05,723] {dag.py:2266} INFO - Setting next_dagrun for tutorial_taskflow_api_etl to None
+[2021-01-31 17:24:05,805] {dag.py:1813} INFO - Sync 2 DAGs
+[2021-01-31 17:24:05,826] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-1 to None
+[2021-01-31 17:24:05,827] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-2 to None
+Initialization done
+Removing intermediate container 812008bb1ccf
+ ---> 886127e64d35
+Step 22/22 : CMD bash startup.sh
+ ---> Running in 4ae0e8837821
+Removing intermediate container 4ae0e8837821
+ ---> d2773c35080a
+Successfully built d2773c35080a
+Successfully tagged airflow:latest

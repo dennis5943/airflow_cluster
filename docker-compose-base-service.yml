@@ -29,7 +29,6 @@ services:
       - POSTGRES_DATA=/postgresql/data
     volumes: 
       - ./workspace/database:/postgresql/data/
-      - ./workspace/startup_postgresql.sh:/app/startup_postgresql.sh
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
     command: bash startup_postgresql.sh
 
