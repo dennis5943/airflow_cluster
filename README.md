@@ -5,8 +5,6 @@ Airflow 2.0 Docker + Swarm佈署
 
 (會佈署三項服務 1.rabbitmq  2.adminer 3.postgres_db)
 
-建立資料庫，指令:docker exec [postgres_db container ID] bash resetdb.sh
-
 RabbitMQ :http://[airflow_base_RabbitMQ]:15672/#/
 
 設定User:airflow:[password]
