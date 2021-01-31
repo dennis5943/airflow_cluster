@@ -1,0 +1,2640 @@
+Sending build context to Docker daemon  83.97kB
+Step 1/20 : From python:3.8
+ ---> 063a47851920
+Step 2/20 : COPY . /app
+ ---> 1d1e049b7991
+Step 3/20 : WORKDIR /app
+ ---> Running in 9e24d83ee3c1
+Removing intermediate container 9e24d83ee3c1
+ ---> 81fa769a960b
+Step 4/20 : RUN pip3 install --upgrade pip
+ ---> Running in b98991632ee4
+Requirement already satisfied: pip in /usr/local/lib/python3.8/site-packages (20.3.3)
+Collecting pip
+  Downloading pip-21.0-py3-none-any.whl (1.5 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.3.3
+    Uninstalling pip-20.3.3:
+      Successfully uninstalled pip-20.3.3
+Successfully installed pip-21.0
+Removing intermediate container b98991632ee4
+ ---> 2ef2ec0efcc2
+Step 5/20 : RUN apt-get update
+ ---> Running in d381d69fcf12
+Get:1 http://security.debian.org/debian-security buster/updates InRelease [65.4 kB]
+Get:2 http://deb.debian.org/debian buster InRelease [121 kB]
+Get:3 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
+Get:4 http://security.debian.org/debian-security buster/updates/main arm64 Packages [264 kB]
+Get:5 http://deb.debian.org/debian buster/main arm64 Packages [7737 kB]
+Get:6 http://deb.debian.org/debian buster-updates/main arm64 Packages [7832 B]
+Fetched 8247 kB in 6s (1464 kB/s)
+Reading package lists...
+Removing intermediate container d381d69fcf12
+ ---> 847e50f48ba1
+Step 6/20 : RUN apt-get install nano
+ ---> Running in b52823cc5fcc
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  spell
+The following NEW packages will be installed:
+  nano
+0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+Need to get 541 kB of archives.
+After this operation, 2290 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 nano arm64 3.2-3 [541 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 541 kB in 0s (1726 kB/s)
+Selecting previously unselected package nano.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24573 files and directories currently installed.)
+Preparing to unpack .../archives/nano_3.2-3_arm64.deb ...
+Unpacking nano (3.2-3) ...
+Setting up nano (3.2-3) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+Removing intermediate container b52823cc5fcc
+ ---> 87e190c94cd0
+Step 7/20 : RUN apt-get install postgresql -y
+ ---> Running in 4a891c4830f0
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  cron distro-info-data exim4-base exim4-config exim4-daemon-light
+  guile-2.2-libs libc-l10n libgc1c2 libgsasl7 libidn11 libkyotocabinet16v5
+  libllvm7 libmailutils5 libntlm0 libpopt0 libpython2.7 libsensors-config
+  libsensors5 libwrap0 locales logrotate lsb-release mailutils
+  mailutils-common postgresql-11 postgresql-client-11 postgresql-client-common
+  postgresql-common psmisc ssl-cert sysstat
+Suggested packages:
+  anacron checksecurity exim4-doc-html | exim4-doc-info eximon4 spf-tools-perl
+  swaks lm-sensors lsb mailutils-mh mailutils-doc postgresql-doc
+  postgresql-doc-11 libjson-perl openssl-blacklist isag
+The following NEW packages will be installed:
+  cron distro-info-data exim4-base exim4-config exim4-daemon-light
+  guile-2.2-libs libc-l10n libgc1c2 libgsasl7 libidn11 libkyotocabinet16v5
+  libllvm7 libmailutils5 libntlm0 libpopt0 libpython2.7 libsensors-config
+  libsensors5 libwrap0 locales logrotate lsb-release mailutils
+  mailutils-common postgresql postgresql-11 postgresql-client-11
+  postgresql-client-common postgresql-common psmisc ssl-cert sysstat
+0 upgraded, 32 newly installed, 0 to remove and 2 not upgraded.
+Need to get 43.1 MB of archives.
+After this operation, 191 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 cron arm64 3.0pl1-134+deb10u1 [98.0 kB]
+Get:2 http://deb.debian.org/debian buster/main arm64 libpopt0 arm64 1.16-12 [48.3 kB]
+Get:3 http://deb.debian.org/debian buster/main arm64 logrotate arm64 3.14.0-4 [60.1 kB]
+Get:4 http://deb.debian.org/debian buster/main arm64 libc-l10n all 2.28-10 [847 kB]
+Get:5 http://deb.debian.org/debian buster/main arm64 locales all 2.28-10 [4060 kB]
+Get:6 http://deb.debian.org/debian buster/main arm64 distro-info-data all 0.41+deb10u3 [6640 B]
+Get:7 http://deb.debian.org/debian buster/main arm64 exim4-config all 4.92-8+deb10u4 [323 kB]
+Get:8 http://deb.debian.org/debian buster/main arm64 exim4-base arm64 4.92-8+deb10u4 [1134 kB]
+Get:9 http://deb.debian.org/debian buster/main arm64 exim4-daemon-light arm64 4.92-8+deb10u4 [555 kB]
+Get:10 http://deb.debian.org/debian buster/main arm64 libgc1c2 arm64 1:7.6.4-0.4 [214 kB]
+Get:11 http://deb.debian.org/debian buster/main arm64 guile-2.2-libs arm64 2.2.4+1-2+deb10u1 [4938 kB]
+Get:12 http://deb.debian.org/debian buster/main arm64 libidn11 arm64 1.33-2.2 [113 kB]
+Get:13 http://deb.debian.org/debian buster/main arm64 libntlm0 arm64 1.5-1+deb10u1 [23.6 kB]
+Get:14 http://deb.debian.org/debian buster/main arm64 libgsasl7 arm64 1.8.0-8+b2 [198 kB]
+Get:15 http://deb.debian.org/debian buster/main arm64 libkyotocabinet16v5 arm64 1.2.76-4.2+b1 [267 kB]
+Get:16 http://deb.debian.org/debian buster/main arm64 libllvm7 arm64 1:7.0.1-8+deb10u2 [10.8 MB]
+Get:17 http://deb.debian.org/debian buster/main arm64 mailutils-common all 1:3.5-4 [689 kB]
+Get:18 http://deb.debian.org/debian buster/main arm64 libpython2.7 arm64 2.7.16-2+deb10u1 [958 kB]
+Get:19 http://deb.debian.org/debian buster/main arm64 libmailutils5 arm64 1:3.5-4 [829 kB]
+Get:20 http://deb.debian.org/debian buster/main arm64 libsensors-config all 1:3.5.0-3 [31.6 kB]
+Get:21 http://deb.debian.org/debian buster/main arm64 libsensors5 arm64 1:3.5.0-3 [51.8 kB]
+Get:22 http://deb.debian.org/debian buster/main arm64 libwrap0 arm64 7.6.q-28 [58.4 kB]
+Get:23 http://deb.debian.org/debian buster/main arm64 lsb-release all 10.2019051400 [27.5 kB]
+Get:24 http://deb.debian.org/debian buster/main arm64 mailutils arm64 1:3.5-4 [570 kB]
+Get:25 http://deb.debian.org/debian buster/main arm64 postgresql-client-common all 200+deb10u4 [85.1 kB]
+Get:26 http://deb.debian.org/debian buster/main arm64 postgresql-client-11 arm64 11.9-0+deb10u1 [1372 kB]
+Get:27 http://deb.debian.org/debian buster/main arm64 ssl-cert all 1.0.39 [20.8 kB]
+Get:28 http://deb.debian.org/debian buster/main arm64 postgresql-common all 200+deb10u4 [225 kB]
+Get:29 http://deb.debian.org/debian buster/main arm64 postgresql-11 arm64 11.9-0+deb10u1 [13.7 MB]
+Get:30 http://deb.debian.org/debian buster/main arm64 postgresql all 11+200+deb10u4 [61.1 kB]
+Get:31 http://deb.debian.org/debian buster/main arm64 psmisc arm64 23.2-1 [122 kB]
+Get:32 http://deb.debian.org/debian buster/main arm64 sysstat arm64 12.0.3-2 [545 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 43.1 MB in 12s (3478 kB/s)
+Selecting previously unselected package cron.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24675 files and directories currently installed.)
+Preparing to unpack .../00-cron_3.0pl1-134+deb10u1_arm64.deb ...
+Unpacking cron (3.0pl1-134+deb10u1) ...
+Selecting previously unselected package libpopt0:arm64.
+Preparing to unpack .../01-libpopt0_1.16-12_arm64.deb ...
+Unpacking libpopt0:arm64 (1.16-12) ...
+Selecting previously unselected package logrotate.
+Preparing to unpack .../02-logrotate_3.14.0-4_arm64.deb ...
+Unpacking logrotate (3.14.0-4) ...
+Selecting previously unselected package libc-l10n.
+Preparing to unpack .../03-libc-l10n_2.28-10_all.deb ...
+Unpacking libc-l10n (2.28-10) ...
+Selecting previously unselected package locales.
+Preparing to unpack .../04-locales_2.28-10_all.deb ...
+Unpacking locales (2.28-10) ...
+Selecting previously unselected package distro-info-data.
+Preparing to unpack .../05-distro-info-data_0.41+deb10u3_all.deb ...
+Unpacking distro-info-data (0.41+deb10u3) ...
+Selecting previously unselected package exim4-config.
+Preparing to unpack .../06-exim4-config_4.92-8+deb10u4_all.deb ...
+Unpacking exim4-config (4.92-8+deb10u4) ...
+Selecting previously unselected package exim4-base.
+Preparing to unpack .../07-exim4-base_4.92-8+deb10u4_arm64.deb ...
+Unpacking exim4-base (4.92-8+deb10u4) ...
+Selecting previously unselected package exim4-daemon-light.
+Preparing to unpack .../08-exim4-daemon-light_4.92-8+deb10u4_arm64.deb ...
+Unpacking exim4-daemon-light (4.92-8+deb10u4) ...
+Selecting previously unselected package libgc1c2:arm64.
+Preparing to unpack .../09-libgc1c2_1%3a7.6.4-0.4_arm64.deb ...
+Unpacking libgc1c2:arm64 (1:7.6.4-0.4) ...
+Selecting previously unselected package guile-2.2-libs:arm64.
+Preparing to unpack .../10-guile-2.2-libs_2.2.4+1-2+deb10u1_arm64.deb ...
+Unpacking guile-2.2-libs:arm64 (2.2.4+1-2+deb10u1) ...
+Selecting previously unselected package libidn11:arm64.
+Preparing to unpack .../11-libidn11_1.33-2.2_arm64.deb ...
+Unpacking libidn11:arm64 (1.33-2.2) ...
+Selecting previously unselected package libntlm0:arm64.
+Preparing to unpack .../12-libntlm0_1.5-1+deb10u1_arm64.deb ...
+Unpacking libntlm0:arm64 (1.5-1+deb10u1) ...
+Selecting previously unselected package libgsasl7.
+Preparing to unpack .../13-libgsasl7_1.8.0-8+b2_arm64.deb ...
+Unpacking libgsasl7 (1.8.0-8+b2) ...
+Selecting previously unselected package libkyotocabinet16v5:arm64.
+Preparing to unpack .../14-libkyotocabinet16v5_1.2.76-4.2+b1_arm64.deb ...
+Unpacking libkyotocabinet16v5:arm64 (1.2.76-4.2+b1) ...
+Selecting previously unselected package libllvm7:arm64.
+Preparing to unpack .../15-libllvm7_1%3a7.0.1-8+deb10u2_arm64.deb ...
+Unpacking libllvm7:arm64 (1:7.0.1-8+deb10u2) ...
+Selecting previously unselected package mailutils-common.
+Preparing to unpack .../16-mailutils-common_1%3a3.5-4_all.deb ...
+Unpacking mailutils-common (1:3.5-4) ...
+Selecting previously unselected package libpython2.7:arm64.
+Preparing to unpack .../17-libpython2.7_2.7.16-2+deb10u1_arm64.deb ...
+Unpacking libpython2.7:arm64 (2.7.16-2+deb10u1) ...
+Selecting previously unselected package libmailutils5:arm64.
+Preparing to unpack .../18-libmailutils5_1%3a3.5-4_arm64.deb ...
+Unpacking libmailutils5:arm64 (1:3.5-4) ...
+Selecting previously unselected package libsensors-config.
+Preparing to unpack .../19-libsensors-config_1%3a3.5.0-3_all.deb ...
+Unpacking libsensors-config (1:3.5.0-3) ...
+Selecting previously unselected package libsensors5:arm64.
+Preparing to unpack .../20-libsensors5_1%3a3.5.0-3_arm64.deb ...
+Unpacking libsensors5:arm64 (1:3.5.0-3) ...
+Selecting previously unselected package libwrap0:arm64.
+Preparing to unpack .../21-libwrap0_7.6.q-28_arm64.deb ...
+Unpacking libwrap0:arm64 (7.6.q-28) ...
+Selecting previously unselected package lsb-release.
+Preparing to unpack .../22-lsb-release_10.2019051400_all.deb ...
+Unpacking lsb-release (10.2019051400) ...
+Selecting previously unselected package mailutils.
+Preparing to unpack .../23-mailutils_1%3a3.5-4_arm64.deb ...
+Unpacking mailutils (1:3.5-4) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../24-postgresql-client-common_200+deb10u4_all.deb ...
+Unpacking postgresql-client-common (200+deb10u4) ...
+Selecting previously unselected package postgresql-client-11.
+Preparing to unpack .../25-postgresql-client-11_11.9-0+deb10u1_arm64.deb ...
+Unpacking postgresql-client-11 (11.9-0+deb10u1) ...
+Selecting previously unselected package ssl-cert.
+Preparing to unpack .../26-ssl-cert_1.0.39_all.deb ...
+Unpacking ssl-cert (1.0.39) ...
+Selecting previously unselected package postgresql-common.
+Preparing to unpack .../27-postgresql-common_200+deb10u4_all.deb ...
+Adding 'diversion of /usr/bin/pg_config to /usr/bin/pg_config.libpq-dev by postgresql-common'
+Unpacking postgresql-common (200+deb10u4) ...
+Selecting previously unselected package postgresql-11.
+Preparing to unpack .../28-postgresql-11_11.9-0+deb10u1_arm64.deb ...
+Unpacking postgresql-11 (11.9-0+deb10u1) ...
+Selecting previously unselected package postgresql.
+Preparing to unpack .../29-postgresql_11+200+deb10u4_all.deb ...
+Unpacking postgresql (11+200+deb10u4) ...
+Selecting previously unselected package psmisc.
+Preparing to unpack .../30-psmisc_23.2-1_arm64.deb ...
+Unpacking psmisc (23.2-1) ...
+Selecting previously unselected package sysstat.
+Preparing to unpack .../31-sysstat_12.0.3-2_arm64.deb ...
+Unpacking sysstat (12.0.3-2) ...
+Setting up postgresql-client-common (200+deb10u4) ...
+Setting up libpython2.7:arm64 (2.7.16-2+deb10u1) ...
+Setting up libc-l10n (2.28-10) ...
+Setting up psmisc (23.2-1) ...
+Setting up libgc1c2:arm64 (1:7.6.4-0.4) ...
+Setting up distro-info-data (0.41+deb10u3) ...
+Setting up libkyotocabinet16v5:arm64 (1.2.76-4.2+b1) ...
+Setting up cron (3.0pl1-134+deb10u1) ...
+Adding group `crontab' (GID 102) ...
+Done.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up libsensors-config (1:3.5.0-3) ...
+Setting up locales (2.28-10) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Generating locales (this might take a while)...
+Generation complete.
+Setting up libwrap0:arm64 (7.6.q-28) ...
+Setting up libntlm0:arm64 (1.5-1+deb10u1) ...
+Setting up ssl-cert (1.0.39) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libidn11:arm64 (1.33-2.2) ...
+Setting up postgresql-client-11 (11.9-0+deb10u1) ...
+update-alternatives: using /usr/share/postgresql/11/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up postgresql-common (200+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Adding user postgres to group ssl-cert
+
+Creating config file /etc/postgresql-common/createcluster.conf with new version
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+Removing obsolete dictionary files:
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up mailutils-common (1:3.5-4) ...
+Setting up libsensors5:arm64 (1:3.5.0-3) ...
+Setting up exim4-config (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Adding system-user for exim (v4)
+Setting up libllvm7:arm64 (1:7.0.1-8+deb10u2) ...
+Setting up lsb-release (10.2019051400) ...
+Setting up sysstat (12.0.3-2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/default/sysstat with new version
+update-alternatives: using /usr/bin/sar.sysstat to provide /usr/bin/sar (sar) in auto mode
+Setting up guile-2.2-libs:arm64 (2.2.4+1-2+deb10u1) ...
+Setting up libpopt0:arm64 (1.16-12) ...
+Setting up logrotate (3.14.0-4) ...
+Setting up exim4-base (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+exim: DB upgrade, deleting hints-db
+Setting up libgsasl7 (1.8.0-8+b2) ...
+Setting up postgresql-11 (11.9-0+deb10u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Creating new PostgreSQL cluster 11/main ...
+/usr/lib/postgresql/11/bin/initdb -D /var/lib/postgresql/11/main --auth-local peer --auth-host md5
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "C.UTF-8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/11/main ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default timezone ... Etc/UTC
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    pg_ctlcluster 11 main start
+
+Ver Cluster Port Status Owner    Data directory              Log file
+[31m11  main    5432 down   postgres /var/lib/postgresql/11/main /var/log/postgresql/postgresql-11-main.log[0m
+update-alternatives: using /usr/share/postgresql/11/man/man1/postmaster.1.gz to provide /usr/share/man/man1/postmaster.1.gz (postmaster.1.gz) in auto mode
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up postgresql (11+200+deb10u4) ...
+Setting up exim4-daemon-light (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Initializing GnuTLS DH parameter file
+Setting up libmailutils5:arm64 (1:3.5-4) ...
+Setting up mailutils (1:3.5-4) ...
+update-alternatives: using /usr/bin/frm.mailutils to provide /usr/bin/frm (frm) in auto mode
+update-alternatives: using /usr/bin/from.mailutils to provide /usr/bin/from (from) in auto mode
+update-alternatives: using /usr/bin/messages.mailutils to provide /usr/bin/messages (messages) in auto mode
+update-alternatives: using /usr/bin/movemail.mailutils to provide /usr/bin/movemail (movemail) in auto mode
+update-alternatives: using /usr/bin/readmsg.mailutils to provide /usr/bin/readmsg (readmsg) in auto mode
+update-alternatives: using /usr/bin/dotlock.mailutils to provide /usr/bin/dotlock (dotlock) in auto mode
+update-alternatives: using /usr/bin/mail.mailutils to provide /usr/bin/mailx (mailx) in auto mode
+Processing triggers for libc-bin (2.28-10) ...
+Removing intermediate container 4a891c4830f0
+ ---> a52b14a1d746
+Step 8/20 : RUN cp -f postgresql.conf /etc/postgresql/11/main/postgresql.conf
+ ---> Running in 3b6853809612
+Removing intermediate container 3b6853809612
+ ---> 6249387d7acb
+Step 9/20 : RUN cp -f pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
+ ---> Running in 281f85cdcaf5
+Removing intermediate container 281f85cdcaf5
+ ---> 6bffb347ddee
+Step 10/20 : RUN service postgresql start
+ ---> Running in 5a30f7558ad2
+Starting PostgreSQL 11 database server: main.
+Removing intermediate container 5a30f7558ad2
+ ---> 61f6ea5c4e37
+Step 11/20 : RUN pip install -r requirement.txt
+ ---> Running in af77a4acb4c6
+Collecting numpy
+  Downloading numpy-1.19.5-cp38-cp38-manylinux2014_aarch64.whl (12.4 MB)
+Collecting celery
+  Downloading celery-5.0.5-py3-none-any.whl (392 kB)
+Collecting Cython
+  Downloading Cython-0.29.21-py2.py3-none-any.whl (974 kB)
+Collecting paramiko
+  Downloading paramiko-2.7.2-py2.py3-none-any.whl (206 kB)
+Collecting sshtunnel
+  Downloading sshtunnel-0.4.0-py2.py3-none-any.whl (24 kB)
+Collecting requests
+  Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+Collecting click<8.0,>=7.0
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting pytz>dev
+  Downloading pytz-2020.5-py2.py3-none-any.whl (510 kB)
+Collecting billiard<4.0,>=3.6.3.0
+  Downloading billiard-3.6.3.0-py3-none-any.whl (89 kB)
+Collecting kombu<6.0,>=5.0.0
+  Downloading kombu-5.0.2-py2.py3-none-any.whl (180 kB)
+Collecting click-didyoumean>=0.0.3
+  Downloading click-didyoumean-0.0.3.tar.gz (2.6 kB)
+Collecting click-plugins>=1.1.1
+  Downloading click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Collecting vine<6.0,>=5.0.0
+  Downloading vine-5.0.0-py2.py3-none-any.whl (9.4 kB)
+Collecting click-repl>=0.1.6
+  Downloading click_repl-0.1.6-py3-none-any.whl (4.2 kB)
+Collecting prompt-toolkit
+  Downloading prompt_toolkit-3.0.14-py3-none-any.whl (359 kB)
+Collecting six
+  Downloading six-1.15.0-py2.py3-none-any.whl (10 kB)
+Collecting amqp<6.0.0,>=5.0.0
+  Downloading amqp-5.0.5-py3-none-any.whl (51 kB)
+Collecting bcrypt>=3.1.3
+  Downloading bcrypt-3.2.0-cp36-abi3-manylinux2014_aarch64.whl (56 kB)
+Collecting cryptography>=2.5
+  Downloading cryptography-3.3.1-cp36-abi3-manylinux2014_aarch64.whl (2.6 MB)
+Collecting pynacl>=1.0.1
+  Downloading PyNaCl-1.4.0.tar.gz (3.4 MB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting cffi>=1.1
+  Using cached cffi-1.14.4-cp38-cp38-manylinux2014_aarch64.whl (208 kB)
+Collecting pycparser
+  Using cached pycparser-2.20-py2.py3-none-any.whl (112 kB)
+Collecting chardet<5,>=3.0.2
+  Downloading chardet-4.0.0-py2.py3-none-any.whl (178 kB)
+Collecting idna<3,>=2.5
+  Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+Collecting certifi>=2017.4.17
+  Downloading certifi-2020.12.5-py2.py3-none-any.whl (147 kB)
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.3-py2.py3-none-any.whl (137 kB)
+Collecting wcwidth
+  Downloading wcwidth-0.2.5-py2.py3-none-any.whl (30 kB)
+Building wheels for collected packages: click-didyoumean, pynacl
+  Building wheel for click-didyoumean (setup.py): started
+  Building wheel for click-didyoumean (setup.py): finished with status 'done'
+  Created wheel for click-didyoumean: filename=click_didyoumean-0.0.3-py3-none-any.whl size=2146 sha256=d6fd15649359db7ec82fb05808727f4ec0a60269be37501bd5f987e178f1e1af
+  Stored in directory: /root/.cache/pip/wheels/c2/97/1e/c7dda0b8e9616dcd8df2a2882e556ef62879967ac31e0e3d04
+  Building wheel for pynacl (PEP 517): started
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): finished with status 'done'
+  Created wheel for pynacl: filename=PyNaCl-1.4.0-cp38-cp38-linux_aarch64.whl size=665402 sha256=5ae71898c3c3fb14a1b364e7f2f1fdb6e9e052a09cf2667b74dadbbe4712efe2
+  Stored in directory: /root/.cache/pip/wheels/10/23/c0/f42041fbad88c47b268b6119919130b407b48e24b41a349684
+Successfully built click-didyoumean pynacl
+Installing collected packages: pycparser, wcwidth, vine, six, cffi, pynacl, prompt-toolkit, cryptography, click, bcrypt, amqp, urllib3, pytz, paramiko, kombu, idna, click-repl, click-plugins, click-didyoumean, chardet, certifi, billiard, sshtunnel, requests, numpy, Cython, celery
+Successfully installed Cython-0.29.21 amqp-5.0.5 bcrypt-3.2.0 billiard-3.6.3.0 celery-5.0.5 certifi-2020.12.5 cffi-1.14.4 chardet-4.0.0 click-7.1.2 click-didyoumean-0.0.3 click-plugins-1.1.1 click-repl-0.1.6 cryptography-3.3.1 idna-2.10 kombu-5.0.2 numpy-1.19.5 paramiko-2.7.2 prompt-toolkit-3.0.14 pycparser-2.20 pynacl-1.4.0 pytz-2020.5 requests-2.25.1 six-1.15.0 sshtunnel-0.4.0 urllib3-1.26.3 vine-5.0.0 wcwidth-0.2.5
+Removing intermediate container af77a4acb4c6
+ ---> 454037e87fd5
+Step 12/20 : ENV AIRFLOW_HOME=/root/airflow
+ ---> Running in c05d51af4287
+Removing intermediate container c05d51af4287
+ ---> 8b78d74c843f
+Step 13/20 : ENV AIRFLOW_USER=airflow
+ ---> Running in 6062aff7c62c
+Removing intermediate container 6062aff7c62c
+ ---> dae50714948b
+Step 14/20 : ENV AIRFLOW_PASSWORD=12345678
+ ---> Running in dbf44f472de8
+Removing intermediate container dbf44f472de8
+ ---> 3e43efb0dcc9
+Step 15/20 : ENV AIRFLOW_EMAIL=airflow@example.com
+ ---> Running in d53a44e70a35
+Removing intermediate container d53a44e70a35
+ ---> 6db6a551f0a6
+Step 16/20 : RUN pip install 'apache-airflow[celery,async,ssh,samba,redis,password,rabbitmq,postgres,mysql]'
+ ---> Running in 26b2921d5cdb
+Collecting apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]
+  Downloading apache_airflow-2.0.0-py3-none-any.whl (4.5 MB)
+Collecting flask-swagger==0.2.13
+  Downloading flask-swagger-0.2.13.tar.gz (8.0 kB)
+Collecting unicodecsv>=0.14.1
+  Downloading unicodecsv-0.14.1.tar.gz (10 kB)
+Collecting json-merge-patch==0.2
+  Downloading json-merge-patch-0.2.tar.gz (3.1 kB)
+Collecting tzlocal<2.0.0,>=1.4
+  Downloading tzlocal-1.5.1.tar.gz (16 kB)
+Collecting pygments<3.0,>=2.0.1
+  Downloading Pygments-2.7.4-py3-none-any.whl (950 kB)
+Collecting iso8601>=0.1.12
+  Downloading iso8601-0.1.13-py3-none-any.whl (9.3 kB)
+Collecting urllib3<1.26
+  Downloading urllib3-1.25.11-py2.py3-none-any.whl (127 kB)
+Collecting graphviz>=0.12
+  Downloading graphviz-0.16-py2.py3-none-any.whl (19 kB)
+Collecting apache-airflow-providers-http
+  Downloading apache_airflow_providers_http-1.0.0-py3-none-any.whl (24 kB)
+Collecting termcolor>=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Collecting alembic<2.0,>=1.2
+  Downloading alembic-1.5.3.tar.gz (1.1 MB)
+Collecting psutil<6.0.0,>=4.2.0
+  Downloading psutil-5.8.0.tar.gz (470 kB)
+Collecting connexion[flask,swagger-ui]<3,>=2.6.0
+  Downloading connexion-2.7.0-py2.py3-none-any.whl (77 kB)
+Requirement already satisfied: cryptography>=0.9.3 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.3.1)
+Collecting lazy-object-proxy<1.5.0
+  Downloading lazy-object-proxy-1.4.3.tar.gz (34 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting colorlog==4.0.2
+  Downloading colorlog-4.0.2-py2.py3-none-any.whl (17 kB)
+Collecting sqlalchemy-jsonfield~=1.0
+  Downloading SQLAlchemy_JSONField-1.0.0-py3-none-any.whl (10 kB)
+Collecting apache-airflow-providers-ftp
+  Downloading apache_airflow_providers_ftp-1.0.0-py3-none-any.whl (17 kB)
+Collecting setproctitle<2,>=1.1.8
+  Downloading setproctitle-1.2.2-cp38-cp38-manylinux2014_aarch64.whl (36 kB)
+Collecting sqlalchemy<2,>=1.3.18
+  Downloading SQLAlchemy-1.3.22-cp38-cp38-manylinux2014_aarch64.whl (1.3 MB)
+Collecting jinja2<2.12.0,>=2.10.1
+  Downloading Jinja2-2.11.2-py2.py3-none-any.whl (125 kB)
+Collecting dill<0.4,>=0.2.2
+  Downloading dill-0.3.3-py2.py3-none-any.whl (81 kB)
+Collecting flask-wtf<0.15,>=0.14.3
+  Downloading Flask_WTF-0.14.3-py2.py3-none-any.whl (13 kB)
+Collecting funcsigs<2.0.0,>=1.0.0
+  Downloading funcsigs-1.0.2-py2.py3-none-any.whl (17 kB)
+Collecting gunicorn<20.0,>=19.5.0
+  Downloading gunicorn-19.10.0-py2.py3-none-any.whl (113 kB)
+Collecting argcomplete~=1.10
+  Downloading argcomplete-1.12.2-py2.py3-none-any.whl (38 kB)
+Collecting apache-airflow-providers-imap
+  Downloading apache_airflow_providers_imap-1.0.0-py3-none-any.whl (18 kB)
+Collecting flask-caching<2.0.0,>=1.5.0
+  Downloading Flask_Caching-1.9.0-py2.py3-none-any.whl (33 kB)
+Collecting flask-login<0.5,>=0.3
+  Downloading Flask-Login-0.4.1.tar.gz (14 kB)
+Collecting lockfile>=0.12.2
+  Downloading lockfile-0.12.2-py2.py3-none-any.whl (13 kB)
+Collecting flask<2.0,>=1.1.0
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting rich==9.2.0
+  Downloading rich-9.2.0-py3-none-any.whl (164 kB)
+Collecting requests<2.24.0,>=2.20.0
+  Downloading requests-2.23.0-py2.py3-none-any.whl (58 kB)
+Collecting marshmallow-oneofschema>=2.0.1
+  Downloading marshmallow_oneofschema-2.1.0-py2.py3-none-any.whl (5.7 kB)
+Collecting pandas<2.0,>=0.17.1
+  Downloading pandas-1.2.1-cp38-cp38-manylinux2014_aarch64.whl (10.0 MB)
+Collecting cached-property~=1.5
+  Downloading cached_property-1.5.2-py2.py3-none-any.whl (7.6 kB)
+Collecting tenacity~=6.2.0
+  Downloading tenacity-6.2.0-py2.py3-none-any.whl (24 kB)
+Collecting thrift>=0.9.2
+  Downloading thrift-0.13.0.tar.gz (59 kB)
+Collecting itsdangerous>=1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting apache-airflow-providers-sqlite
+  Downloading apache_airflow_providers_sqlite-1.0.0-py3-none-any.whl (15 kB)
+Collecting python-dateutil<3,>=2.3
+  Downloading python_dateutil-2.8.1-py2.py3-none-any.whl (227 kB)
+Collecting attrs<21.0,>=20.0
+  Downloading attrs-20.3.0-py2.py3-none-any.whl (49 kB)
+Collecting cattrs<2.0,>=1.0
+  Downloading cattrs-1.1.2-py3-none-any.whl (17 kB)
+Collecting markdown<4.0,>=2.5.2
+  Downloading Markdown-3.3.3-py3-none-any.whl (96 kB)
+Collecting python-nvd3~=0.15.0
+  Downloading python-nvd3-0.15.0.tar.gz (31 kB)
+Collecting werkzeug>=1.0.1,~=1.0
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting flask-appbuilder~=3.1.1
+  Downloading Flask_AppBuilder-3.1.1-py3-none-any.whl (1.7 MB)
+Collecting importlib-metadata~=1.7
+  Downloading importlib_metadata-1.7.0-py2.py3-none-any.whl (31 kB)
+Collecting pendulum~=2.0
+  Downloading pendulum-2.1.2.tar.gz (81 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting markupsafe<2.0,>=1.1.1
+  Downloading MarkupSafe-1.1.1-cp38-cp38-manylinux2014_aarch64.whl (33 kB)
+Collecting python-slugify<5.0,>=3.0.0
+  Downloading python-slugify-4.0.1.tar.gz (11 kB)
+Collecting croniter<0.4,>=0.3.17
+  Downloading croniter-0.3.37-py2.py3-none-any.whl (13 kB)
+Collecting jsonschema~=3.0
+  Downloading jsonschema-3.2.0-py2.py3-none-any.whl (56 kB)
+Collecting python-daemon>=2.1.1
+  Downloading python_daemon-2.2.4-py2.py3-none-any.whl (35 kB)
+Collecting importlib-resources~=1.4
+  Downloading importlib_resources-1.5.0-py2.py3-none-any.whl (21 kB)
+Collecting tabulate<0.9,>=0.7.5
+  Downloading tabulate-0.8.7-py3-none-any.whl (24 kB)
+Requirement already satisfied: bcrypt>=2.0.0 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.2.0)
+Collecting flask-bcrypt>=0.7.1
+  Downloading Flask-Bcrypt-0.7.1.tar.gz (5.1 kB)
+Collecting psycopg2-binary>=2.7.4
+  Downloading psycopg2-binary-2.8.6.tar.gz (384 kB)
+Collecting apache-airflow-providers-postgres
+  Downloading apache_airflow_providers_postgres-1.0.0-py3-none-any.whl (19 kB)
+Collecting pysftp>=0.2.9
+  Downloading pysftp-0.2.9.tar.gz (25 kB)
+Collecting sshtunnel<0.2,>=0.1.4
+  Downloading sshtunnel-0.1.5-py2.py3-none-any.whl (23 kB)
+Collecting apache-airflow-providers-ssh
+  Downloading apache_airflow_providers_ssh-1.0.0-py3-none-any.whl (19 kB)
+Requirement already satisfied: paramiko>=2.6.0 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.7.2)
+Collecting apache-airflow-providers-mysql
+  Downloading apache_airflow_providers_mysql-1.0.0-py3-none-any.whl (27 kB)
+Collecting mysql-connector-python<=8.0.18,>=8.0.11
+  Downloading mysql_connector_python-8.0.18-py2.py3-none-any.whl (346 kB)
+Collecting mysqlclient<1.4,>=1.3.6
+  Downloading mysqlclient-1.3.14.tar.gz (91 kB)
+Collecting amqp<5.0.0
+  Downloading amqp-2.6.1-py2.py3-none-any.whl (48 kB)
+Collecting redis~=3.2
+  Downloading redis-3.5.3-py2.py3-none-any.whl (72 kB)
+Collecting apache-airflow-providers-redis
+  Downloading apache_airflow_providers_redis-1.0.0-py3-none-any.whl (19 kB)
+Collecting eventlet>=0.9.7
+  Downloading eventlet-0.30.0-py2.py3-none-any.whl (224 kB)
+Collecting greenlet>=0.4.9
+  Downloading greenlet-1.0.0-cp38-cp38-manylinux2014_aarch64.whl (165 kB)
+Collecting gevent>=0.13
+  Downloading gevent-21.1.2-cp38-cp38-manylinux2014_aarch64.whl (5.1 MB)
+Collecting pysmbclient>=0.1.3
+  Downloading PySmbClient-0.1.5.tar.gz (6.3 kB)
+Collecting apache-airflow-providers-samba
+  Downloading apache_airflow_providers_samba-1.0.0-py3-none-any.whl (13 kB)
+Collecting celery~=4.4.2
+  Downloading celery-4.4.7-py2.py3-none-any.whl (427 kB)
+Collecting flower<1.0,>=0.7.3
+  Downloading flower-0.9.7-py2.py3-none-any.whl (456 kB)
+Collecting vine~=1.3
+  Downloading vine-1.3.0-py2.py3-none-any.whl (14 kB)
+Collecting apache-airflow-providers-celery
+  Downloading apache_airflow_providers_celery-1.0.0-py3-none-any.whl (13 kB)
+Collecting PyYAML>=3.0
+  Downloading PyYAML-5.4.1.tar.gz (175 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting typing-extensions<4.0.0,>=3.7.4
+  Downloading typing_extensions-3.7.4.3-py3-none-any.whl (22 kB)
+Collecting commonmark<0.10.0,>=0.9.0
+  Downloading commonmark-0.9.1-py2.py3-none-any.whl (51 kB)
+Collecting colorama<0.5.0,>=0.4.0
+  Downloading colorama-0.4.4-py2.py3-none-any.whl (16 kB)
+Collecting Mako
+  Downloading Mako-1.1.4.tar.gz (479 kB)
+Collecting python-editor>=0.3
+  Downloading python_editor-1.0.4-py3-none-any.whl (4.9 kB)
+Requirement already satisfied: cffi>=1.1 in /usr/local/lib/python3.8/site-packages (from bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.14.4)
+Requirement already satisfied: six>=1.4.1 in /usr/local/lib/python3.8/site-packages (from bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.15.0)
+Requirement already satisfied: pytz>dev in /usr/local/lib/python3.8/site-packages (from celery~=4.4.2->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2020.5)
+Collecting kombu<4.7,>=4.6.10
+  Downloading kombu-4.6.11-py2.py3-none-any.whl (184 kB)
+Requirement already satisfied: billiard<4.0,>=3.6.3.0 in /usr/local/lib/python3.8/site-packages (from celery~=4.4.2->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.6.3.0)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.8/site-packages (from cffi>=1.1->bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.20)
+Collecting inflection>=0.3.1
+  Downloading inflection-0.5.1-py2.py3-none-any.whl (9.5 kB)
+Collecting clickclick>=1.2
+  Downloading clickclick-20.10.2-py2.py3-none-any.whl (7.4 kB)
+Collecting openapi-spec-validator>=0.2.4
+  Downloading openapi_spec_validator-0.2.9-py3-none-any.whl (25 kB)
+Collecting swagger-ui-bundle>=0.0.2
+  Downloading swagger_ui_bundle-0.0.8-py3-none-any.whl (3.8 MB)
+Requirement already satisfied: click>=4.0 in /usr/local/lib/python3.8/site-packages (from clickclick>=1.2->connexion[flask,swagger-ui]<3,>=2.6.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (7.1.2)
+Collecting natsort
+  Downloading natsort-7.1.1-py3-none-any.whl (35 kB)
+Collecting dnspython<2.0.0,>=1.15.0
+  Downloading dnspython-1.16.0-py2.py3-none-any.whl (188 kB)
+Collecting marshmallow-sqlalchemy<0.24.0,>=0.22.0
+  Downloading marshmallow_sqlalchemy-0.23.1-py2.py3-none-any.whl (18 kB)
+Collecting marshmallow-enum<2,>=1.5.1
+  Downloading marshmallow_enum-1.5.1-py2.py3-none-any.whl (4.2 kB)
+Collecting Flask-JWT-Extended<4,>=3.18
+  Downloading Flask-JWT-Extended-3.25.0.tar.gz (31 kB)
+Collecting PyJWT>=1.7.1
+  Downloading PyJWT-2.0.1-py3-none-any.whl (15 kB)
+Collecting email-validator<2,>=1.0.5
+  Downloading email_validator-1.1.2-py2.py3-none-any.whl (17 kB)
+Collecting prison<1.0.0,>=0.1.3
+  Downloading prison-0.1.3-py2.py3-none-any.whl (5.8 kB)
+Collecting apispec[yaml]<4,>=3.3
+  Downloading apispec-3.3.2-py2.py3-none-any.whl (27 kB)
+Collecting Flask-SQLAlchemy<3,>=2.4
+  Downloading Flask_SQLAlchemy-2.4.4-py2.py3-none-any.whl (17 kB)
+Collecting marshmallow<4,>=3
+  Downloading marshmallow-3.10.0-py2.py3-none-any.whl (46 kB)
+Collecting Flask-Babel<2,>=1
+  Downloading Flask_Babel-1.0.0-py3-none-any.whl (9.5 kB)
+Collecting Flask-OpenID<2,>=1.2.5
+  Downloading Flask-OpenID-1.2.5.tar.gz (43 kB)
+Collecting sqlalchemy-utils<1,>=0.32.21
+  Downloading SQLAlchemy-Utils-0.36.8.tar.gz (138 kB)
+Requirement already satisfied: idna>=2.0.0 in /usr/local/lib/python3.8/site-packages (from email-validator<2,>=1.0.5->flask-appbuilder~=3.1.1->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.10)
+Collecting Babel>=2.3
+  Downloading Babel-2.9.0-py2.py3-none-any.whl (8.8 MB)
+Collecting PyJWT>=1.7.1
+  Downloading PyJWT-1.7.1-py2.py3-none-any.whl (18 kB)
+Collecting python3-openid>=2.0
+  Downloading python3_openid-3.2.0-py3-none-any.whl (133 kB)
+Collecting WTForms
+  Downloading WTForms-2.3.3-py2.py3-none-any.whl (169 kB)
+Collecting humanize
+  Downloading humanize-3.2.0-py3-none-any.whl (70 kB)
+Collecting prometheus-client==0.8.0
+  Downloading prometheus_client-0.8.0-py2.py3-none-any.whl (53 kB)
+Collecting tornado<7.0.0,>=5.0.0
+  Downloading tornado-6.1-cp38-cp38-manylinux2014_aarch64.whl (427 kB)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.8/site-packages (from gevent>=0.13->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (51.1.2)
+Collecting zope.event
+  Downloading zope.event-4.5.0-py2.py3-none-any.whl (6.8 kB)
+Collecting zope.interface
+  Downloading zope.interface-5.2.0-cp38-cp38-manylinux2014_aarch64.whl (245 kB)
+Collecting zipp>=0.5
+  Downloading zipp-3.4.0-py3-none-any.whl (5.2 kB)
+Collecting pyrsistent>=0.14.0
+  Downloading pyrsistent-0.17.3.tar.gz (106 kB)
+Collecting protobuf>=3.0.0
+  Downloading protobuf-3.14.0-py2.py3-none-any.whl (173 kB)
+Requirement already satisfied: numpy>=1.16.5 in /usr/local/lib/python3.8/site-packages (from pandas<2.0,>=0.17.1->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.19.5)
+Requirement already satisfied: pynacl>=1.0.1 in /usr/local/lib/python3.8/site-packages (from paramiko>=2.6.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.4.0)
+Collecting pytzdata>=2020.1
+  Downloading pytzdata-2020.1-py2.py3-none-any.whl (489 kB)
+Collecting docutils
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting text-unidecode>=1.3
+  Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+Collecting defusedxml
+  Downloading defusedxml-0.6.0-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.8/site-packages (from requests<2.24.0,>=2.20.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2020.12.5)
+Collecting chardet<4,>=3.0.2
+  Downloading chardet-3.0.4-py2.py3-none-any.whl (133 kB)
+Building wheels for collected packages: flask-swagger, json-merge-patch, alembic, flask-bcrypt, Flask-JWT-Extended, flask-login, Flask-OpenID, lazy-object-proxy, mysqlclient, pendulum, psutil, psycopg2-binary, pyrsistent, pysftp, pysmbclient, python-nvd3, python-slugify, PyYAML, sqlalchemy-utils, termcolor, thrift, tzlocal, unicodecsv, Mako
+  Building wheel for flask-swagger (setup.py): started
+  Building wheel for flask-swagger (setup.py): finished with status 'done'
+  Created wheel for flask-swagger: filename=flask_swagger-0.2.13-py3-none-any.whl size=7243 sha256=f0edf40395731bcfbc371e9f34d9f5163c702b4ed805be4b103d2d0463c90472
+  Stored in directory: /root/.cache/pip/wheels/9d/bb/52/8852672dded137c75200ff0f39f31587acd86e97bf5bcc047f
+  Building wheel for json-merge-patch (setup.py): started
+  Building wheel for json-merge-patch (setup.py): finished with status 'done'
+  Created wheel for json-merge-patch: filename=json_merge_patch-0.2-py3-none-any.whl size=4394 sha256=745b6c0386e6a2c5c321567413dd186f897113e4a52256ed8ae8de962f0dcb34
+  Stored in directory: /root/.cache/pip/wheels/3a/56/54/0056d796b798c014146fd1bed9e75d6dcaea22416e816658c1
+  Building wheel for alembic (setup.py): started
+  Building wheel for alembic (setup.py): finished with status 'done'
+  Created wheel for alembic: filename=alembic-1.5.3-py2.py3-none-any.whl size=155547 sha256=257d10944aed58f5b371bb860828456c98550b7fb1ff219fd3c298cb4dc7bd6e
+  Stored in directory: /root/.cache/pip/wheels/61/2e/cd/814f09d42d1393cb9da66eaee97325fb88814eb2b9dd0fab66
+  Building wheel for flask-bcrypt (setup.py): started
+  Building wheel for flask-bcrypt (setup.py): finished with status 'done'
+  Created wheel for flask-bcrypt: filename=Flask_Bcrypt-0.7.1-py3-none-any.whl size=5009 sha256=7f02816a60170cef5a5e84f75055f00a46ef1b5d626fa5d28aabcb783fab6b82
+  Stored in directory: /root/.cache/pip/wheels/8a/d9/0e/dc762c4ebc76f581397a2e25991db6efd148640b5616ab9210
+  Building wheel for Flask-JWT-Extended (setup.py): started
+  Building wheel for Flask-JWT-Extended (setup.py): finished with status 'done'
+  Created wheel for Flask-JWT-Extended: filename=Flask_JWT_Extended-3.25.0-py2.py3-none-any.whl size=21569 sha256=1c8bfff8eef8b9feb335e9b00cb9effeb56b18a25edfbfca125a525fe180fc20
+  Stored in directory: /root/.cache/pip/wheels/f0/53/54/ec3db050e12900460634d2f7badb842fa29af7508a5b84557d
+  Building wheel for flask-login (setup.py): started
+  Building wheel for flask-login (setup.py): finished with status 'done'
+  Created wheel for flask-login: filename=Flask_Login-0.4.1-py2.py3-none-any.whl size=15936 sha256=8506f6a4c4ce5515250f161ff70bb39ba1ab8eba7e08846c7637aa3695c99a68
+  Stored in directory: /root/.cache/pip/wheels/ec/8e/42/16110a8b4f17e4ef4bd0abd42969fc1fc38229348de9f071df
+  Building wheel for Flask-OpenID (setup.py): started
+  Building wheel for Flask-OpenID (setup.py): finished with status 'done'
+  Created wheel for Flask-OpenID: filename=Flask_OpenID-1.2.5-py3-none-any.whl size=9121 sha256=5313724507c27b9a51e4c4f8c0976a56955a7d008add44c243205cec01cdec07
+  Stored in directory: /root/.cache/pip/wheels/a1/b3/ee/1bb518a7bcea32f7ae913ca5db6e68324f5cc09f1e13b81e96
+  Building wheel for lazy-object-proxy (PEP 517): started
+  Building wheel for lazy-object-proxy (PEP 517): finished with status 'done'
+  Created wheel for lazy-object-proxy: filename=lazy_object_proxy-1.4.3-cp38-cp38-linux_aarch64.whl size=58535 sha256=4a493687e526b836c8fd2346b0ec04bd57ee16fa03fc04aa161b847a7f36431a
+  Stored in directory: /root/.cache/pip/wheels/d7/f7/3b/6853df4a25a106662f20e70ad6bd448c8ae07d12ce80fb9063
+  Building wheel for mysqlclient (setup.py): started
+  Building wheel for mysqlclient (setup.py): finished with status 'done'
+  Created wheel for mysqlclient: filename=mysqlclient-1.3.14-cp38-cp38-linux_aarch64.whl size=125624 sha256=9183e23cf73d619dfee46cb9e580b2eb8019c2c2d87e7c52729b1077b77b8332
+  Stored in directory: /root/.cache/pip/wheels/42/db/89/b51c9514fe0d840d467810fcd350e29322efa9e150b96342e4
+  Building wheel for pendulum (PEP 517): started
+  Building wheel for pendulum (PEP 517): finished with status 'done'
+  Created wheel for pendulum: filename=pendulum-2.1.2-cp38-cp38-manylinux2014_aarch64.whl size=168515 sha256=f034238402e300fc7c53908c4c4c325c65ee18871642edfc508b699f4afc9ee8
+  Stored in directory: /root/.cache/pip/wheels/b7/90/a1/1a5560d954c0f60185b7603dc8e39dc59ca7e35d12108a74e7
+  Building wheel for psutil (setup.py): started
+  Building wheel for psutil (setup.py): finished with status 'done'
+  Created wheel for psutil: filename=psutil-5.8.0-cp38-cp38-linux_aarch64.whl size=298614 sha256=b99079aec4ce29d003d24e5c01e50033295a8d244ff4a77e440919f674c62e3c
+  Stored in directory: /root/.cache/pip/wheels/a9/92/74/7694cd5d3f10ea335ef507c10e877b2150de20975a986782b9
+  Building wheel for psycopg2-binary (setup.py): started
+  Building wheel for psycopg2-binary (setup.py): finished with status 'done'
+  Created wheel for psycopg2-binary: filename=psycopg2_binary-2.8.6-cp38-cp38-linux_aarch64.whl size=503064 sha256=eadd7826e92ef9a2b0310fc6ac82850eeb43af27d759c495d4a8f05c281231ec
+  Stored in directory: /root/.cache/pip/wheels/15/d7/13/ef37b82cf1de521c82c129a16ad8007a81b4eab0f23b22c7b3
+  Building wheel for pyrsistent (setup.py): started
+  Building wheel for pyrsistent (setup.py): finished with status 'done'
+  Created wheel for pyrsistent: filename=pyrsistent-0.17.3-cp38-cp38-linux_aarch64.whl size=126168 sha256=bf43385f2393d05ec64a61770df0badf1615b8e0d5bf1fcaba3469f93b6e9beb
+  Stored in directory: /root/.cache/pip/wheels/3d/22/08/7042eb6309c650c7b53615d5df5cc61f1ea9680e7edd3a08d2
+  Building wheel for pysftp (setup.py): started
+  Building wheel for pysftp (setup.py): finished with status 'done'
+  Created wheel for pysftp: filename=pysftp-0.2.9-py3-none-any.whl size=15481 sha256=794b539726ebdc5925c8051b0e1d90a9e07650a9045b1bc08dc0d4f2917aaede
+  Stored in directory: /root/.cache/pip/wheels/2b/ca/f6/862aaecc17fb92230cad02822949e8856d741e5c12ef55fb10
+  Building wheel for pysmbclient (setup.py): started
+  Building wheel for pysmbclient (setup.py): finished with status 'done'
+  Created wheel for pysmbclient: filename=PySmbClient-0.1.5-py3-none-any.whl size=6864 sha256=4e9a88edd037f3f4963839e5ec0e9f98ad41980efadfc0dcf3d414b942978e38
+  Stored in directory: /root/.cache/pip/wheels/3c/30/f3/fdcaeb56b4f2e38ab61476e962d9f3fcdf88f1a34445ba4387
+  Building wheel for python-nvd3 (setup.py): started
+  Building wheel for python-nvd3 (setup.py): finished with status 'done'
+  Created wheel for python-nvd3: filename=python_nvd3-0.15.0-py3-none-any.whl size=38156 sha256=3517c47d35dd34cd83a4dc608dac6483b42560909e5a8ffdca6018e2c7cf91c2
+  Stored in directory: /root/.cache/pip/wheels/8c/92/61/c1d567a155a1f15d2e1a633eef32ed3a7c7906c323d49fa3a2
+  Building wheel for python-slugify (setup.py): started
+  Building wheel for python-slugify (setup.py): finished with status 'done'
+  Created wheel for python-slugify: filename=python_slugify-4.0.1-py2.py3-none-any.whl size=6769 sha256=01c5dac1a6069e763bcb2aa810df05d56bc8bd143bb718bd5badbe566c79cfe3
+  Stored in directory: /root/.cache/pip/wheels/91/4d/4f/e740a68c215791688c46c4d6251770a570e8dfea91af1acb5c
+  Building wheel for PyYAML (PEP 517): started
+  Building wheel for PyYAML (PEP 517): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.4.1-cp38-cp38-linux_aarch64.whl size=554407 sha256=40d8208f84b469a691f820b6fb3f9250866b2d8d493bda7d1bf1ab990c420ac1
+  Stored in directory: /root/.cache/pip/wheels/dd/c5/1d/5d7436173d3efd4a14dcb510eb0b29525ecb6b0e41489e716e
+  Building wheel for sqlalchemy-utils (setup.py): started
+  Building wheel for sqlalchemy-utils (setup.py): finished with status 'done'
+  Created wheel for sqlalchemy-utils: filename=SQLAlchemy_Utils-0.36.8-py2.py3-none-any.whl size=93220 sha256=5fbcd35a6329ea5405c4a7a6a00198ff5144c328f8d49aa6057d9a2b950e9939
+  Stored in directory: /root/.cache/pip/wheels/e2/1e/3b/50c4d0d200bfe25d2686016f72859a5bd97822815065478358
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4829 sha256=ef04612667c3b67fc760b4c9cf269ac948c15cdb468f3a65c42c599799869126
+  Stored in directory: /root/.cache/pip/wheels/a0/16/9c/5473df82468f958445479c59e784896fa24f4a5fc024b0f501
+  Building wheel for thrift (setup.py): started
+  Building wheel for thrift (setup.py): finished with status 'done'
+  Created wheel for thrift: filename=thrift-0.13.0-cp38-cp38-linux_aarch64.whl size=489066 sha256=63db7566c024e50c99d354bd024023e089c330b170c7b74f2eef3f49e7940236
+  Stored in directory: /root/.cache/pip/wheels/0a/52/7e/8054b57725b8f2b9ddbaacb81b271b939681cc03f8231e6ebc
+  Building wheel for tzlocal (setup.py): started
+  Building wheel for tzlocal (setup.py): finished with status 'done'
+  Created wheel for tzlocal: filename=tzlocal-1.5.1-py3-none-any.whl size=17541 sha256=d18b03b0b93dc81f65adae010c4c0ce38ce1a99a385c470599d869e2cbb131b8
+  Stored in directory: /root/.cache/pip/wheels/3a/14/ce/9c504116f6b89e4a05ce0bc0f41983df280d7e00f463481900
+  Building wheel for unicodecsv (setup.py): started
+  Building wheel for unicodecsv (setup.py): finished with status 'done'
+  Created wheel for unicodecsv: filename=unicodecsv-0.14.1-py3-none-any.whl size=10767 sha256=df3c5ad7cb60d36243659e0aa152744f620fc0e7c186acd6ca4f3a9deb1f2918
+  Stored in directory: /root/.cache/pip/wheels/35/dd/44/ccb37563a01457f5de74ccedccaee81b01a53e12addeab5e0f
+  Building wheel for Mako (setup.py): started
+  Building wheel for Mako (setup.py): finished with status 'done'
+  Created wheel for Mako: filename=Mako-1.1.4-py2.py3-none-any.whl size=75675 sha256=5cbca95956a604223d047c0ef8410e3588ebb0364849a5ff9838c6b04ff8165a
+  Stored in directory: /root/.cache/pip/wheels/17/bc/50/621fe4100d907a7296cc00c21371402b068b648820f6ff5812
+Successfully built flask-swagger json-merge-patch alembic flask-bcrypt Flask-JWT-Extended flask-login Flask-OpenID lazy-object-proxy mysqlclient pendulum psutil psycopg2-binary pyrsistent pysftp pysmbclient python-nvd3 python-slugify PyYAML sqlalchemy-utils termcolor thrift tzlocal unicodecsv Mako
+Installing collected packages: pyrsistent, markupsafe, attrs, werkzeug, vine, urllib3, PyYAML, jsonschema, jinja2, itsdangerous, defusedxml, chardet, WTForms, text-unidecode, sqlalchemy, requests, python3-openid, PyJWT, openapi-spec-validator, marshmallow, inflection, flask, dnspython, clickclick, Babel, apispec, amqp, zipp, typing-extensions, swagger-ui-bundle, sqlalchemy-utils, pytzdata, python-slugify, python-editor, python-dateutil, pygments, prison, natsort, marshmallow-sqlalchemy, marshmallow-enum, Mako, lockfile, kombu, flask-wtf, Flask-SQLAlchemy, Flask-OpenID, flask-login, Flask-JWT-Extended, Flask-Babel, email-validator, docutils, connexion, commonmark, colorama, unicodecsv, tzlocal, tornado, thrift, termcolor, tenacity, tabulate, sqlalchemy-jsonfield, setproctitle, rich, python-nvd3, python-daemon, psutil, protobuf, prometheus-client, pendulum, pandas, marshmallow-oneofschema, markdown, lazy-object-proxy, json-merge-patch, iso8601, importlib-resources, importlib-metadata, humanize, gunicorn, graphviz, funcsigs, flask-swagger, flask-caching, flask-appbuilder, dill, croniter, colorlog, celery, cattrs, cached-property, argcomplete, apache-airflow-providers-sqlite, apache-airflow-providers-imap, apache-airflow-providers-http, apache-airflow-providers-ftp, alembic, zope.interface, zope.event, sshtunnel, redis, pysmbclient, pysftp, psycopg2-binary, mysqlclient, mysql-connector-python, greenlet, flower, apache-airflow, gevent, flask-bcrypt, eventlet, apache-airflow-providers-ssh, apache-airflow-providers-samba, apache-airflow-providers-redis, apache-airflow-providers-postgres, apache-airflow-providers-mysql, apache-airflow-providers-celery
+  Attempting uninstall: vine
+    Found existing installation: vine 5.0.0
+    Uninstalling vine-5.0.0:
+      Successfully uninstalled vine-5.0.0
+  Attempting uninstall: urllib3
+    Found existing installation: urllib3 1.26.3
+    Uninstalling urllib3-1.26.3:
+      Successfully uninstalled urllib3-1.26.3
+  Attempting uninstall: chardet
+    Found existing installation: chardet 4.0.0
+    Uninstalling chardet-4.0.0:
+      Successfully uninstalled chardet-4.0.0
+  Attempting uninstall: requests
+    Found existing installation: requests 2.25.1
+    Uninstalling requests-2.25.1:
+      Successfully uninstalled requests-2.25.1
+  Attempting uninstall: amqp
+    Found existing installation: amqp 5.0.5
+    Uninstalling amqp-5.0.5:
+      Successfully uninstalled amqp-5.0.5
+  Attempting uninstall: kombu
+    Found existing installation: kombu 5.0.2
+    Uninstalling kombu-5.0.2:
+      Successfully uninstalled kombu-5.0.2
+  Attempting uninstall: celery
+    Found existing installation: celery 5.0.5
+    Uninstalling celery-5.0.5:
+      Successfully uninstalled celery-5.0.5
+  Attempting uninstall: sshtunnel
+    Found existing installation: sshtunnel 0.4.0
+    Uninstalling sshtunnel-0.4.0:
+      Successfully uninstalled sshtunnel-0.4.0
+Successfully installed Babel-2.9.0 Flask-Babel-1.0.0 Flask-JWT-Extended-3.25.0 Flask-OpenID-1.2.5 Flask-SQLAlchemy-2.4.4 Mako-1.1.4 PyJWT-1.7.1 PyYAML-5.4.1 WTForms-2.3.3 alembic-1.5.3 amqp-2.6.1 apache-airflow-2.0.0 apache-airflow-providers-celery-1.0.0 apache-airflow-providers-ftp-1.0.0 apache-airflow-providers-http-1.0.0 apache-airflow-providers-imap-1.0.0 apache-airflow-providers-mysql-1.0.0 apache-airflow-providers-postgres-1.0.0 apache-airflow-providers-redis-1.0.0 apache-airflow-providers-samba-1.0.0 apache-airflow-providers-sqlite-1.0.0 apache-airflow-providers-ssh-1.0.0 apispec-3.3.2 argcomplete-1.12.2 attrs-20.3.0 cached-property-1.5.2 cattrs-1.1.2 celery-4.4.7 chardet-3.0.4 clickclick-20.10.2 colorama-0.4.4 colorlog-4.0.2 commonmark-0.9.1 connexion-2.7.0 croniter-0.3.37 defusedxml-0.6.0 dill-0.3.3 dnspython-1.16.0 docutils-0.16 email-validator-1.1.2 eventlet-0.30.0 flask-1.1.2 flask-appbuilder-3.1.1 flask-bcrypt-0.7.1 flask-caching-1.9.0 flask-login-0.4.1 flask-swagger-0.2.13 flask-wtf-0.14.3 flower-0.9.7 funcsigs-1.0.2 gevent-21.1.2 graphviz-0.16 greenlet-1.0.0 gunicorn-19.10.0 humanize-3.2.0 importlib-metadata-1.7.0 importlib-resources-1.5.0 inflection-0.5.1 iso8601-0.1.13 itsdangerous-1.1.0 jinja2-2.11.2 json-merge-patch-0.2 jsonschema-3.2.0 kombu-4.6.11 lazy-object-proxy-1.4.3 lockfile-0.12.2 markdown-3.3.3 markupsafe-1.1.1 marshmallow-3.10.0 marshmallow-enum-1.5.1 marshmallow-oneofschema-2.1.0 marshmallow-sqlalchemy-0.23.1 mysql-connector-python-8.0.18 mysqlclient-1.3.14 natsort-7.1.1 openapi-spec-validator-0.2.9 pandas-1.2.1 pendulum-2.1.2 prison-0.1.3 prometheus-client-0.8.0 protobuf-3.14.0 psutil-5.8.0 psycopg2-binary-2.8.6 pygments-2.7.4 pyrsistent-0.17.3 pysftp-0.2.9 pysmbclient-0.1.5 python-daemon-2.2.4 python-dateutil-2.8.1 python-editor-1.0.4 python-nvd3-0.15.0 python-slugify-4.0.1 python3-openid-3.2.0 pytzdata-2020.1 redis-3.5.3 requests-2.23.0 rich-9.2.0 setproctitle-1.2.2 sqlalchemy-1.3.22 sqlalchemy-jsonfield-1.0.0 sqlalchemy-utils-0.36.8 sshtunnel-0.1.5 swagger-ui-bundle-0.0.8 tabulate-0.8.7 tenacity-6.2.0 termcolor-1.1.0 text-unidecode-1.3 thrift-0.13.0 tornado-6.1 typing-extensions-3.7.4.3 tzlocal-1.5.1 unicodecsv-0.14.1 urllib3-1.25.11 vine-1.3.0 werkzeug-1.0.1 zipp-3.4.0 zope.event-4.5.0 zope.interface-5.2.0
+Removing intermediate container 26b2921d5cdb
+ ---> 375def59cf83
+Step 17/20 : EXPOSE 8080
+ ---> Running in eb9808da5077
+Removing intermediate container eb9808da5077
+ ---> 31902476a788
+Step 18/20 : EXPOSE 5432
+ ---> Running in 3e2eddd378e9
+Removing intermediate container 3e2eddd378e9
+ ---> 8e8e434a9c79
+Step 19/20 : RUN airflow db init
+ ---> Running in 03dbd8bd2954
+DB: sqlite:////root/airflow/airflow.db
+[2021-01-30 10:33:34,549] {db.py:678} INFO - Creating tables
+[91mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[0m[91mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade  -> e3a246e0dc1, current schema
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e3a246e0dc1 -> 1507a7289a2f, create is_encrypted
+[0m[91m/usr/local/lib/python3.8/site-packages/alembic/ddl/sqlite.py:43 UserWarning: Skipping unsupported ALTER for creation of implicit constraintPlease refer to the batch mode feature which allows for SQLite migrations using a copy-and-move strategy.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1507a7289a2f -> 13eb55f81627, maintain history for compatibility with earlier migrations
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 13eb55f81627 -> 338e90f54d61, More logging into task_instance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 338e90f54d61 -> 52d714495f0, job_id indices
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 52d714495f0 -> 502898887f84, Adding extra to Log
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 502898887f84 -> 1b38cef5b76e, add dagrun
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1b38cef5b76e -> 2e541a1dcfed, task_duration
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 2e541a1dcfed -> 40e67319e3a9, dagrun_config
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 40e67319e3a9 -> 561833c1c74b, add password column to user
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 561833c1c74b -> 4446e08588, dagrun start end
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 4446e08588 -> bbc73705a13e, Add notification_sent column to sla_miss
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bbc73705a13e -> bba5a7cfc896, Add a column to track the encryption state of the 'Extra' field in connection
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bba5a7cfc896 -> 1968acfc09e3, add is_encrypted column to variable table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1968acfc09e3 -> 2e82aab8ef20, rename user table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 2e82aab8ef20 -> 211e584da130, add TI state index
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 211e584da130 -> 64de9cddf6c9, add task fails journal table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 64de9cddf6c9 -> f2ca10b85618, add dag_stats table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade f2ca10b85618 -> 4addfa1236f1, Add fractional seconds to mysql tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 4addfa1236f1 -> 8504051e801b, xcom dag task indices
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8504051e801b -> 5e7d17757c7a, add pid field to TaskInstance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 5e7d17757c7a -> 127d2bf2dfa7, Add dag_id/state index on dag_run table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 127d2bf2dfa7 -> cc1e65623dc7, add max tries column to task instance
+[0m[91mWARNI [unusual_prefix_47426960b0abd86f863137cb7358403ab274d060_example_kubernetes_executor_config] Could not import DAGs in example_kubernetes_executor_config.py: No module named 'kubernetes'
+[0m[91mWARNI [unusual_prefix_47426960b0abd86f863137cb7358403ab274d060_example_kubernetes_executor_config] Install kubernetes dependencies with: pip install apache-airflow['cncf.kubernetes']
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade cc1e65623dc7 -> bdaa763e6c56, Make xcom value column a large binary
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bdaa763e6c56 -> 947454bf1dff, add ti job_id index
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 947454bf1dff -> d2ae31099d61, Increase text size for MySQL (not relevant for other DBs' text types)
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d2ae31099d61 -> 0e2a74e0fc9f, Add time zone awareness
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d2ae31099d61 -> 33ae817a1ff4, kubernetes_resource_checkpointing
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 33ae817a1ff4 -> 27c6a30d7c24, kubernetes_resource_checkpointing
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 27c6a30d7c24 -> 86770d1215c0, add kubernetes scheduler uniqueness
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 86770d1215c0, 0e2a74e0fc9f -> 05f30312d566, merge heads
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 05f30312d566 -> f23433877c24, fix mysql not null constraint
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade f23433877c24 -> 856955da8476, fix sqlite foreign key
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 856955da8476 -> 9635ae0956e7, index-faskfail
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 9635ae0956e7 -> dd25f486b8ea, add idx_log_dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade dd25f486b8ea -> bf00311e1990, add index to taskinstance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 9635ae0956e7 -> 0a2a5b66e19d, add task_reschedule table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 0a2a5b66e19d, bf00311e1990 -> 03bc53e68815, merge_heads_2
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 03bc53e68815 -> 41f5f12752f8, add superuser field
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 41f5f12752f8 -> c8ffec048a3b, add fields to dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade c8ffec048a3b -> dd4ecb8fbee3, Add schedule interval to dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade dd4ecb8fbee3 -> 939bb1e647c8, task reschedule fk on cascade delete
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 939bb1e647c8 -> 6e96a59344a4, Make TaskInstance.pool not nullable
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 6e96a59344a4 -> d38e04c12aa2, add serialized_dag table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d38e04c12aa2 -> b3b105409875, add root_dag_id to DAG
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 6e96a59344a4 -> 74effc47d867, change datetime to datetime2(6) on MSSQL tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 939bb1e647c8 -> 004c1210f153, increase queue name size limit
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade c8ffec048a3b -> a56c9515abdc, Remove dag_stat table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a56c9515abdc, 004c1210f153, 74effc47d867, b3b105409875 -> 08364691d074, Merge the four heads back together
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 08364691d074 -> fe461863935f, increase_length_for_connection_password
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade fe461863935f -> 7939bcff74ba, Add DagTags table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 7939bcff74ba -> a4c2fd67d16b, add pool_slots field to task_instance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a4c2fd67d16b -> 852ae6c715af, Add RenderedTaskInstanceFields table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 852ae6c715af -> 952da73b5eff, add dag_code table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 952da73b5eff -> a66efa278eea, Add Precision to execution_date in RenderedTaskInstanceFields table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a66efa278eea -> da3f683c3a5a, Add dag_hash Column to serialized_dag table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade da3f683c3a5a -> 92c57b58940d, Create FAB Tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 92c57b58940d -> 03afc6b6f902, Increase length of FAB ab_view_menu.name column
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 03afc6b6f902 -> cf5dc11e79ad, drop_user_and_chart
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade cf5dc11e79ad -> bbf4a7ad0465, Remove id column from xcom
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bbf4a7ad0465 -> b25a55525161, Increase length of pool name
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade b25a55525161 -> 3c20cacc0044, Add DagRun run_type
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 3c20cacc0044 -> 8f966b9c467a, Set conn_type as non-nullable
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8f966b9c467a -> 8d48763f6d53, add unique constraint to conn_id
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8d48763f6d53 -> e38be357a868, Add sensor_instance table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e38be357a868 -> b247b1e3d1ed, Add queued by Job ID to TI
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade b247b1e3d1ed -> e1a11ece99cc, Add external executor ID to TI
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e1a11ece99cc -> bef4f3d11e8b, Drop KubeResourceVersion and KubeWorkerId
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bef4f3d11e8b -> 98271e7606e2, Add scheduling_decision to DagRun and DAG
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 98271e7606e2 -> 52d53670a240, fix_mssql_exec_date_rendered_task_instance_fields_for_MSSQL
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 52d53670a240 -> 364159666cbd, Add creating_job_id to DagRun table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 364159666cbd -> 45ba3f1493b9, add-k8s-yaml-to-rendered-templates
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 45ba3f1493b9 -> 849da589634d, Prefix DAG permissions.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 849da589634d -> 2c6edca13270, Resource based permissions.
+[0m[2021-01-30 10:33:43,115] {manager.py:727} WARNING - No user yet created, use flask fab command to do it.
+[2021-01-30 10:33:56,992] {migration.py:555} INFO - Running upgrade 2c6edca13270 -> 61ec73d9401f, Add description field to connection
+[2021-01-30 10:33:57,020] {migration.py:555} INFO - Running upgrade 61ec73d9401f -> 64a7d6477aae, fix description field in connection to be text
+[2021-01-30 10:33:57,032] {migration.py:555} INFO - Running upgrade 64a7d6477aae -> e959f08ac86c, Change field in DagCode to MEDIUMTEXT for MySql
+[2021-01-30 10:33:58,265] {dagbag.py:440} INFO - Filling up the DagBag from /root/airflow/dags
+[2021-01-30 10:33:58,369] {example_kubernetes_executor_config.py:174} WARNING - Could not import DAGs in example_kubernetes_executor_config.py: No module named 'kubernetes'
+[2021-01-30 10:33:58,370] {example_kubernetes_executor_config.py:175} WARNING - Install kubernetes dependencies with: pip install apache-airflow['cncf.kubernetes']
+[2021-01-30 10:33:58,521] {dag.py:1813} INFO - Sync 28 DAGs
+[2021-01-30 10:33:58,537] {dag.py:1832} INFO - Creating ORM DAG for example_short_circuit_operator
+[2021-01-30 10:33:58,538] {dag.py:1832} INFO - Creating ORM DAG for example_xcom_args
+[2021-01-30 10:33:58,540] {dag.py:1832} INFO - Creating ORM DAG for example_branch_operator
+[2021-01-30 10:33:58,541] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator.section-2
+[2021-01-30 10:33:58,543] {dag.py:1832} INFO - Creating ORM DAG for tutorial_taskflow_api_etl
+[2021-01-30 10:33:58,544] {dag.py:1832} INFO - Creating ORM DAG for example_task_group
+[2021-01-30 10:33:58,546] {dag.py:1832} INFO - Creating ORM DAG for example_bash_operator
+[2021-01-30 10:33:58,547] {dag.py:1832} INFO - Creating ORM DAG for example_kubernetes_executor
+[2021-01-30 10:33:58,549] {dag.py:1832} INFO - Creating ORM DAG for example_xcom_args_with_operators
+[2021-01-30 10:33:58,550] {dag.py:1832} INFO - Creating ORM DAG for example_external_task_marker_child
+[2021-01-30 10:33:58,552] {dag.py:1832} INFO - Creating ORM DAG for example_skip_dag
+[2021-01-30 10:33:58,553] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator.section-1
+[2021-01-30 10:33:58,554] {dag.py:1832} INFO - Creating ORM DAG for example_trigger_controller_dag
+[2021-01-30 10:33:58,556] {dag.py:1832} INFO - Creating ORM DAG for test_utils
+[2021-01-30 10:33:58,557] {dag.py:1832} INFO - Creating ORM DAG for tutorial
+[2021-01-30 10:33:58,559] {dag.py:1832} INFO - Creating ORM DAG for example_nested_branch_dag
+[2021-01-30 10:33:58,561] {dag.py:1832} INFO - Creating ORM DAG for latest_only
+[2021-01-30 10:33:58,562] {dag.py:1832} INFO - Creating ORM DAG for latest_only_with_trigger
+[2021-01-30 10:33:58,564] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator
+[2021-01-30 10:33:58,565] {dag.py:1832} INFO - Creating ORM DAG for example_python_operator
+[2021-01-30 10:33:58,566] {dag.py:1832} INFO - Creating ORM DAG for example_dag_decorator
+[2021-01-30 10:33:58,568] {dag.py:1832} INFO - Creating ORM DAG for tutorial_etl_dag
+[2021-01-30 10:33:58,569] {dag.py:1832} INFO - Creating ORM DAG for example_branch_dop_operator_v3
+[2021-01-30 10:33:58,571] {dag.py:1832} INFO - Creating ORM DAG for example_external_task_marker_parent
+[2021-01-30 10:33:58,572] {dag.py:1832} INFO - Creating ORM DAG for example_trigger_target_dag
+[2021-01-30 10:33:58,574] {dag.py:1832} INFO - Creating ORM DAG for example_complex
+[2021-01-30 10:33:58,575] {dag.py:1832} INFO - Creating ORM DAG for example_xcom
+[2021-01-30 10:33:58,576] {dag.py:1832} INFO - Creating ORM DAG for example_passing_params_via_test_command
+[2021-01-30 10:33:58,606] {dag.py:2266} INFO - Setting next_dagrun for example_bash_operator to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,661] {dag.py:2266} INFO - Setting next_dagrun for example_branch_dop_operator_v3 to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,684] {dag.py:2266} INFO - Setting next_dagrun for example_branch_operator to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,686] {dag.py:2266} INFO - Setting next_dagrun for example_complex to None
+[2021-01-30 10:33:58,688] {dag.py:2266} INFO - Setting next_dagrun for example_dag_decorator to None
+[2021-01-30 10:33:58,689] {dag.py:2266} INFO - Setting next_dagrun for example_external_task_marker_child to None
+[2021-01-30 10:33:58,690] {dag.py:2266} INFO - Setting next_dagrun for example_external_task_marker_parent to None
+[2021-01-30 10:33:58,692] {dag.py:2266} INFO - Setting next_dagrun for example_kubernetes_executor to None
+[2021-01-30 10:33:58,713] {dag.py:2266} INFO - Setting next_dagrun for example_nested_branch_dag to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,763] {dag.py:2266} INFO - Setting next_dagrun for example_passing_params_via_test_command to 2021-01-29 00:00:00+00:00
+[2021-01-30 10:33:58,765] {dag.py:2266} INFO - Setting next_dagrun for example_python_operator to None
+[2021-01-30 10:33:58,766] {dag.py:2266} INFO - Setting next_dagrun for example_short_circuit_operator to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,768] {dag.py:2266} INFO - Setting next_dagrun for example_skip_dag to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,769] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,771] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-1 to None
+[2021-01-30 10:33:58,772] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-2 to None
+[2021-01-30 10:33:58,773] {dag.py:2266} INFO - Setting next_dagrun for example_task_group to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,774] {dag.py:2266} INFO - Setting next_dagrun for example_trigger_controller_dag to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,776] {dag.py:2266} INFO - Setting next_dagrun for example_trigger_target_dag to None
+[2021-01-30 10:33:58,777] {dag.py:2266} INFO - Setting next_dagrun for example_xcom to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,779] {dag.py:2266} INFO - Setting next_dagrun for example_xcom_args to None
+[2021-01-30 10:33:58,780] {dag.py:2266} INFO - Setting next_dagrun for example_xcom_args_with_operators to None
+[2021-01-30 10:33:58,782] {dag.py:2266} INFO - Setting next_dagrun for latest_only to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,784] {dag.py:2266} INFO - Setting next_dagrun for latest_only_with_trigger to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,785] {dag.py:2266} INFO - Setting next_dagrun for test_utils to None
+[2021-01-30 10:33:58,787] {dag.py:2266} INFO - Setting next_dagrun for tutorial to 2021-01-28 00:00:00+00:00
+[2021-01-30 10:33:58,788] {dag.py:2266} INFO - Setting next_dagrun for tutorial_etl_dag to None
+[2021-01-30 10:33:58,790] {dag.py:2266} INFO - Setting next_dagrun for tutorial_taskflow_api_etl to None
+[2021-01-30 10:33:58,870] {dag.py:1813} INFO - Sync 2 DAGs
+[2021-01-30 10:33:58,893] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-1 to None
+[2021-01-30 10:33:58,894] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-2 to None
+Initialization done
+Removing intermediate container 03dbd8bd2954
+ ---> 8bae45472fb8
+Step 20/20 : CMD bash startup.sh
+ ---> Running in 515cca896fcd
+Removing intermediate container 515cca896fcd
+ ---> 7c3e78de2fd1
+Successfully built 7c3e78de2fd1
+Successfully tagged airflow:2.0.0.9
+Sending build context to Docker daemon  83.97kB
+Step 1/21 : From python:3.8
+ ---> 063a47851920
+Step 2/21 : COPY . /app
+ ---> Using cache
+ ---> 297de0fdd3a9
+Step 3/21 : WORKDIR /app
+ ---> Using cache
+ ---> f74254a4ec5f
+Step 4/21 : RUN pip3 install --upgrade pip
+ ---> Using cache
+ ---> c7267d3b707f
+Step 5/21 : RUN apt-get update
+ ---> Running in caa372261052
+Get:1 http://security.debian.org/debian-security buster/updates InRelease [65.4 kB]
+Get:2 http://deb.debian.org/debian buster InRelease [121 kB]
+Get:3 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
+Get:4 http://security.debian.org/debian-security buster/updates/main arm64 Packages [264 kB]
+Get:5 http://deb.debian.org/debian buster/main arm64 Packages [7737 kB]
+Get:6 http://deb.debian.org/debian buster-updates/main arm64 Packages [7832 B]
+Fetched 8247 kB in 6s (1476 kB/s)
+Reading package lists...
+Removing intermediate container caa372261052
+ ---> 04405becf232
+Step 6/21 : RUN apt-get install nano
+ ---> Running in c5835eb3b9d2
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  spell
+The following NEW packages will be installed:
+  nano
+0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+Need to get 541 kB of archives.
+After this operation, 2290 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 nano arm64 3.2-3 [541 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 541 kB in 0s (1608 kB/s)
+Selecting previously unselected package nano.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24573 files and directories currently installed.)
+Preparing to unpack .../archives/nano_3.2-3_arm64.deb ...
+Unpacking nano (3.2-3) ...
+Setting up nano (3.2-3) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+Removing intermediate container c5835eb3b9d2
+ ---> 0b2a94164d4d
+Step 7/21 : RUN apt-get install rsync
+ ---> Running in def0a3e1abf9
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libpopt0
+Suggested packages:
+  openssh-server
+The following NEW packages will be installed:
+  libpopt0 rsync
+0 upgraded, 2 newly installed, 0 to remove and 2 not upgraded.
+Need to get 433 kB of archives.
+After this operation, 986 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Abort.
+The command '/bin/sh -c apt-get install rsync' returned a non-zero code: 1
+Sending build context to Docker daemon  83.97kB
+Step 1/21 : From python:3.8
+ ---> 063a47851920
+Step 2/21 : COPY . /app
+ ---> 958a8ed42797
+Step 3/21 : WORKDIR /app
+ ---> Running in e600e11135ae
+Removing intermediate container e600e11135ae
+ ---> 8d3388aae09a
+Step 4/21 : RUN pip3 install --upgrade pip
+ ---> Running in fb031674839f
+Requirement already satisfied: pip in /usr/local/lib/python3.8/site-packages (20.3.3)
+Collecting pip
+  Downloading pip-21.0.1-py3-none-any.whl (1.5 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.3.3
+    Uninstalling pip-20.3.3:
+      Successfully uninstalled pip-20.3.3
+Successfully installed pip-21.0.1
+Removing intermediate container fb031674839f
+ ---> 473a9938ebbb
+Step 5/21 : RUN apt-get update
+ ---> Running in dce1d9fc19e0
+Get:1 http://security.debian.org/debian-security buster/updates InRelease [65.4 kB]
+Get:2 http://deb.debian.org/debian buster InRelease [121 kB]
+Get:3 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
+Get:4 http://security.debian.org/debian-security buster/updates/main arm64 Packages [264 kB]
+Get:5 http://deb.debian.org/debian buster/main arm64 Packages [7737 kB]
+Get:6 http://deb.debian.org/debian buster-updates/main arm64 Packages [7832 B]
+Fetched 8247 kB in 6s (1483 kB/s)
+Reading package lists...
+Removing intermediate container dce1d9fc19e0
+ ---> 87a598cb59db
+Step 6/21 : RUN apt-get install nano -y
+ ---> Running in 95c4bdb907bd
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  spell
+The following NEW packages will be installed:
+  nano
+0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+Need to get 541 kB of archives.
+After this operation, 2290 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 nano arm64 3.2-3 [541 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 541 kB in 0s (1662 kB/s)
+Selecting previously unselected package nano.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24573 files and directories currently installed.)
+Preparing to unpack .../archives/nano_3.2-3_arm64.deb ...
+Unpacking nano (3.2-3) ...
+Setting up nano (3.2-3) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+Removing intermediate container 95c4bdb907bd
+ ---> c7b8223173b2
+Step 7/21 : RUN apt-get install rsync -y
+ ---> Running in 082b1e21df60
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libpopt0
+Suggested packages:
+  openssh-server
+The following NEW packages will be installed:
+  libpopt0 rsync
+0 upgraded, 2 newly installed, 0 to remove and 2 not upgraded.
+Need to get 433 kB of archives.
+After this operation, 986 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 libpopt0 arm64 1.16-12 [48.3 kB]
+Get:2 http://deb.debian.org/debian buster/main arm64 rsync arm64 3.1.3-6 [385 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 433 kB in 0s (1596 kB/s)
+Selecting previously unselected package libpopt0:arm64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24675 files and directories currently installed.)
+Preparing to unpack .../libpopt0_1.16-12_arm64.deb ...
+Unpacking libpopt0:arm64 (1.16-12) ...
+Selecting previously unselected package rsync.
+Preparing to unpack .../rsync_3.1.3-6_arm64.deb ...
+Unpacking rsync (3.1.3-6) ...
+Setting up libpopt0:arm64 (1.16-12) ...
+Setting up rsync (3.1.3-6) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of restart.
+Processing triggers for libc-bin (2.28-10) ...
+Removing intermediate container 082b1e21df60
+ ---> 2a5c1d68f16f
+Step 8/21 : RUN apt-get install postgresql -y
+ ---> Running in 84ac191e90de
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  cron distro-info-data exim4-base exim4-config exim4-daemon-light
+  guile-2.2-libs libc-l10n libgc1c2 libgsasl7 libidn11 libkyotocabinet16v5
+  libllvm7 libmailutils5 libntlm0 libpython2.7 libsensors-config libsensors5
+  libwrap0 locales logrotate lsb-release mailutils mailutils-common
+  postgresql-11 postgresql-client-11 postgresql-client-common
+  postgresql-common psmisc ssl-cert sysstat
+Suggested packages:
+  anacron checksecurity exim4-doc-html | exim4-doc-info eximon4 spf-tools-perl
+  swaks lm-sensors lsb mailutils-mh mailutils-doc postgresql-doc
+  postgresql-doc-11 libjson-perl openssl-blacklist isag
+The following NEW packages will be installed:
+  cron distro-info-data exim4-base exim4-config exim4-daemon-light
+  guile-2.2-libs libc-l10n libgc1c2 libgsasl7 libidn11 libkyotocabinet16v5
+  libllvm7 libmailutils5 libntlm0 libpython2.7 libsensors-config libsensors5
+  libwrap0 locales logrotate lsb-release mailutils mailutils-common postgresql
+  postgresql-11 postgresql-client-11 postgresql-client-common
+  postgresql-common psmisc ssl-cert sysstat
+0 upgraded, 31 newly installed, 0 to remove and 2 not upgraded.
+Need to get 43.0 MB of archives.
+After this operation, 191 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 cron arm64 3.0pl1-134+deb10u1 [98.0 kB]
+Get:2 http://deb.debian.org/debian buster/main arm64 logrotate arm64 3.14.0-4 [60.1 kB]
+Get:3 http://deb.debian.org/debian buster/main arm64 libc-l10n all 2.28-10 [847 kB]
+Get:4 http://deb.debian.org/debian buster/main arm64 locales all 2.28-10 [4060 kB]
+Get:5 http://deb.debian.org/debian buster/main arm64 distro-info-data all 0.41+deb10u3 [6640 B]
+Get:6 http://deb.debian.org/debian buster/main arm64 exim4-config all 4.92-8+deb10u4 [323 kB]
+Get:7 http://deb.debian.org/debian buster/main arm64 exim4-base arm64 4.92-8+deb10u4 [1134 kB]
+Get:8 http://deb.debian.org/debian buster/main arm64 exim4-daemon-light arm64 4.92-8+deb10u4 [555 kB]
+Get:9 http://deb.debian.org/debian buster/main arm64 libgc1c2 arm64 1:7.6.4-0.4 [214 kB]
+Get:10 http://deb.debian.org/debian buster/main arm64 guile-2.2-libs arm64 2.2.4+1-2+deb10u1 [4938 kB]
+Get:11 http://deb.debian.org/debian buster/main arm64 libidn11 arm64 1.33-2.2 [113 kB]
+Get:12 http://deb.debian.org/debian buster/main arm64 libntlm0 arm64 1.5-1+deb10u1 [23.6 kB]
+Get:13 http://deb.debian.org/debian buster/main arm64 libgsasl7 arm64 1.8.0-8+b2 [198 kB]
+Get:14 http://deb.debian.org/debian buster/main arm64 libkyotocabinet16v5 arm64 1.2.76-4.2+b1 [267 kB]
+Get:15 http://deb.debian.org/debian buster/main arm64 libllvm7 arm64 1:7.0.1-8+deb10u2 [10.8 MB]
+Get:16 http://deb.debian.org/debian buster/main arm64 mailutils-common all 1:3.5-4 [689 kB]
+Get:17 http://deb.debian.org/debian buster/main arm64 libpython2.7 arm64 2.7.16-2+deb10u1 [958 kB]
+Get:18 http://deb.debian.org/debian buster/main arm64 libmailutils5 arm64 1:3.5-4 [829 kB]
+Get:19 http://deb.debian.org/debian buster/main arm64 libsensors-config all 1:3.5.0-3 [31.6 kB]
+Get:20 http://deb.debian.org/debian buster/main arm64 libsensors5 arm64 1:3.5.0-3 [51.8 kB]
+Get:21 http://deb.debian.org/debian buster/main arm64 libwrap0 arm64 7.6.q-28 [58.4 kB]
+Get:22 http://deb.debian.org/debian buster/main arm64 lsb-release all 10.2019051400 [27.5 kB]
+Get:23 http://deb.debian.org/debian buster/main arm64 mailutils arm64 1:3.5-4 [570 kB]
+Get:24 http://deb.debian.org/debian buster/main arm64 postgresql-client-common all 200+deb10u4 [85.1 kB]
+Get:25 http://deb.debian.org/debian buster/main arm64 postgresql-client-11 arm64 11.9-0+deb10u1 [1372 kB]
+Get:26 http://deb.debian.org/debian buster/main arm64 ssl-cert all 1.0.39 [20.8 kB]
+Get:27 http://deb.debian.org/debian buster/main arm64 postgresql-common all 200+deb10u4 [225 kB]
+Get:28 http://deb.debian.org/debian buster/main arm64 postgresql-11 arm64 11.9-0+deb10u1 [13.7 MB]
+Get:29 http://deb.debian.org/debian buster/main arm64 postgresql all 11+200+deb10u4 [61.1 kB]
+Get:30 http://deb.debian.org/debian buster/main arm64 psmisc arm64 23.2-1 [122 kB]
+Get:31 http://deb.debian.org/debian buster/main arm64 sysstat arm64 12.0.3-2 [545 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 43.0 MB in 17s (2539 kB/s)
+Selecting previously unselected package cron.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24745 files and directories currently installed.)
+Preparing to unpack .../00-cron_3.0pl1-134+deb10u1_arm64.deb ...
+Unpacking cron (3.0pl1-134+deb10u1) ...
+Selecting previously unselected package logrotate.
+Preparing to unpack .../01-logrotate_3.14.0-4_arm64.deb ...
+Unpacking logrotate (3.14.0-4) ...
+Selecting previously unselected package libc-l10n.
+Preparing to unpack .../02-libc-l10n_2.28-10_all.deb ...
+Unpacking libc-l10n (2.28-10) ...
+Selecting previously unselected package locales.
+Preparing to unpack .../03-locales_2.28-10_all.deb ...
+Unpacking locales (2.28-10) ...
+Selecting previously unselected package distro-info-data.
+Preparing to unpack .../04-distro-info-data_0.41+deb10u3_all.deb ...
+Unpacking distro-info-data (0.41+deb10u3) ...
+Selecting previously unselected package exim4-config.
+Preparing to unpack .../05-exim4-config_4.92-8+deb10u4_all.deb ...
+Unpacking exim4-config (4.92-8+deb10u4) ...
+Selecting previously unselected package exim4-base.
+Preparing to unpack .../06-exim4-base_4.92-8+deb10u4_arm64.deb ...
+Unpacking exim4-base (4.92-8+deb10u4) ...
+Selecting previously unselected package exim4-daemon-light.
+Preparing to unpack .../07-exim4-daemon-light_4.92-8+deb10u4_arm64.deb ...
+Unpacking exim4-daemon-light (4.92-8+deb10u4) ...
+Selecting previously unselected package libgc1c2:arm64.
+Preparing to unpack .../08-libgc1c2_1%3a7.6.4-0.4_arm64.deb ...
+Unpacking libgc1c2:arm64 (1:7.6.4-0.4) ...
+Selecting previously unselected package guile-2.2-libs:arm64.
+Preparing to unpack .../09-guile-2.2-libs_2.2.4+1-2+deb10u1_arm64.deb ...
+Unpacking guile-2.2-libs:arm64 (2.2.4+1-2+deb10u1) ...
+Selecting previously unselected package libidn11:arm64.
+Preparing to unpack .../10-libidn11_1.33-2.2_arm64.deb ...
+Unpacking libidn11:arm64 (1.33-2.2) ...
+Selecting previously unselected package libntlm0:arm64.
+Preparing to unpack .../11-libntlm0_1.5-1+deb10u1_arm64.deb ...
+Unpacking libntlm0:arm64 (1.5-1+deb10u1) ...
+Selecting previously unselected package libgsasl7.
+Preparing to unpack .../12-libgsasl7_1.8.0-8+b2_arm64.deb ...
+Unpacking libgsasl7 (1.8.0-8+b2) ...
+Selecting previously unselected package libkyotocabinet16v5:arm64.
+Preparing to unpack .../13-libkyotocabinet16v5_1.2.76-4.2+b1_arm64.deb ...
+Unpacking libkyotocabinet16v5:arm64 (1.2.76-4.2+b1) ...
+Selecting previously unselected package libllvm7:arm64.
+Preparing to unpack .../14-libllvm7_1%3a7.0.1-8+deb10u2_arm64.deb ...
+Unpacking libllvm7:arm64 (1:7.0.1-8+deb10u2) ...
+Selecting previously unselected package mailutils-common.
+Preparing to unpack .../15-mailutils-common_1%3a3.5-4_all.deb ...
+Unpacking mailutils-common (1:3.5-4) ...
+Selecting previously unselected package libpython2.7:arm64.
+Preparing to unpack .../16-libpython2.7_2.7.16-2+deb10u1_arm64.deb ...
+Unpacking libpython2.7:arm64 (2.7.16-2+deb10u1) ...
+Selecting previously unselected package libmailutils5:arm64.
+Preparing to unpack .../17-libmailutils5_1%3a3.5-4_arm64.deb ...
+Unpacking libmailutils5:arm64 (1:3.5-4) ...
+Selecting previously unselected package libsensors-config.
+Preparing to unpack .../18-libsensors-config_1%3a3.5.0-3_all.deb ...
+Unpacking libsensors-config (1:3.5.0-3) ...
+Selecting previously unselected package libsensors5:arm64.
+Preparing to unpack .../19-libsensors5_1%3a3.5.0-3_arm64.deb ...
+Unpacking libsensors5:arm64 (1:3.5.0-3) ...
+Selecting previously unselected package libwrap0:arm64.
+Preparing to unpack .../20-libwrap0_7.6.q-28_arm64.deb ...
+Unpacking libwrap0:arm64 (7.6.q-28) ...
+Selecting previously unselected package lsb-release.
+Preparing to unpack .../21-lsb-release_10.2019051400_all.deb ...
+Unpacking lsb-release (10.2019051400) ...
+Selecting previously unselected package mailutils.
+Preparing to unpack .../22-mailutils_1%3a3.5-4_arm64.deb ...
+Unpacking mailutils (1:3.5-4) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../23-postgresql-client-common_200+deb10u4_all.deb ...
+Unpacking postgresql-client-common (200+deb10u4) ...
+Selecting previously unselected package postgresql-client-11.
+Preparing to unpack .../24-postgresql-client-11_11.9-0+deb10u1_arm64.deb ...
+Unpacking postgresql-client-11 (11.9-0+deb10u1) ...
+Selecting previously unselected package ssl-cert.
+Preparing to unpack .../25-ssl-cert_1.0.39_all.deb ...
+Unpacking ssl-cert (1.0.39) ...
+Selecting previously unselected package postgresql-common.
+Preparing to unpack .../26-postgresql-common_200+deb10u4_all.deb ...
+Adding 'diversion of /usr/bin/pg_config to /usr/bin/pg_config.libpq-dev by postgresql-common'
+Unpacking postgresql-common (200+deb10u4) ...
+Selecting previously unselected package postgresql-11.
+Preparing to unpack .../27-postgresql-11_11.9-0+deb10u1_arm64.deb ...
+Unpacking postgresql-11 (11.9-0+deb10u1) ...
+Selecting previously unselected package postgresql.
+Preparing to unpack .../28-postgresql_11+200+deb10u4_all.deb ...
+Unpacking postgresql (11+200+deb10u4) ...
+Selecting previously unselected package psmisc.
+Preparing to unpack .../29-psmisc_23.2-1_arm64.deb ...
+Unpacking psmisc (23.2-1) ...
+Selecting previously unselected package sysstat.
+Preparing to unpack .../30-sysstat_12.0.3-2_arm64.deb ...
+Unpacking sysstat (12.0.3-2) ...
+Setting up postgresql-client-common (200+deb10u4) ...
+Setting up libpython2.7:arm64 (2.7.16-2+deb10u1) ...
+Setting up libc-l10n (2.28-10) ...
+Setting up psmisc (23.2-1) ...
+Setting up libgc1c2:arm64 (1:7.6.4-0.4) ...
+Setting up distro-info-data (0.41+deb10u3) ...
+Setting up libkyotocabinet16v5:arm64 (1.2.76-4.2+b1) ...
+Setting up cron (3.0pl1-134+deb10u1) ...
+Adding group `crontab' (GID 102) ...
+Done.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up libsensors-config (1:3.5.0-3) ...
+Setting up locales (2.28-10) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Generating locales (this might take a while)...
+Generation complete.
+Setting up libwrap0:arm64 (7.6.q-28) ...
+Setting up libntlm0:arm64 (1.5-1+deb10u1) ...
+Setting up ssl-cert (1.0.39) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libidn11:arm64 (1.33-2.2) ...
+Setting up postgresql-client-11 (11.9-0+deb10u1) ...
+update-alternatives: using /usr/share/postgresql/11/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up postgresql-common (200+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Adding user postgres to group ssl-cert
+
+Creating config file /etc/postgresql-common/createcluster.conf with new version
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+Removing obsolete dictionary files:
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up mailutils-common (1:3.5-4) ...
+Setting up libsensors5:arm64 (1:3.5.0-3) ...
+Setting up exim4-config (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Adding system-user for exim (v4)
+Setting up libllvm7:arm64 (1:7.0.1-8+deb10u2) ...
+Setting up lsb-release (10.2019051400) ...
+Setting up sysstat (12.0.3-2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/default/sysstat with new version
+update-alternatives: using /usr/bin/sar.sysstat to provide /usr/bin/sar (sar) in auto mode
+Setting up guile-2.2-libs:arm64 (2.2.4+1-2+deb10u1) ...
+Setting up logrotate (3.14.0-4) ...
+Setting up exim4-base (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+exim: DB upgrade, deleting hints-db
+Setting up libgsasl7 (1.8.0-8+b2) ...
+Setting up postgresql-11 (11.9-0+deb10u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Creating new PostgreSQL cluster 11/main ...
+/usr/lib/postgresql/11/bin/initdb -D /var/lib/postgresql/11/main --auth-local peer --auth-host md5
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "C.UTF-8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/11/main ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default timezone ... Etc/UTC
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    pg_ctlcluster 11 main start
+
+Ver Cluster Port Status Owner    Data directory              Log file
+[31m11  main    5432 down   postgres /var/lib/postgresql/11/main /var/log/postgresql/postgresql-11-main.log[0m
+update-alternatives: using /usr/share/postgresql/11/man/man1/postmaster.1.gz to provide /usr/share/man/man1/postmaster.1.gz (postmaster.1.gz) in auto mode
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up postgresql (11+200+deb10u4) ...
+Setting up exim4-daemon-light (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Initializing GnuTLS DH parameter file
+Setting up libmailutils5:arm64 (1:3.5-4) ...
+Setting up mailutils (1:3.5-4) ...
+update-alternatives: using /usr/bin/frm.mailutils to provide /usr/bin/frm (frm) in auto mode
+update-alternatives: using /usr/bin/from.mailutils to provide /usr/bin/from (from) in auto mode
+update-alternatives: using /usr/bin/messages.mailutils to provide /usr/bin/messages (messages) in auto mode
+update-alternatives: using /usr/bin/movemail.mailutils to provide /usr/bin/movemail (movemail) in auto mode
+update-alternatives: using /usr/bin/readmsg.mailutils to provide /usr/bin/readmsg (readmsg) in auto mode
+update-alternatives: using /usr/bin/dotlock.mailutils to provide /usr/bin/dotlock (dotlock) in auto mode
+update-alternatives: using /usr/bin/mail.mailutils to provide /usr/bin/mailx (mailx) in auto mode
+Processing triggers for libc-bin (2.28-10) ...
+Removing intermediate container 84ac191e90de
+ ---> 106a89f3eb1a
+Step 9/21 : RUN cp -f postgresql.conf /etc/postgresql/11/main/postgresql.conf
+ ---> Running in 18dc44412e62
+Removing intermediate container 18dc44412e62
+ ---> 0d67572ca3e4
+Step 10/21 : RUN cp -f pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
+ ---> Running in a14c6f76f82e
+Removing intermediate container a14c6f76f82e
+ ---> 6cf1df2991df
+Step 11/21 : RUN service postgresql start
+ ---> Running in a57172ec9778
+Starting PostgreSQL 11 database server: main.
+Removing intermediate container a57172ec9778
+ ---> cf9779735f36
+Step 12/21 : RUN pip install -r requirement.txt
+ ---> Running in 2ee53fb87f6c
+Collecting numpy
+  Downloading numpy-1.20.0-cp38-cp38-manylinux2014_aarch64.whl (12.7 MB)
+Collecting celery
+  Downloading celery-5.0.5-py3-none-any.whl (392 kB)
+Collecting Cython
+  Downloading Cython-0.29.21-py2.py3-none-any.whl (974 kB)
+Collecting paramiko
+  Downloading paramiko-2.7.2-py2.py3-none-any.whl (206 kB)
+Collecting sshtunnel
+  Downloading sshtunnel-0.4.0-py2.py3-none-any.whl (24 kB)
+Collecting requests
+  Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+Collecting billiard<4.0,>=3.6.3.0
+  Downloading billiard-3.6.3.0-py3-none-any.whl (89 kB)
+Collecting pytz>dev
+  Downloading pytz-2020.5-py2.py3-none-any.whl (510 kB)
+Collecting click<8.0,>=7.0
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting kombu<6.0,>=5.0.0
+  Downloading kombu-5.0.2-py2.py3-none-any.whl (180 kB)
+Collecting click-repl>=0.1.6
+  Downloading click_repl-0.1.6-py3-none-any.whl (4.2 kB)
+Collecting vine<6.0,>=5.0.0
+  Downloading vine-5.0.0-py2.py3-none-any.whl (9.4 kB)
+Collecting click-didyoumean>=0.0.3
+  Downloading click-didyoumean-0.0.3.tar.gz (2.6 kB)
+Collecting click-plugins>=1.1.1
+  Downloading click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Collecting prompt-toolkit
+  Downloading prompt_toolkit-3.0.14-py3-none-any.whl (359 kB)
+Collecting six
+  Downloading six-1.15.0-py2.py3-none-any.whl (10 kB)
+Collecting amqp<6.0.0,>=5.0.0
+  Downloading amqp-5.0.5-py3-none-any.whl (51 kB)
+Collecting cryptography>=2.5
+  Downloading cryptography-3.3.1-cp36-abi3-manylinux2014_aarch64.whl (2.6 MB)
+Collecting bcrypt>=3.1.3
+  Downloading bcrypt-3.2.0-cp36-abi3-manylinux2014_aarch64.whl (56 kB)
+Collecting pynacl>=1.0.1
+  Downloading PyNaCl-1.4.0.tar.gz (3.4 MB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting cffi>=1.1
+  Using cached cffi-1.14.4-cp38-cp38-manylinux2014_aarch64.whl (208 kB)
+Collecting pycparser
+  Using cached pycparser-2.20-py2.py3-none-any.whl (112 kB)
+Collecting idna<3,>=2.5
+  Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+Collecting chardet<5,>=3.0.2
+  Downloading chardet-4.0.0-py2.py3-none-any.whl (178 kB)
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.3-py2.py3-none-any.whl (137 kB)
+Collecting certifi>=2017.4.17
+  Downloading certifi-2020.12.5-py2.py3-none-any.whl (147 kB)
+Collecting wcwidth
+  Downloading wcwidth-0.2.5-py2.py3-none-any.whl (30 kB)
+Building wheels for collected packages: click-didyoumean, pynacl
+  Building wheel for click-didyoumean (setup.py): started
+  Building wheel for click-didyoumean (setup.py): finished with status 'done'
+  Created wheel for click-didyoumean: filename=click_didyoumean-0.0.3-py3-none-any.whl size=2146 sha256=d7c57c9a0895069df1cffeeba8f80aaa901e04995f7b9362aeb5d7c536ba2238
+  Stored in directory: /root/.cache/pip/wheels/c2/97/1e/c7dda0b8e9616dcd8df2a2882e556ef62879967ac31e0e3d04
+  Building wheel for pynacl (PEP 517): started
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): finished with status 'done'
+  Created wheel for pynacl: filename=PyNaCl-1.4.0-cp38-cp38-linux_aarch64.whl size=665353 sha256=1828cfb82d53c359be0c9828ed0d1019c708cbe63d60754b331bdf575e80cb46
+  Stored in directory: /root/.cache/pip/wheels/10/23/c0/f42041fbad88c47b268b6119919130b407b48e24b41a349684
+Successfully built click-didyoumean pynacl
+Installing collected packages: pycparser, wcwidth, vine, six, cffi, pynacl, prompt-toolkit, cryptography, click, bcrypt, amqp, urllib3, pytz, paramiko, kombu, idna, click-repl, click-plugins, click-didyoumean, chardet, certifi, billiard, sshtunnel, requests, numpy, Cython, celery
+Successfully installed Cython-0.29.21 amqp-5.0.5 bcrypt-3.2.0 billiard-3.6.3.0 celery-5.0.5 certifi-2020.12.5 cffi-1.14.4 chardet-4.0.0 click-7.1.2 click-didyoumean-0.0.3 click-plugins-1.1.1 click-repl-0.1.6 cryptography-3.3.1 idna-2.10 kombu-5.0.2 numpy-1.20.0 paramiko-2.7.2 prompt-toolkit-3.0.14 pycparser-2.20 pynacl-1.4.0 pytz-2020.5 requests-2.25.1 six-1.15.0 sshtunnel-0.4.0 urllib3-1.26.3 vine-5.0.0 wcwidth-0.2.5
+Removing intermediate container 2ee53fb87f6c
+ ---> 786caa0805d7
+Step 13/21 : ENV AIRFLOW_HOME=/root/airflow
+ ---> Running in f1bd12430f86
+Removing intermediate container f1bd12430f86
+ ---> 68fc6e7297c2
+Step 14/21 : ENV AIRFLOW_USER=airflow
+ ---> Running in 5652a4daf478
+Removing intermediate container 5652a4daf478
+ ---> e9f146290f5b
+Step 15/21 : ENV AIRFLOW_PASSWORD=12345678
+ ---> Running in 97df56176dd0
+Removing intermediate container 97df56176dd0
+ ---> 910ed246a73c
+Step 16/21 : ENV AIRFLOW_EMAIL=airflow@example.com
+ ---> Running in 7c0c21ccc054
+Removing intermediate container 7c0c21ccc054
+ ---> 05d32e8eea09
+Step 17/21 : RUN pip install 'apache-airflow[celery,async,ssh,samba,redis,password,rabbitmq,postgres,mysql]'
+ ---> Running in d1f9dba0cc11
+Collecting apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]
+  Downloading apache_airflow-2.0.0-py3-none-any.whl (4.5 MB)
+Collecting dill<0.4,>=0.2.2
+  Downloading dill-0.3.3-py2.py3-none-any.whl (81 kB)
+Collecting cached-property~=1.5
+  Downloading cached_property-1.5.2-py2.py3-none-any.whl (7.6 kB)
+Collecting pendulum~=2.0
+  Downloading pendulum-2.1.2.tar.gz (81 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting flask-appbuilder~=3.1.1
+  Downloading Flask_AppBuilder-3.1.1-py3-none-any.whl (1.7 MB)
+Collecting pygments<3.0,>=2.0.1
+  Downloading Pygments-2.7.4-py3-none-any.whl (950 kB)
+Collecting sqlalchemy-jsonfield~=1.0
+  Downloading SQLAlchemy_JSONField-1.0.0-py3-none-any.whl (10 kB)
+Requirement already satisfied: cryptography>=0.9.3 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.3.1)
+Collecting cattrs<2.0,>=1.0
+  Downloading cattrs-1.2.0-py3-none-any.whl (17 kB)
+Collecting urllib3<1.26
+  Downloading urllib3-1.25.11-py2.py3-none-any.whl (127 kB)
+Collecting werkzeug>=1.0.1,~=1.0
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting apache-airflow-providers-imap
+  Downloading apache_airflow_providers_imap-1.0.0-py3-none-any.whl (18 kB)
+Collecting connexion[flask,swagger-ui]<3,>=2.6.0
+  Downloading connexion-2.7.0-py2.py3-none-any.whl (77 kB)
+Collecting termcolor>=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Collecting jsonschema~=3.0
+  Downloading jsonschema-3.2.0-py2.py3-none-any.whl (56 kB)
+Collecting flask-caching<2.0.0,>=1.5.0
+  Downloading Flask_Caching-1.9.0-py2.py3-none-any.whl (33 kB)
+Collecting psutil<6.0.0,>=4.2.0
+  Downloading psutil-5.8.0.tar.gz (470 kB)
+Collecting rich==9.2.0
+  Downloading rich-9.2.0-py3-none-any.whl (164 kB)
+Collecting lazy-object-proxy<1.5.0
+  Downloading lazy-object-proxy-1.4.3.tar.gz (34 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting graphviz>=0.12
+  Downloading graphviz-0.16-py2.py3-none-any.whl (19 kB)
+Collecting apache-airflow-providers-ftp
+  Downloading apache_airflow_providers_ftp-1.0.0-py3-none-any.whl (17 kB)
+Collecting tabulate<0.9,>=0.7.5
+  Downloading tabulate-0.8.7-py3-none-any.whl (24 kB)
+Collecting markupsafe<2.0,>=1.1.1
+  Downloading MarkupSafe-1.1.1-cp38-cp38-manylinux2014_aarch64.whl (33 kB)
+Collecting lockfile>=0.12.2
+  Downloading lockfile-0.12.2-py2.py3-none-any.whl (13 kB)
+Collecting flask-swagger==0.2.13
+  Downloading flask-swagger-0.2.13.tar.gz (8.0 kB)
+Collecting flask-wtf<0.15,>=0.14.3
+  Downloading Flask_WTF-0.14.3-py2.py3-none-any.whl (13 kB)
+Collecting json-merge-patch==0.2
+  Downloading json-merge-patch-0.2.tar.gz (3.1 kB)
+Collecting importlib-resources~=1.4
+  Downloading importlib_resources-1.5.0-py2.py3-none-any.whl (21 kB)
+Collecting funcsigs<2.0.0,>=1.0.0
+  Downloading funcsigs-1.0.2-py2.py3-none-any.whl (17 kB)
+Collecting requests<2.24.0,>=2.20.0
+  Downloading requests-2.23.0-py2.py3-none-any.whl (58 kB)
+Collecting flask-login<0.5,>=0.3
+  Downloading Flask-Login-0.4.1.tar.gz (14 kB)
+Collecting apache-airflow-providers-http
+  Downloading apache_airflow_providers_http-1.0.0-py3-none-any.whl (24 kB)
+Collecting gunicorn<20.0,>=19.5.0
+  Downloading gunicorn-19.10.0-py2.py3-none-any.whl (113 kB)
+Collecting importlib-metadata~=1.7
+  Downloading importlib_metadata-1.7.0-py2.py3-none-any.whl (31 kB)
+Collecting attrs<21.0,>=20.0
+  Downloading attrs-20.3.0-py2.py3-none-any.whl (49 kB)
+Collecting argcomplete~=1.10
+  Downloading argcomplete-1.12.2-py2.py3-none-any.whl (38 kB)
+Collecting pandas<2.0,>=0.17.1
+  Downloading pandas-1.2.1-cp38-cp38-manylinux2014_aarch64.whl (10.0 MB)
+Collecting setproctitle<2,>=1.1.8
+  Downloading setproctitle-1.2.2-cp38-cp38-manylinux2014_aarch64.whl (36 kB)
+Collecting alembic<2.0,>=1.2
+  Downloading alembic-1.5.3.tar.gz (1.1 MB)
+Collecting apache-airflow-providers-sqlite
+  Downloading apache_airflow_providers_sqlite-1.0.0-py3-none-any.whl (15 kB)
+Collecting unicodecsv>=0.14.1
+  Downloading unicodecsv-0.14.1.tar.gz (10 kB)
+Collecting croniter<0.4,>=0.3.17
+  Downloading croniter-0.3.37-py2.py3-none-any.whl (13 kB)
+Collecting python-nvd3~=0.15.0
+  Downloading python-nvd3-0.15.0.tar.gz (31 kB)
+Collecting sqlalchemy<2,>=1.3.18
+  Downloading SQLAlchemy-1.3.22-cp38-cp38-manylinux2014_aarch64.whl (1.3 MB)
+Collecting tenacity~=6.2.0
+  Downloading tenacity-6.2.0-py2.py3-none-any.whl (24 kB)
+Collecting marshmallow-oneofschema>=2.0.1
+  Downloading marshmallow_oneofschema-2.1.0-py2.py3-none-any.whl (5.7 kB)
+Collecting colorlog==4.0.2
+  Downloading colorlog-4.0.2-py2.py3-none-any.whl (17 kB)
+Collecting flask<2.0,>=1.1.0
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting python-dateutil<3,>=2.3
+  Downloading python_dateutil-2.8.1-py2.py3-none-any.whl (227 kB)
+Collecting jinja2<2.12.0,>=2.10.1
+  Downloading Jinja2-2.11.2-py2.py3-none-any.whl (125 kB)
+Collecting python-daemon>=2.1.1
+  Downloading python_daemon-2.2.4-py2.py3-none-any.whl (35 kB)
+Collecting tzlocal<2.0.0,>=1.4
+  Downloading tzlocal-1.5.1.tar.gz (16 kB)
+Collecting iso8601>=0.1.12
+  Downloading iso8601-0.1.13-py3-none-any.whl (9.3 kB)
+Collecting itsdangerous>=1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting markdown<4.0,>=2.5.2
+  Downloading Markdown-3.3.3-py3-none-any.whl (96 kB)
+Collecting thrift>=0.9.2
+  Downloading thrift-0.13.0.tar.gz (59 kB)
+Collecting python-slugify<5.0,>=3.0.0
+  Downloading python-slugify-4.0.1.tar.gz (11 kB)
+Collecting apache-airflow-providers-mysql
+  Downloading apache_airflow_providers_mysql-1.0.0-py3-none-any.whl (27 kB)
+Collecting mysql-connector-python<=8.0.18,>=8.0.11
+  Downloading mysql_connector_python-8.0.18-py2.py3-none-any.whl (346 kB)
+Collecting mysqlclient<1.4,>=1.3.6
+  Downloading mysqlclient-1.3.14.tar.gz (91 kB)
+Collecting amqp<5.0.0
+  Downloading amqp-2.6.1-py2.py3-none-any.whl (48 kB)
+Collecting celery~=4.4.2
+  Downloading celery-4.4.7-py2.py3-none-any.whl (427 kB)
+Collecting flower<1.0,>=0.7.3
+  Downloading flower-0.9.7-py2.py3-none-any.whl (456 kB)
+Collecting apache-airflow-providers-celery
+  Downloading apache_airflow_providers_celery-1.0.0-py3-none-any.whl (13 kB)
+Collecting vine~=1.3
+  Downloading vine-1.3.0-py2.py3-none-any.whl (14 kB)
+Collecting redis~=3.2
+  Downloading redis-3.5.3-py2.py3-none-any.whl (72 kB)
+Collecting apache-airflow-providers-redis
+  Downloading apache_airflow_providers_redis-1.0.0-py3-none-any.whl (19 kB)
+Collecting apache-airflow-providers-samba
+  Downloading apache_airflow_providers_samba-1.0.0-py3-none-any.whl (13 kB)
+Collecting pysmbclient>=0.1.3
+  Downloading PySmbClient-0.1.5.tar.gz (6.3 kB)
+Collecting apache-airflow-providers-postgres
+  Downloading apache_airflow_providers_postgres-1.0.0-py3-none-any.whl (19 kB)
+Collecting psycopg2-binary>=2.7.4
+  Downloading psycopg2-binary-2.8.6.tar.gz (384 kB)
+Requirement already satisfied: bcrypt>=2.0.0 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.2.0)
+Collecting flask-bcrypt>=0.7.1
+  Downloading Flask-Bcrypt-0.7.1.tar.gz (5.1 kB)
+Collecting greenlet>=0.4.9
+  Downloading greenlet-1.0.0-cp38-cp38-manylinux2014_aarch64.whl (165 kB)
+Collecting gevent>=0.13
+  Downloading gevent-21.1.2-cp38-cp38-manylinux2014_aarch64.whl (5.1 MB)
+Collecting eventlet>=0.9.7
+  Downloading eventlet-0.30.0-py2.py3-none-any.whl (224 kB)
+Collecting sshtunnel<0.2,>=0.1.4
+  Downloading sshtunnel-0.1.5-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: paramiko>=2.6.0 in /usr/local/lib/python3.8/site-packages (from apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.7.2)
+Collecting pysftp>=0.2.9
+  Downloading pysftp-0.2.9.tar.gz (25 kB)
+Collecting apache-airflow-providers-ssh
+  Downloading apache_airflow_providers_ssh-1.0.0-py3-none-any.whl (19 kB)
+Collecting PyYAML>=3.0
+  Downloading PyYAML-5.4.1.tar.gz (175 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting typing-extensions<4.0.0,>=3.7.4
+  Downloading typing_extensions-3.7.4.3-py3-none-any.whl (22 kB)
+Collecting commonmark<0.10.0,>=0.9.0
+  Downloading commonmark-0.9.1-py2.py3-none-any.whl (51 kB)
+Collecting colorama<0.5.0,>=0.4.0
+  Downloading colorama-0.4.4-py2.py3-none-any.whl (16 kB)
+Collecting Mako
+  Downloading Mako-1.1.4.tar.gz (479 kB)
+Collecting python-editor>=0.3
+  Downloading python_editor-1.0.4-py3-none-any.whl (4.9 kB)
+Requirement already satisfied: cffi>=1.1 in /usr/local/lib/python3.8/site-packages (from bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.14.4)
+Requirement already satisfied: six>=1.4.1 in /usr/local/lib/python3.8/site-packages (from bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.15.0)
+Collecting kombu<4.7,>=4.6.10
+  Downloading kombu-4.6.11-py2.py3-none-any.whl (184 kB)
+Requirement already satisfied: billiard<4.0,>=3.6.3.0 in /usr/local/lib/python3.8/site-packages (from celery~=4.4.2->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (3.6.3.0)
+Requirement already satisfied: pytz>dev in /usr/local/lib/python3.8/site-packages (from celery~=4.4.2->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2020.5)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.8/site-packages (from cffi>=1.1->bcrypt>=2.0.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.20)
+Collecting inflection>=0.3.1
+  Downloading inflection-0.5.1-py2.py3-none-any.whl (9.5 kB)
+Collecting clickclick>=1.2
+  Downloading clickclick-20.10.2-py2.py3-none-any.whl (7.4 kB)
+Collecting openapi-spec-validator>=0.2.4
+  Downloading openapi_spec_validator-0.2.9-py3-none-any.whl (25 kB)
+Collecting swagger-ui-bundle>=0.0.2
+  Downloading swagger_ui_bundle-0.0.8-py3-none-any.whl (3.8 MB)
+Requirement already satisfied: click>=4.0 in /usr/local/lib/python3.8/site-packages (from clickclick>=1.2->connexion[flask,swagger-ui]<3,>=2.6.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (7.1.2)
+Collecting natsort
+  Downloading natsort-7.1.1-py3-none-any.whl (35 kB)
+Collecting dnspython<2.0.0,>=1.15.0
+  Downloading dnspython-1.16.0-py2.py3-none-any.whl (188 kB)
+Collecting Flask-JWT-Extended<4,>=3.18
+  Downloading Flask-JWT-Extended-3.25.0.tar.gz (31 kB)
+Collecting marshmallow-enum<2,>=1.5.1
+  Downloading marshmallow_enum-1.5.1-py2.py3-none-any.whl (4.2 kB)
+Collecting Flask-Babel<2,>=1
+  Downloading Flask_Babel-1.0.0-py3-none-any.whl (9.5 kB)
+Collecting sqlalchemy-utils<1,>=0.32.21
+  Downloading SQLAlchemy-Utils-0.36.8.tar.gz (138 kB)
+Collecting apispec[yaml]<4,>=3.3
+  Downloading apispec-3.3.2-py2.py3-none-any.whl (27 kB)
+Collecting marshmallow<4,>=3
+  Downloading marshmallow-3.10.0-py2.py3-none-any.whl (46 kB)
+Collecting email-validator<2,>=1.0.5
+  Downloading email_validator-1.1.2-py2.py3-none-any.whl (17 kB)
+Collecting Flask-OpenID<2,>=1.2.5
+  Downloading Flask-OpenID-1.2.5.tar.gz (43 kB)
+Collecting Flask-SQLAlchemy<3,>=2.4
+  Downloading Flask_SQLAlchemy-2.4.4-py2.py3-none-any.whl (17 kB)
+Collecting prison<1.0.0,>=0.1.3
+  Downloading prison-0.1.3-py2.py3-none-any.whl (5.8 kB)
+Collecting marshmallow-sqlalchemy<0.24.0,>=0.22.0
+  Downloading marshmallow_sqlalchemy-0.23.1-py2.py3-none-any.whl (18 kB)
+Collecting PyJWT>=1.7.1
+  Downloading PyJWT-2.0.1-py3-none-any.whl (15 kB)
+Requirement already satisfied: idna>=2.0.0 in /usr/local/lib/python3.8/site-packages (from email-validator<2,>=1.0.5->flask-appbuilder~=3.1.1->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2.10)
+Collecting Babel>=2.3
+  Downloading Babel-2.9.0-py2.py3-none-any.whl (8.8 MB)
+Collecting PyJWT>=1.7.1
+  Downloading PyJWT-1.7.1-py2.py3-none-any.whl (18 kB)
+Collecting python3-openid>=2.0
+  Downloading python3_openid-3.2.0-py3-none-any.whl (133 kB)
+Collecting WTForms
+  Downloading WTForms-2.3.3-py2.py3-none-any.whl (169 kB)
+Collecting humanize
+  Downloading humanize-3.2.0-py3-none-any.whl (70 kB)
+Collecting prometheus-client==0.8.0
+  Downloading prometheus_client-0.8.0-py2.py3-none-any.whl (53 kB)
+Collecting tornado<7.0.0,>=5.0.0
+  Downloading tornado-6.1-cp38-cp38-manylinux2014_aarch64.whl (427 kB)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.8/site-packages (from gevent>=0.13->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (51.1.2)
+Collecting zope.event
+  Downloading zope.event-4.5.0-py2.py3-none-any.whl (6.8 kB)
+Collecting zope.interface
+  Downloading zope.interface-5.2.0-cp38-cp38-manylinux2014_aarch64.whl (245 kB)
+Collecting zipp>=0.5
+  Downloading zipp-3.4.0-py3-none-any.whl (5.2 kB)
+Collecting pyrsistent>=0.14.0
+  Downloading pyrsistent-0.17.3.tar.gz (106 kB)
+Collecting protobuf>=3.0.0
+  Downloading protobuf-3.14.0-py2.py3-none-any.whl (173 kB)
+Requirement already satisfied: numpy>=1.16.5 in /usr/local/lib/python3.8/site-packages (from pandas<2.0,>=0.17.1->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.20.0)
+Requirement already satisfied: pynacl>=1.0.1 in /usr/local/lib/python3.8/site-packages (from paramiko>=2.6.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (1.4.0)
+Collecting pytzdata>=2020.1
+  Downloading pytzdata-2020.1-py2.py3-none-any.whl (489 kB)
+Collecting docutils
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting text-unidecode>=1.3
+  Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+Collecting defusedxml
+  Downloading defusedxml-0.6.0-py2.py3-none-any.whl (23 kB)
+Collecting chardet<4,>=3.0.2
+  Downloading chardet-3.0.4-py2.py3-none-any.whl (133 kB)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.8/site-packages (from requests<2.24.0,>=2.20.0->apache-airflow[async,celery,mysql,password,postgres,rabbitmq,redis,samba,ssh]) (2020.12.5)
+Building wheels for collected packages: flask-swagger, json-merge-patch, alembic, flask-bcrypt, Flask-JWT-Extended, flask-login, Flask-OpenID, lazy-object-proxy, mysqlclient, pendulum, psutil, psycopg2-binary, pyrsistent, pysftp, pysmbclient, python-nvd3, python-slugify, PyYAML, sqlalchemy-utils, termcolor, thrift, tzlocal, unicodecsv, Mako
+  Building wheel for flask-swagger (setup.py): started
+  Building wheel for flask-swagger (setup.py): finished with status 'done'
+  Created wheel for flask-swagger: filename=flask_swagger-0.2.13-py3-none-any.whl size=7243 sha256=707ee7b21a12f52c8e355998cebd3269bab1f29ea1da1d9e02ad008bef0fe9c1
+  Stored in directory: /root/.cache/pip/wheels/9d/bb/52/8852672dded137c75200ff0f39f31587acd86e97bf5bcc047f
+  Building wheel for json-merge-patch (setup.py): started
+  Building wheel for json-merge-patch (setup.py): finished with status 'done'
+  Created wheel for json-merge-patch: filename=json_merge_patch-0.2-py3-none-any.whl size=4394 sha256=468d129004d233ae90eb28f3229f940d152ad2d8b8a859ed456b72330af2bab9
+  Stored in directory: /root/.cache/pip/wheels/3a/56/54/0056d796b798c014146fd1bed9e75d6dcaea22416e816658c1
+  Building wheel for alembic (setup.py): started
+  Building wheel for alembic (setup.py): finished with status 'done'
+  Created wheel for alembic: filename=alembic-1.5.3-py2.py3-none-any.whl size=155547 sha256=9fa1fc3e0fe60d373e179590458438b547d9737e22636f615169f29e3b48d763
+  Stored in directory: /root/.cache/pip/wheels/61/2e/cd/814f09d42d1393cb9da66eaee97325fb88814eb2b9dd0fab66
+  Building wheel for flask-bcrypt (setup.py): started
+  Building wheel for flask-bcrypt (setup.py): finished with status 'done'
+  Created wheel for flask-bcrypt: filename=Flask_Bcrypt-0.7.1-py3-none-any.whl size=5009 sha256=c413f42c08af9a11375a1b0b036c3c571d27a059de8540af2ebda79d72c019a8
+  Stored in directory: /root/.cache/pip/wheels/8a/d9/0e/dc762c4ebc76f581397a2e25991db6efd148640b5616ab9210
+  Building wheel for Flask-JWT-Extended (setup.py): started
+  Building wheel for Flask-JWT-Extended (setup.py): finished with status 'done'
+  Created wheel for Flask-JWT-Extended: filename=Flask_JWT_Extended-3.25.0-py2.py3-none-any.whl size=21569 sha256=a9a7c21f11272022f7f17c1e825304bc2f1078553ac344668b68b67686dc3f28
+  Stored in directory: /root/.cache/pip/wheels/f0/53/54/ec3db050e12900460634d2f7badb842fa29af7508a5b84557d
+  Building wheel for flask-login (setup.py): started
+  Building wheel for flask-login (setup.py): finished with status 'done'
+  Created wheel for flask-login: filename=Flask_Login-0.4.1-py2.py3-none-any.whl size=15936 sha256=d623387869611c7e89392e8837c9defde11d1ccaffb056dcbf54c6af803f1dec
+  Stored in directory: /root/.cache/pip/wheels/ec/8e/42/16110a8b4f17e4ef4bd0abd42969fc1fc38229348de9f071df
+  Building wheel for Flask-OpenID (setup.py): started
+  Building wheel for Flask-OpenID (setup.py): finished with status 'done'
+  Created wheel for Flask-OpenID: filename=Flask_OpenID-1.2.5-py3-none-any.whl size=9121 sha256=8300f476e9d8214105fc031252819490703a02dd8c7cb9ebda9e7134bf5f8af4
+  Stored in directory: /root/.cache/pip/wheels/a1/b3/ee/1bb518a7bcea32f7ae913ca5db6e68324f5cc09f1e13b81e96
+  Building wheel for lazy-object-proxy (PEP 517): started
+  Building wheel for lazy-object-proxy (PEP 517): finished with status 'done'
+  Created wheel for lazy-object-proxy: filename=lazy_object_proxy-1.4.3-cp38-cp38-linux_aarch64.whl size=58551 sha256=5f7627e45d9f65d2400d1ca1dba4461535aa428f640c4bcf30699e6b12c14673
+  Stored in directory: /root/.cache/pip/wheels/d7/f7/3b/6853df4a25a106662f20e70ad6bd448c8ae07d12ce80fb9063
+  Building wheel for mysqlclient (setup.py): started
+  Building wheel for mysqlclient (setup.py): finished with status 'done'
+  Created wheel for mysqlclient: filename=mysqlclient-1.3.14-cp38-cp38-linux_aarch64.whl size=125612 sha256=aa2f3148b66af5f4624ab7b97e752a3ca7d8789bb916307f2ca5be7e6cdd00bf
+  Stored in directory: /root/.cache/pip/wheels/42/db/89/b51c9514fe0d840d467810fcd350e29322efa9e150b96342e4
+  Building wheel for pendulum (PEP 517): started
+  Building wheel for pendulum (PEP 517): finished with status 'done'
+  Created wheel for pendulum: filename=pendulum-2.1.2-cp38-cp38-manylinux2014_aarch64.whl size=168512 sha256=c92d03c931edff9841c9e1716e49d0c5a6e3783b603356b05462e39dd09b4a10
+  Stored in directory: /root/.cache/pip/wheels/b7/90/a1/1a5560d954c0f60185b7603dc8e39dc59ca7e35d12108a74e7
+  Building wheel for psutil (setup.py): started
+  Building wheel for psutil (setup.py): finished with status 'done'
+  Created wheel for psutil: filename=psutil-5.8.0-cp38-cp38-linux_aarch64.whl size=298610 sha256=621ba8372b686d557ddee174b9e63242b84f8c74c75ea2f96bcb60cb9080161a
+  Stored in directory: /root/.cache/pip/wheels/a9/92/74/7694cd5d3f10ea335ef507c10e877b2150de20975a986782b9
+  Building wheel for psycopg2-binary (setup.py): started
+  Building wheel for psycopg2-binary (setup.py): finished with status 'done'
+  Created wheel for psycopg2-binary: filename=psycopg2_binary-2.8.6-cp38-cp38-linux_aarch64.whl size=503027 sha256=490f3c12c73b431db43a2f4bdeccf972ffec8b04e6a785adaa33f3531566560f
+  Stored in directory: /root/.cache/pip/wheels/15/d7/13/ef37b82cf1de521c82c129a16ad8007a81b4eab0f23b22c7b3
+  Building wheel for pyrsistent (setup.py): started
+  Building wheel for pyrsistent (setup.py): finished with status 'done'
+  Created wheel for pyrsistent: filename=pyrsistent-0.17.3-cp38-cp38-linux_aarch64.whl size=126175 sha256=60f4ebee774c906114f2e73ad43dd58ebfa5620de3a89d01bd13e19d6cd46573
+  Stored in directory: /root/.cache/pip/wheels/3d/22/08/7042eb6309c650c7b53615d5df5cc61f1ea9680e7edd3a08d2
+  Building wheel for pysftp (setup.py): started
+  Building wheel for pysftp (setup.py): finished with status 'done'
+  Created wheel for pysftp: filename=pysftp-0.2.9-py3-none-any.whl size=15481 sha256=9d09fb4b1c7098f7acefa0df14f592f469bd9089df69752061d4280f9706f94d
+  Stored in directory: /root/.cache/pip/wheels/2b/ca/f6/862aaecc17fb92230cad02822949e8856d741e5c12ef55fb10
+  Building wheel for pysmbclient (setup.py): started
+  Building wheel for pysmbclient (setup.py): finished with status 'done'
+  Created wheel for pysmbclient: filename=PySmbClient-0.1.5-py3-none-any.whl size=6864 sha256=0c43e07f5757493c1caa0b1343e7e38bd03e67c5b8c3777169b20e54ba92fdf2
+  Stored in directory: /root/.cache/pip/wheels/3c/30/f3/fdcaeb56b4f2e38ab61476e962d9f3fcdf88f1a34445ba4387
+  Building wheel for python-nvd3 (setup.py): started
+  Building wheel for python-nvd3 (setup.py): finished with status 'done'
+  Created wheel for python-nvd3: filename=python_nvd3-0.15.0-py3-none-any.whl size=38156 sha256=359c7e139f13043dddde9401a9f76671055d79b99484e8e1e090ee93b293e22f
+  Stored in directory: /root/.cache/pip/wheels/8c/92/61/c1d567a155a1f15d2e1a633eef32ed3a7c7906c323d49fa3a2
+  Building wheel for python-slugify (setup.py): started
+  Building wheel for python-slugify (setup.py): finished with status 'done'
+  Created wheel for python-slugify: filename=python_slugify-4.0.1-py2.py3-none-any.whl size=6769 sha256=490d57d590a95d8d5317059c1f35f4d0d305a37b3e5a7c10fa2f9ebd38948547
+  Stored in directory: /root/.cache/pip/wheels/91/4d/4f/e740a68c215791688c46c4d6251770a570e8dfea91af1acb5c
+  Building wheel for PyYAML (PEP 517): started
+  Building wheel for PyYAML (PEP 517): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.4.1-cp38-cp38-linux_aarch64.whl size=554413 sha256=5befe7cfda1b5d22a653731e25f36e2ddfa0de7732211db82a963d6aa215a256
+  Stored in directory: /root/.cache/pip/wheels/dd/c5/1d/5d7436173d3efd4a14dcb510eb0b29525ecb6b0e41489e716e
+  Building wheel for sqlalchemy-utils (setup.py): started
+  Building wheel for sqlalchemy-utils (setup.py): finished with status 'done'
+  Created wheel for sqlalchemy-utils: filename=SQLAlchemy_Utils-0.36.8-py2.py3-none-any.whl size=93220 sha256=f42c589f2f3bd0b2bb59aae0fdcf98db37e8292b28f781a37d11ab131fa3d351
+  Stored in directory: /root/.cache/pip/wheels/e2/1e/3b/50c4d0d200bfe25d2686016f72859a5bd97822815065478358
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4829 sha256=dc96ee7e153fa1949d22a1a15b82b046332b09b7cf7157a42f18b135c03101e6
+  Stored in directory: /root/.cache/pip/wheels/a0/16/9c/5473df82468f958445479c59e784896fa24f4a5fc024b0f501
+  Building wheel for thrift (setup.py): started
+  Building wheel for thrift (setup.py): finished with status 'done'
+  Created wheel for thrift: filename=thrift-0.13.0-cp38-cp38-linux_aarch64.whl size=489053 sha256=38c0afb9e36f077b9676b68b2c59d3b53ceaedb81ea44c3fe2d97af5a80b8524
+  Stored in directory: /root/.cache/pip/wheels/0a/52/7e/8054b57725b8f2b9ddbaacb81b271b939681cc03f8231e6ebc
+  Building wheel for tzlocal (setup.py): started
+  Building wheel for tzlocal (setup.py): finished with status 'done'
+  Created wheel for tzlocal: filename=tzlocal-1.5.1-py3-none-any.whl size=17541 sha256=c31ad19b3cbb0aaa9d7b07cccb0b439b19bc7df481440a673dfc0fd7263ebd87
+  Stored in directory: /root/.cache/pip/wheels/3a/14/ce/9c504116f6b89e4a05ce0bc0f41983df280d7e00f463481900
+  Building wheel for unicodecsv (setup.py): started
+  Building wheel for unicodecsv (setup.py): finished with status 'done'
+  Created wheel for unicodecsv: filename=unicodecsv-0.14.1-py3-none-any.whl size=10767 sha256=a64480afc01964e3b7f1d56f89e5bb32b7710e6e3bbfcf5abe40f008e827128d
+  Stored in directory: /root/.cache/pip/wheels/35/dd/44/ccb37563a01457f5de74ccedccaee81b01a53e12addeab5e0f
+  Building wheel for Mako (setup.py): started
+  Building wheel for Mako (setup.py): finished with status 'done'
+  Created wheel for Mako: filename=Mako-1.1.4-py2.py3-none-any.whl size=75675 sha256=1abe8045eb71bf22561eb9a323cec4587a3941842d9ce0bbd2165fe5b8a60096
+  Stored in directory: /root/.cache/pip/wheels/17/bc/50/621fe4100d907a7296cc00c21371402b068b648820f6ff5812
+Successfully built flask-swagger json-merge-patch alembic flask-bcrypt Flask-JWT-Extended flask-login Flask-OpenID lazy-object-proxy mysqlclient pendulum psutil psycopg2-binary pyrsistent pysftp pysmbclient python-nvd3 python-slugify PyYAML sqlalchemy-utils termcolor thrift tzlocal unicodecsv Mako
+Installing collected packages: pyrsistent, markupsafe, attrs, werkzeug, vine, urllib3, PyYAML, jsonschema, jinja2, itsdangerous, defusedxml, chardet, WTForms, text-unidecode, sqlalchemy, requests, python3-openid, PyJWT, openapi-spec-validator, marshmallow, inflection, flask, dnspython, clickclick, Babel, apispec, amqp, zipp, typing-extensions, swagger-ui-bundle, sqlalchemy-utils, pytzdata, python-slugify, python-editor, python-dateutil, pygments, prison, natsort, marshmallow-sqlalchemy, marshmallow-enum, Mako, lockfile, kombu, flask-wtf, Flask-SQLAlchemy, Flask-OpenID, flask-login, Flask-JWT-Extended, Flask-Babel, email-validator, docutils, connexion, commonmark, colorama, unicodecsv, tzlocal, tornado, thrift, termcolor, tenacity, tabulate, sqlalchemy-jsonfield, setproctitle, rich, python-nvd3, python-daemon, psutil, protobuf, prometheus-client, pendulum, pandas, marshmallow-oneofschema, markdown, lazy-object-proxy, json-merge-patch, iso8601, importlib-resources, importlib-metadata, humanize, gunicorn, graphviz, funcsigs, flask-swagger, flask-caching, flask-appbuilder, dill, croniter, colorlog, celery, cattrs, cached-property, argcomplete, apache-airflow-providers-sqlite, apache-airflow-providers-imap, apache-airflow-providers-http, apache-airflow-providers-ftp, alembic, zope.interface, zope.event, sshtunnel, redis, pysmbclient, pysftp, psycopg2-binary, mysqlclient, mysql-connector-python, greenlet, flower, apache-airflow, gevent, flask-bcrypt, eventlet, apache-airflow-providers-ssh, apache-airflow-providers-samba, apache-airflow-providers-redis, apache-airflow-providers-postgres, apache-airflow-providers-mysql, apache-airflow-providers-celery
+  Attempting uninstall: vine
+    Found existing installation: vine 5.0.0
+    Uninstalling vine-5.0.0:
+      Successfully uninstalled vine-5.0.0
+  Attempting uninstall: urllib3
+    Found existing installation: urllib3 1.26.3
+    Uninstalling urllib3-1.26.3:
+      Successfully uninstalled urllib3-1.26.3
+  Attempting uninstall: chardet
+    Found existing installation: chardet 4.0.0
+    Uninstalling chardet-4.0.0:
+      Successfully uninstalled chardet-4.0.0
+  Attempting uninstall: requests
+    Found existing installation: requests 2.25.1
+    Uninstalling requests-2.25.1:
+      Successfully uninstalled requests-2.25.1
+  Attempting uninstall: amqp
+    Found existing installation: amqp 5.0.5
+    Uninstalling amqp-5.0.5:
+      Successfully uninstalled amqp-5.0.5
+  Attempting uninstall: kombu
+    Found existing installation: kombu 5.0.2
+    Uninstalling kombu-5.0.2:
+      Successfully uninstalled kombu-5.0.2
+  Attempting uninstall: celery
+    Found existing installation: celery 5.0.5
+    Uninstalling celery-5.0.5:
+      Successfully uninstalled celery-5.0.5
+  Attempting uninstall: sshtunnel
+    Found existing installation: sshtunnel 0.4.0
+    Uninstalling sshtunnel-0.4.0:
+      Successfully uninstalled sshtunnel-0.4.0
+Successfully installed Babel-2.9.0 Flask-Babel-1.0.0 Flask-JWT-Extended-3.25.0 Flask-OpenID-1.2.5 Flask-SQLAlchemy-2.4.4 Mako-1.1.4 PyJWT-1.7.1 PyYAML-5.4.1 WTForms-2.3.3 alembic-1.5.3 amqp-2.6.1 apache-airflow-2.0.0 apache-airflow-providers-celery-1.0.0 apache-airflow-providers-ftp-1.0.0 apache-airflow-providers-http-1.0.0 apache-airflow-providers-imap-1.0.0 apache-airflow-providers-mysql-1.0.0 apache-airflow-providers-postgres-1.0.0 apache-airflow-providers-redis-1.0.0 apache-airflow-providers-samba-1.0.0 apache-airflow-providers-sqlite-1.0.0 apache-airflow-providers-ssh-1.0.0 apispec-3.3.2 argcomplete-1.12.2 attrs-20.3.0 cached-property-1.5.2 cattrs-1.2.0 celery-4.4.7 chardet-3.0.4 clickclick-20.10.2 colorama-0.4.4 colorlog-4.0.2 commonmark-0.9.1 connexion-2.7.0 croniter-0.3.37 defusedxml-0.6.0 dill-0.3.3 dnspython-1.16.0 docutils-0.16 email-validator-1.1.2 eventlet-0.30.0 flask-1.1.2 flask-appbuilder-3.1.1 flask-bcrypt-0.7.1 flask-caching-1.9.0 flask-login-0.4.1 flask-swagger-0.2.13 flask-wtf-0.14.3 flower-0.9.7 funcsigs-1.0.2 gevent-21.1.2 graphviz-0.16 greenlet-1.0.0 gunicorn-19.10.0 humanize-3.2.0 importlib-metadata-1.7.0 importlib-resources-1.5.0 inflection-0.5.1 iso8601-0.1.13 itsdangerous-1.1.0 jinja2-2.11.2 json-merge-patch-0.2 jsonschema-3.2.0 kombu-4.6.11 lazy-object-proxy-1.4.3 lockfile-0.12.2 markdown-3.3.3 markupsafe-1.1.1 marshmallow-3.10.0 marshmallow-enum-1.5.1 marshmallow-oneofschema-2.1.0 marshmallow-sqlalchemy-0.23.1 mysql-connector-python-8.0.18 mysqlclient-1.3.14 natsort-7.1.1 openapi-spec-validator-0.2.9 pandas-1.2.1 pendulum-2.1.2 prison-0.1.3 prometheus-client-0.8.0 protobuf-3.14.0 psutil-5.8.0 psycopg2-binary-2.8.6 pygments-2.7.4 pyrsistent-0.17.3 pysftp-0.2.9 pysmbclient-0.1.5 python-daemon-2.2.4 python-dateutil-2.8.1 python-editor-1.0.4 python-nvd3-0.15.0 python-slugify-4.0.1 python3-openid-3.2.0 pytzdata-2020.1 redis-3.5.3 requests-2.23.0 rich-9.2.0 setproctitle-1.2.2 sqlalchemy-1.3.22 sqlalchemy-jsonfield-1.0.0 sqlalchemy-utils-0.36.8 sshtunnel-0.1.5 swagger-ui-bundle-0.0.8 tabulate-0.8.7 tenacity-6.2.0 termcolor-1.1.0 text-unidecode-1.3 thrift-0.13.0 tornado-6.1 typing-extensions-3.7.4.3 tzlocal-1.5.1 unicodecsv-0.14.1 urllib3-1.25.11 vine-1.3.0 werkzeug-1.0.1 zipp-3.4.0 zope.event-4.5.0 zope.interface-5.2.0
+Removing intermediate container d1f9dba0cc11
+ ---> ba76767f8bd0
+Step 18/21 : EXPOSE 8080
+ ---> Running in 080e82ca4655
+Removing intermediate container 080e82ca4655
+ ---> b2d2288de53f
+Step 19/21 : EXPOSE 5432
+ ---> Running in f0d7ddf19ddf
+Removing intermediate container f0d7ddf19ddf
+ ---> 51ca501e8a57
+Step 20/21 : RUN airflow db init
+ ---> Running in 296b38bd0235
+DB: sqlite:////root/airflow/airflow.db
+[2021-01-31 10:16:30,387] {db.py:678} INFO - Creating tables
+[91mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[0m[91mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade  -> e3a246e0dc1, current schema
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e3a246e0dc1 -> 1507a7289a2f, create is_encrypted
+[0m[91m/usr/local/lib/python3.8/site-packages/alembic/ddl/sqlite.py:43 UserWarning: Skipping unsupported ALTER for creation of implicit constraintPlease refer to the batch mode feature which allows for SQLite migrations using a copy-and-move strategy.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1507a7289a2f -> 13eb55f81627, maintain history for compatibility with earlier migrations
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 13eb55f81627 -> 338e90f54d61, More logging into task_instance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 338e90f54d61 -> 52d714495f0, job_id indices
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 52d714495f0 -> 502898887f84, Adding extra to Log
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 502898887f84 -> 1b38cef5b76e, add dagrun
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1b38cef5b76e -> 2e541a1dcfed, task_duration
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 2e541a1dcfed -> 40e67319e3a9, dagrun_config
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 40e67319e3a9 -> 561833c1c74b, add password column to user
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 561833c1c74b -> 4446e08588, dagrun start end
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 4446e08588 -> bbc73705a13e, Add notification_sent column to sla_miss
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bbc73705a13e -> bba5a7cfc896, Add a column to track the encryption state of the 'Extra' field in connection
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bba5a7cfc896 -> 1968acfc09e3, add is_encrypted column to variable table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 1968acfc09e3 -> 2e82aab8ef20, rename user table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 2e82aab8ef20 -> 211e584da130, add TI state index
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 211e584da130 -> 64de9cddf6c9, add task fails journal table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 64de9cddf6c9 -> f2ca10b85618, add dag_stats table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade f2ca10b85618 -> 4addfa1236f1, Add fractional seconds to mysql tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 4addfa1236f1 -> 8504051e801b, xcom dag task indices
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8504051e801b -> 5e7d17757c7a, add pid field to TaskInstance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 5e7d17757c7a -> 127d2bf2dfa7, Add dag_id/state index on dag_run table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 127d2bf2dfa7 -> cc1e65623dc7, add max tries column to task instance
+[0m[91mWARNI [unusual_prefix_47426960b0abd86f863137cb7358403ab274d060_example_kubernetes_executor_config] Could not import DAGs in example_kubernetes_executor_config.py: No module named 'kubernetes'
+[0m[91mWARNI [unusual_prefix_47426960b0abd86f863137cb7358403ab274d060_example_kubernetes_executor_config] Install kubernetes dependencies with: pip install apache-airflow['cncf.kubernetes']
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade cc1e65623dc7 -> bdaa763e6c56, Make xcom value column a large binary
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bdaa763e6c56 -> 947454bf1dff, add ti job_id index
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 947454bf1dff -> d2ae31099d61, Increase text size for MySQL (not relevant for other DBs' text types)
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d2ae31099d61 -> 0e2a74e0fc9f, Add time zone awareness
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d2ae31099d61 -> 33ae817a1ff4, kubernetes_resource_checkpointing
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 33ae817a1ff4 -> 27c6a30d7c24, kubernetes_resource_checkpointing
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 27c6a30d7c24 -> 86770d1215c0, add kubernetes scheduler uniqueness
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 86770d1215c0, 0e2a74e0fc9f -> 05f30312d566, merge heads
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 05f30312d566 -> f23433877c24, fix mysql not null constraint
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade f23433877c24 -> 856955da8476, fix sqlite foreign key
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 856955da8476 -> 9635ae0956e7, index-faskfail
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 9635ae0956e7 -> dd25f486b8ea, add idx_log_dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade dd25f486b8ea -> bf00311e1990, add index to taskinstance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 9635ae0956e7 -> 0a2a5b66e19d, add task_reschedule table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 0a2a5b66e19d, bf00311e1990 -> 03bc53e68815, merge_heads_2
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 03bc53e68815 -> 41f5f12752f8, add superuser field
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 41f5f12752f8 -> c8ffec048a3b, add fields to dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade c8ffec048a3b -> dd4ecb8fbee3, Add schedule interval to dag
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade dd4ecb8fbee3 -> 939bb1e647c8, task reschedule fk on cascade delete
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 939bb1e647c8 -> 6e96a59344a4, Make TaskInstance.pool not nullable
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 6e96a59344a4 -> d38e04c12aa2, add serialized_dag table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade d38e04c12aa2 -> b3b105409875, add root_dag_id to DAG
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 6e96a59344a4 -> 74effc47d867, change datetime to datetime2(6) on MSSQL tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 939bb1e647c8 -> 004c1210f153, increase queue name size limit
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade c8ffec048a3b -> a56c9515abdc, Remove dag_stat table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a56c9515abdc, 004c1210f153, 74effc47d867, b3b105409875 -> 08364691d074, Merge the four heads back together
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 08364691d074 -> fe461863935f, increase_length_for_connection_password
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade fe461863935f -> 7939bcff74ba, Add DagTags table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 7939bcff74ba -> a4c2fd67d16b, add pool_slots field to task_instance
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a4c2fd67d16b -> 852ae6c715af, Add RenderedTaskInstanceFields table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 852ae6c715af -> 952da73b5eff, add dag_code table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 952da73b5eff -> a66efa278eea, Add Precision to execution_date in RenderedTaskInstanceFields table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade a66efa278eea -> da3f683c3a5a, Add dag_hash Column to serialized_dag table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade da3f683c3a5a -> 92c57b58940d, Create FAB Tables
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 92c57b58940d -> 03afc6b6f902, Increase length of FAB ab_view_menu.name column
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 03afc6b6f902 -> cf5dc11e79ad, drop_user_and_chart
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade cf5dc11e79ad -> bbf4a7ad0465, Remove id column from xcom
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bbf4a7ad0465 -> b25a55525161, Increase length of pool name
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade b25a55525161 -> 3c20cacc0044, Add DagRun run_type
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 3c20cacc0044 -> 8f966b9c467a, Set conn_type as non-nullable
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8f966b9c467a -> 8d48763f6d53, add unique constraint to conn_id
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 8d48763f6d53 -> e38be357a868, Add sensor_instance table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e38be357a868 -> b247b1e3d1ed, Add queued by Job ID to TI
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade b247b1e3d1ed -> e1a11ece99cc, Add external executor ID to TI
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade e1a11ece99cc -> bef4f3d11e8b, Drop KubeResourceVersion and KubeWorkerId
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade bef4f3d11e8b -> 98271e7606e2, Add scheduling_decision to DagRun and DAG
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 98271e7606e2 -> 52d53670a240, fix_mssql_exec_date_rendered_task_instance_fields_for_MSSQL
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 52d53670a240 -> 364159666cbd, Add creating_job_id to DagRun table
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 364159666cbd -> 45ba3f1493b9, add-k8s-yaml-to-rendered-templates
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 45ba3f1493b9 -> 849da589634d, Prefix DAG permissions.
+[0m[91mINFO  [alembic.runtime.migration] Running upgrade 849da589634d -> 2c6edca13270, Resource based permissions.
+[0m[2021-01-31 10:16:38,953] {manager.py:727} WARNING - No user yet created, use flask fab command to do it.
+[2021-01-31 10:16:53,210] {migration.py:555} INFO - Running upgrade 2c6edca13270 -> 61ec73d9401f, Add description field to connection
+[2021-01-31 10:16:53,243] {migration.py:555} INFO - Running upgrade 61ec73d9401f -> 64a7d6477aae, fix description field in connection to be text
+[2021-01-31 10:16:53,255] {migration.py:555} INFO - Running upgrade 64a7d6477aae -> e959f08ac86c, Change field in DagCode to MEDIUMTEXT for MySql
+[2021-01-31 10:16:54,526] {dagbag.py:440} INFO - Filling up the DagBag from /root/airflow/dags
+[2021-01-31 10:16:54,629] {example_kubernetes_executor_config.py:174} WARNING - Could not import DAGs in example_kubernetes_executor_config.py: No module named 'kubernetes'
+[2021-01-31 10:16:54,630] {example_kubernetes_executor_config.py:175} WARNING - Install kubernetes dependencies with: pip install apache-airflow['cncf.kubernetes']
+[2021-01-31 10:16:54,759] {dag.py:1813} INFO - Sync 28 DAGs
+[2021-01-31 10:16:54,775] {dag.py:1832} INFO - Creating ORM DAG for example_trigger_controller_dag
+[2021-01-31 10:16:54,776] {dag.py:1832} INFO - Creating ORM DAG for tutorial_etl_dag
+[2021-01-31 10:16:54,778] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator.section-1
+[2021-01-31 10:16:54,779] {dag.py:1832} INFO - Creating ORM DAG for latest_only
+[2021-01-31 10:16:54,781] {dag.py:1832} INFO - Creating ORM DAG for example_kubernetes_executor
+[2021-01-31 10:16:54,782] {dag.py:1832} INFO - Creating ORM DAG for tutorial
+[2021-01-31 10:16:54,784] {dag.py:1832} INFO - Creating ORM DAG for example_xcom_args
+[2021-01-31 10:16:54,785] {dag.py:1832} INFO - Creating ORM DAG for latest_only_with_trigger
+[2021-01-31 10:16:54,787] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator
+[2021-01-31 10:16:54,788] {dag.py:1832} INFO - Creating ORM DAG for example_short_circuit_operator
+[2021-01-31 10:16:54,790] {dag.py:1832} INFO - Creating ORM DAG for example_external_task_marker_parent
+[2021-01-31 10:16:54,792] {dag.py:1832} INFO - Creating ORM DAG for example_xcom
+[2021-01-31 10:16:54,793] {dag.py:1832} INFO - Creating ORM DAG for example_xcom_args_with_operators
+[2021-01-31 10:16:54,795] {dag.py:1832} INFO - Creating ORM DAG for test_utils
+[2021-01-31 10:16:54,797] {dag.py:1832} INFO - Creating ORM DAG for example_trigger_target_dag
+[2021-01-31 10:16:54,798] {dag.py:1832} INFO - Creating ORM DAG for example_task_group
+[2021-01-31 10:16:54,800] {dag.py:1832} INFO - Creating ORM DAG for example_dag_decorator
+[2021-01-31 10:16:54,801] {dag.py:1832} INFO - Creating ORM DAG for example_branch_dop_operator_v3
+[2021-01-31 10:16:54,803] {dag.py:1832} INFO - Creating ORM DAG for example_skip_dag
+[2021-01-31 10:16:54,804] {dag.py:1832} INFO - Creating ORM DAG for example_python_operator
+[2021-01-31 10:16:54,806] {dag.py:1832} INFO - Creating ORM DAG for example_branch_operator
+[2021-01-31 10:16:54,807] {dag.py:1832} INFO - Creating ORM DAG for tutorial_taskflow_api_etl
+[2021-01-31 10:16:54,809] {dag.py:1832} INFO - Creating ORM DAG for example_passing_params_via_test_command
+[2021-01-31 10:16:54,811] {dag.py:1832} INFO - Creating ORM DAG for example_external_task_marker_child
+[2021-01-31 10:16:54,812] {dag.py:1832} INFO - Creating ORM DAG for example_subdag_operator.section-2
+[2021-01-31 10:16:54,814] {dag.py:1832} INFO - Creating ORM DAG for example_nested_branch_dag
+[2021-01-31 10:16:54,815] {dag.py:1832} INFO - Creating ORM DAG for example_complex
+[2021-01-31 10:16:54,817] {dag.py:1832} INFO - Creating ORM DAG for example_bash_operator
+[2021-01-31 10:16:54,851] {dag.py:2266} INFO - Setting next_dagrun for example_bash_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:54,904] {dag.py:2266} INFO - Setting next_dagrun for example_branch_dop_operator_v3 to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:54,928] {dag.py:2266} INFO - Setting next_dagrun for example_branch_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:54,930] {dag.py:2266} INFO - Setting next_dagrun for example_complex to None
+[2021-01-31 10:16:54,932] {dag.py:2266} INFO - Setting next_dagrun for example_dag_decorator to None
+[2021-01-31 10:16:54,933] {dag.py:2266} INFO - Setting next_dagrun for example_external_task_marker_child to None
+[2021-01-31 10:16:54,935] {dag.py:2266} INFO - Setting next_dagrun for example_external_task_marker_parent to None
+[2021-01-31 10:16:54,936] {dag.py:2266} INFO - Setting next_dagrun for example_kubernetes_executor to None
+[2021-01-31 10:16:54,960] {dag.py:2266} INFO - Setting next_dagrun for example_nested_branch_dag to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,013] {dag.py:2266} INFO - Setting next_dagrun for example_passing_params_via_test_command to 2021-01-30 00:00:00+00:00
+[2021-01-31 10:16:55,014] {dag.py:2266} INFO - Setting next_dagrun for example_python_operator to None
+[2021-01-31 10:16:55,016] {dag.py:2266} INFO - Setting next_dagrun for example_short_circuit_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,018] {dag.py:2266} INFO - Setting next_dagrun for example_skip_dag to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,019] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,020] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-1 to None
+[2021-01-31 10:16:55,021] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-2 to None
+[2021-01-31 10:16:55,022] {dag.py:2266} INFO - Setting next_dagrun for example_task_group to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,024] {dag.py:2266} INFO - Setting next_dagrun for example_trigger_controller_dag to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,025] {dag.py:2266} INFO - Setting next_dagrun for example_trigger_target_dag to None
+[2021-01-31 10:16:55,027] {dag.py:2266} INFO - Setting next_dagrun for example_xcom to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,028] {dag.py:2266} INFO - Setting next_dagrun for example_xcom_args to None
+[2021-01-31 10:16:55,029] {dag.py:2266} INFO - Setting next_dagrun for example_xcom_args_with_operators to None
+[2021-01-31 10:16:55,031] {dag.py:2266} INFO - Setting next_dagrun for latest_only to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,033] {dag.py:2266} INFO - Setting next_dagrun for latest_only_with_trigger to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,034] {dag.py:2266} INFO - Setting next_dagrun for test_utils to None
+[2021-01-31 10:16:55,035] {dag.py:2266} INFO - Setting next_dagrun for tutorial to 2021-01-29 00:00:00+00:00
+[2021-01-31 10:16:55,037] {dag.py:2266} INFO - Setting next_dagrun for tutorial_etl_dag to None
+[2021-01-31 10:16:55,038] {dag.py:2266} INFO - Setting next_dagrun for tutorial_taskflow_api_etl to None
+[2021-01-31 10:16:55,116] {dag.py:1813} INFO - Sync 2 DAGs
+[2021-01-31 10:16:55,140] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-1 to None
+[2021-01-31 10:16:55,141] {dag.py:2266} INFO - Setting next_dagrun for example_subdag_operator.section-2 to None
+Initialization done
+Removing intermediate container 296b38bd0235
+ ---> d90d5fb4849e
+Step 21/21 : CMD bash startup.sh
+ ---> Running in 89ef8b7793b0
+Removing intermediate container 89ef8b7793b0
+ ---> b9377b65e8df
+Successfully built b9377b65e8df
+Successfully tagged airflow:latest
+unknown shorthand flag: 't' in -t
+See 'docker --help'.
+
+Usage:	docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default
+                           "/home/pi/.docker")
+  -c, --context string     Name of the context to use to connect to the
+                           daemon (overrides DOCKER_HOST env var and
+                           default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level
+                           ("debug"|"info"|"warn"|"error"|"fatal")
+                           (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "/home/pi/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "/home/pi/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "/home/pi/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  checkpoint  Manage checkpoints
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  engine      Manage the docker engine
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  deploy      Deploy a new stack or update an existing stack
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+Sending build context to Docker daemon  86.02kB
+Step 1/22 : From python:3.8
+ ---> 063a47851920
+Step 2/22 : COPY . /app
+ ---> c1a4a3f78af1
+Step 3/22 : WORKDIR /app
+ ---> Running in 2cfd6617365b
+Removing intermediate container 2cfd6617365b
+ ---> be340f750d2c
+Step 4/22 : RUN pip3 install --upgrade pip
+ ---> Running in 47ae414bab28
+Requirement already satisfied: pip in /usr/local/lib/python3.8/site-packages (20.3.3)
+Collecting pip
+  Downloading pip-21.0.1-py3-none-any.whl (1.5 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.3.3
+    Uninstalling pip-20.3.3:
+      Successfully uninstalled pip-20.3.3
+Successfully installed pip-21.0.1
+Removing intermediate container 47ae414bab28
+ ---> 86129eda6dda
+Step 5/22 : RUN apt-get update
+ ---> Running in 44a92d0f5ece
+Get:1 http://security.debian.org/debian-security buster/updates InRelease [65.4 kB]
+Get:2 http://deb.debian.org/debian buster InRelease [121 kB]
+Get:3 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
+Get:4 http://security.debian.org/debian-security buster/updates/main arm64 Packages [264 kB]
+Get:5 http://deb.debian.org/debian buster/main arm64 Packages [7737 kB]
+Get:6 http://deb.debian.org/debian buster-updates/main arm64 Packages [7832 B]
+Fetched 8247 kB in 6s (1430 kB/s)
+Reading package lists...
+Removing intermediate container 44a92d0f5ece
+ ---> 59e306bb8650
+Step 6/22 : RUN apt-get install nano -y
+ ---> Running in f0904f0fcacb
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  spell
+The following NEW packages will be installed:
+  nano
+0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+Need to get 541 kB of archives.
+After this operation, 2290 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 nano arm64 3.2-3 [541 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 541 kB in 0s (1453 kB/s)
+Selecting previously unselected package nano.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24573 files and directories currently installed.)
+Preparing to unpack .../archives/nano_3.2-3_arm64.deb ...
+Unpacking nano (3.2-3) ...
+Setting up nano (3.2-3) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+Removing intermediate container f0904f0fcacb
+ ---> 42017b40757f
+Step 7/22 : RUN apt-get install rsync -y
+ ---> Running in 214ab8ba3016
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libpopt0
+Suggested packages:
+  openssh-server
+The following NEW packages will be installed:
+  libpopt0 rsync
+0 upgraded, 2 newly installed, 0 to remove and 2 not upgraded.
+Need to get 433 kB of archives.
+After this operation, 986 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 libpopt0 arm64 1.16-12 [48.3 kB]
+Get:2 http://deb.debian.org/debian buster/main arm64 rsync arm64 3.1.3-6 [385 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 433 kB in 0s (1571 kB/s)
+Selecting previously unselected package libpopt0:arm64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24675 files and directories currently installed.)
+Preparing to unpack .../libpopt0_1.16-12_arm64.deb ...
+Unpacking libpopt0:arm64 (1.16-12) ...
+Selecting previously unselected package rsync.
+Preparing to unpack .../rsync_3.1.3-6_arm64.deb ...
+Unpacking rsync (3.1.3-6) ...
+Setting up libpopt0:arm64 (1.16-12) ...
+Setting up rsync (3.1.3-6) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of restart.
+Processing triggers for libc-bin (2.28-10) ...
+Removing intermediate container 214ab8ba3016
+ ---> 4a69c3735e43
+Step 8/22 : RUN apt-get install postgresql -y
+ ---> Running in 4b860d9e5023
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  cron distro-info-data exim4-base exim4-config exim4-daemon-light
+  guile-2.2-libs libc-l10n libgc1c2 libgsasl7 libidn11 libkyotocabinet16v5
+  libllvm7 libmailutils5 libntlm0 libpython2.7 libsensors-config libsensors5
+  libwrap0 locales logrotate lsb-release mailutils mailutils-common
+  postgresql-11 postgresql-client-11 postgresql-client-common
+  postgresql-common psmisc ssl-cert sysstat
+Suggested packages:
+  anacron checksecurity exim4-doc-html | exim4-doc-info eximon4 spf-tools-perl
+  swaks lm-sensors lsb mailutils-mh mailutils-doc postgresql-doc
+  postgresql-doc-11 libjson-perl openssl-blacklist isag
+The following NEW packages will be installed:
+  cron distro-info-data exim4-base exim4-config exim4-daemon-light
+  guile-2.2-libs libc-l10n libgc1c2 libgsasl7 libidn11 libkyotocabinet16v5
+  libllvm7 libmailutils5 libntlm0 libpython2.7 libsensors-config libsensors5
+  libwrap0 locales logrotate lsb-release mailutils mailutils-common postgresql
+  postgresql-11 postgresql-client-11 postgresql-client-common
+  postgresql-common psmisc ssl-cert sysstat
+0 upgraded, 31 newly installed, 0 to remove and 2 not upgraded.
+Need to get 43.0 MB of archives.
+After this operation, 191 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian buster/main arm64 cron arm64 3.0pl1-134+deb10u1 [98.0 kB]
+Get:2 http://deb.debian.org/debian buster/main arm64 logrotate arm64 3.14.0-4 [60.1 kB]
+Get:3 http://deb.debian.org/debian buster/main arm64 libc-l10n all 2.28-10 [847 kB]
+Get:4 http://deb.debian.org/debian buster/main arm64 locales all 2.28-10 [4060 kB]
+Get:5 http://deb.debian.org/debian buster/main arm64 distro-info-data all 0.41+deb10u3 [6640 B]
+Get:6 http://deb.debian.org/debian buster/main arm64 exim4-config all 4.92-8+deb10u4 [323 kB]
+Get:7 http://deb.debian.org/debian buster/main arm64 exim4-base arm64 4.92-8+deb10u4 [1134 kB]
+Get:8 http://deb.debian.org/debian buster/main arm64 exim4-daemon-light arm64 4.92-8+deb10u4 [555 kB]
+Get:9 http://deb.debian.org/debian buster/main arm64 libgc1c2 arm64 1:7.6.4-0.4 [214 kB]
+Get:10 http://deb.debian.org/debian buster/main arm64 guile-2.2-libs arm64 2.2.4+1-2+deb10u1 [4938 kB]
+Get:11 http://deb.debian.org/debian buster/main arm64 libidn11 arm64 1.33-2.2 [113 kB]
+Get:12 http://deb.debian.org/debian buster/main arm64 libntlm0 arm64 1.5-1+deb10u1 [23.6 kB]
+Get:13 http://deb.debian.org/debian buster/main arm64 libgsasl7 arm64 1.8.0-8+b2 [198 kB]
+Get:14 http://deb.debian.org/debian buster/main arm64 libkyotocabinet16v5 arm64 1.2.76-4.2+b1 [267 kB]
+Get:15 http://deb.debian.org/debian buster/main arm64 libllvm7 arm64 1:7.0.1-8+deb10u2 [10.8 MB]
+Get:16 http://deb.debian.org/debian buster/main arm64 mailutils-common all 1:3.5-4 [689 kB]
+Get:17 http://deb.debian.org/debian buster/main arm64 libpython2.7 arm64 2.7.16-2+deb10u1 [958 kB]
+Get:18 http://deb.debian.org/debian buster/main arm64 libmailutils5 arm64 1:3.5-4 [829 kB]
+Get:19 http://deb.debian.org/debian buster/main arm64 libsensors-config all 1:3.5.0-3 [31.6 kB]
+Get:20 http://deb.debian.org/debian buster/main arm64 libsensors5 arm64 1:3.5.0-3 [51.8 kB]
+Get:21 http://deb.debian.org/debian buster/main arm64 libwrap0 arm64 7.6.q-28 [58.4 kB]
+Get:22 http://deb.debian.org/debian buster/main arm64 lsb-release all 10.2019051400 [27.5 kB]
+Get:23 http://deb.debian.org/debian buster/main arm64 mailutils arm64 1:3.5-4 [570 kB]
+Get:24 http://deb.debian.org/debian buster/main arm64 postgresql-client-common all 200+deb10u4 [85.1 kB]
+Get:25 http://deb.debian.org/debian buster/main arm64 postgresql-client-11 arm64 11.9-0+deb10u1 [1372 kB]
+Get:26 http://deb.debian.org/debian buster/main arm64 ssl-cert all 1.0.39 [20.8 kB]
+Get:27 http://deb.debian.org/debian buster/main arm64 postgresql-common all 200+deb10u4 [225 kB]
+Get:28 http://deb.debian.org/debian buster/main arm64 postgresql-11 arm64 11.9-0+deb10u1 [13.7 MB]
+Get:29 http://deb.debian.org/debian buster/main arm64 postgresql all 11+200+deb10u4 [61.1 kB]
+Get:30 http://deb.debian.org/debian buster/main arm64 psmisc arm64 23.2-1 [122 kB]
+Get:31 http://deb.debian.org/debian buster/main arm64 sysstat arm64 12.0.3-2 [545 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 43.0 MB in 13s (3247 kB/s)
+Selecting previously unselected package cron.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 24745 files and directories currently installed.)
+Preparing to unpack .../00-cron_3.0pl1-134+deb10u1_arm64.deb ...
+Unpacking cron (3.0pl1-134+deb10u1) ...
+Selecting previously unselected package logrotate.
+Preparing to unpack .../01-logrotate_3.14.0-4_arm64.deb ...
+Unpacking logrotate (3.14.0-4) ...
+Selecting previously unselected package libc-l10n.
+Preparing to unpack .../02-libc-l10n_2.28-10_all.deb ...
+Unpacking libc-l10n (2.28-10) ...
+Selecting previously unselected package locales.
+Preparing to unpack .../03-locales_2.28-10_all.deb ...
+Unpacking locales (2.28-10) ...
+Selecting previously unselected package distro-info-data.
+Preparing to unpack .../04-distro-info-data_0.41+deb10u3_all.deb ...
+Unpacking distro-info-data (0.41+deb10u3) ...
+Selecting previously unselected package exim4-config.
+Preparing to unpack .../05-exim4-config_4.92-8+deb10u4_all.deb ...
+Unpacking exim4-config (4.92-8+deb10u4) ...
+Selecting previously unselected package exim4-base.
+Preparing to unpack .../06-exim4-base_4.92-8+deb10u4_arm64.deb ...
+Unpacking exim4-base (4.92-8+deb10u4) ...
+Selecting previously unselected package exim4-daemon-light.
+Preparing to unpack .../07-exim4-daemon-light_4.92-8+deb10u4_arm64.deb ...
+Unpacking exim4-daemon-light (4.92-8+deb10u4) ...
+Selecting previously unselected package libgc1c2:arm64.
+Preparing to unpack .../08-libgc1c2_1%3a7.6.4-0.4_arm64.deb ...
+Unpacking libgc1c2:arm64 (1:7.6.4-0.4) ...
+Selecting previously unselected package guile-2.2-libs:arm64.
+Preparing to unpack .../09-guile-2.2-libs_2.2.4+1-2+deb10u1_arm64.deb ...
+Unpacking guile-2.2-libs:arm64 (2.2.4+1-2+deb10u1) ...
+Selecting previously unselected package libidn11:arm64.
+Preparing to unpack .../10-libidn11_1.33-2.2_arm64.deb ...
+Unpacking libidn11:arm64 (1.33-2.2) ...
+Selecting previously unselected package libntlm0:arm64.
+Preparing to unpack .../11-libntlm0_1.5-1+deb10u1_arm64.deb ...
+Unpacking libntlm0:arm64 (1.5-1+deb10u1) ...
+Selecting previously unselected package libgsasl7.
+Preparing to unpack .../12-libgsasl7_1.8.0-8+b2_arm64.deb ...
+Unpacking libgsasl7 (1.8.0-8+b2) ...
+Selecting previously unselected package libkyotocabinet16v5:arm64.
+Preparing to unpack .../13-libkyotocabinet16v5_1.2.76-4.2+b1_arm64.deb ...
+Unpacking libkyotocabinet16v5:arm64 (1.2.76-4.2+b1) ...
+Selecting previously unselected package libllvm7:arm64.
+Preparing to unpack .../14-libllvm7_1%3a7.0.1-8+deb10u2_arm64.deb ...
+Unpacking libllvm7:arm64 (1:7.0.1-8+deb10u2) ...
+Selecting previously unselected package mailutils-common.
+Preparing to unpack .../15-mailutils-common_1%3a3.5-4_all.deb ...
+Unpacking mailutils-common (1:3.5-4) ...
+Selecting previously unselected package libpython2.7:arm64.
+Preparing to unpack .../16-libpython2.7_2.7.16-2+deb10u1_arm64.deb ...
+Unpacking libpython2.7:arm64 (2.7.16-2+deb10u1) ...
+Selecting previously unselected package libmailutils5:arm64.
+Preparing to unpack .../17-libmailutils5_1%3a3.5-4_arm64.deb ...
+Unpacking libmailutils5:arm64 (1:3.5-4) ...
+Selecting previously unselected package libsensors-config.
+Preparing to unpack .../18-libsensors-config_1%3a3.5.0-3_all.deb ...
+Unpacking libsensors-config (1:3.5.0-3) ...
+Selecting previously unselected package libsensors5:arm64.
+Preparing to unpack .../19-libsensors5_1%3a3.5.0-3_arm64.deb ...
+Unpacking libsensors5:arm64 (1:3.5.0-3) ...
+Selecting previously unselected package libwrap0:arm64.
+Preparing to unpack .../20-libwrap0_7.6.q-28_arm64.deb ...
+Unpacking libwrap0:arm64 (7.6.q-28) ...
+Selecting previously unselected package lsb-release.
+Preparing to unpack .../21-lsb-release_10.2019051400_all.deb ...
+Unpacking lsb-release (10.2019051400) ...
+Selecting previously unselected package mailutils.
+Preparing to unpack .../22-mailutils_1%3a3.5-4_arm64.deb ...
+Unpacking mailutils (1:3.5-4) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../23-postgresql-client-common_200+deb10u4_all.deb ...
+Unpacking postgresql-client-common (200+deb10u4) ...
+Selecting previously unselected package postgresql-client-11.
+Preparing to unpack .../24-postgresql-client-11_11.9-0+deb10u1_arm64.deb ...
+Unpacking postgresql-client-11 (11.9-0+deb10u1) ...
+Selecting previously unselected package ssl-cert.
+Preparing to unpack .../25-ssl-cert_1.0.39_all.deb ...
+Unpacking ssl-cert (1.0.39) ...
+Selecting previously unselected package postgresql-common.
+Preparing to unpack .../26-postgresql-common_200+deb10u4_all.deb ...
+Adding 'diversion of /usr/bin/pg_config to /usr/bin/pg_config.libpq-dev by postgresql-common'
+Unpacking postgresql-common (200+deb10u4) ...
+Selecting previously unselected package postgresql-11.
+Preparing to unpack .../27-postgresql-11_11.9-0+deb10u1_arm64.deb ...
+Unpacking postgresql-11 (11.9-0+deb10u1) ...
+Selecting previously unselected package postgresql.
+Preparing to unpack .../28-postgresql_11+200+deb10u4_all.deb ...
+Unpacking postgresql (11+200+deb10u4) ...
+Selecting previously unselected package psmisc.
+Preparing to unpack .../29-psmisc_23.2-1_arm64.deb ...
+Unpacking psmisc (23.2-1) ...
+Selecting previously unselected package sysstat.
+Preparing to unpack .../30-sysstat_12.0.3-2_arm64.deb ...
+Unpacking sysstat (12.0.3-2) ...
+Setting up postgresql-client-common (200+deb10u4) ...
+Setting up libpython2.7:arm64 (2.7.16-2+deb10u1) ...
+Setting up libc-l10n (2.28-10) ...
+Setting up psmisc (23.2-1) ...
+Setting up libgc1c2:arm64 (1:7.6.4-0.4) ...
+Setting up distro-info-data (0.41+deb10u3) ...
+Setting up libkyotocabinet16v5:arm64 (1.2.76-4.2+b1) ...
+Setting up cron (3.0pl1-134+deb10u1) ...
+Adding group `crontab' (GID 102) ...
+Done.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up libsensors-config (1:3.5.0-3) ...
+Setting up locales (2.28-10) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Generating locales (this might take a while)...
+Generation complete.
+Setting up libwrap0:arm64 (7.6.q-28) ...
+Setting up libntlm0:arm64 (1.5-1+deb10u1) ...
+Setting up ssl-cert (1.0.39) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libidn11:arm64 (1.33-2.2) ...
+Setting up postgresql-client-11 (11.9-0+deb10u1) ...
+update-alternatives: using /usr/share/postgresql/11/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up postgresql-common (200+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Adding user postgres to group ssl-cert
+
+Creating config file /etc/postgresql-common/createcluster.conf with new version
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+Removing obsolete dictionary files:
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up mailutils-common (1:3.5-4) ...
+Setting up libsensors5:arm64 (1:3.5.0-3) ...
+Setting up exim4-config (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Adding system-user for exim (v4)
+Setting up libllvm7:arm64 (1:7.0.1-8+deb10u2) ...
+Setting up lsb-release (10.2019051400) ...
+Setting up sysstat (12.0.3-2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/default/sysstat with new version
+update-alternatives: using /usr/bin/sar.sysstat to provide /usr/bin/sar (sar) in auto mode
+Setting up guile-2.2-libs:arm64 (2.2.4+1-2+deb10u1) ...
+Setting up logrotate (3.14.0-4) ...
+Setting up exim4-base (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+exim: DB upgrade, deleting hints-db
+Setting up libgsasl7 (1.8.0-8+b2) ...
+Setting up postgresql-11 (11.9-0+deb10u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Creating new PostgreSQL cluster 11/main ...
+/usr/lib/postgresql/11/bin/initdb -D /var/lib/postgresql/11/main --auth-local peer --auth-host md5
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "C.UTF-8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/11/main ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default timezone ... Etc/UTC
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    pg_ctlcluster 11 main start
+
+Ver Cluster Port Status Owner    Data directory              Log file
+[31m11  main    5432 down   postgres /var/lib/postgresql/11/main /var/log/postgresql/postgresql-11-main.log[0m
+update-alternatives: using /usr/share/postgresql/11/man/man1/postmaster.1.gz to provide /usr/share/man/man1/postmaster.1.gz (postmaster.1.gz) in auto mode
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up postgresql (11+200+deb10u4) ...
+Setting up exim4-daemon-light (4.92-8+deb10u4) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Initializing GnuTLS DH parameter file
+Setting up libmailutils5:arm64 (1:3.5-4) ...
+Setting up mailutils (1:3.5-4) ...
+update-alternatives: using /usr/bin/frm.mailutils to provide /usr/bin/frm (frm) in auto mode
+update-alternatives: using /usr/bin/from.mailutils to provide /usr/bin/from (from) in auto mode
+update-alternatives: using /usr/bin/messages.mailutils to provide /usr/bin/messages (messages) in auto mode
+update-alternatives: using /usr/bin/movemail.mailutils to provide /usr/bin/movemail (movemail) in auto mode
+update-alternatives: using /usr/bin/readmsg.mailutils to provide /usr/bin/readmsg (readmsg) in auto mode
+update-alternatives: using /usr/bin/dotlock.mailutils to provide /usr/bin/dotlock (dotlock) in auto mode
+update-alternatives: using /usr/bin/mail.mailutils to provide /usr/bin/mailx (mailx) in auto mode
+Processing triggers for libc-bin (2.28-10) ...
+Removing intermediate container 4b860d9e5023
+ ---> 4af050aa0c96
+Step 9/22 : RUN cp -f postgresql.conf /etc/postgresql/11/main/postgresql.conf
+ ---> Running in 3af970e5a0ad
+Removing intermediate container 3af970e5a0ad
+ ---> 9e1791c91815
+Step 10/22 : RUN cp -f pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
+ ---> Running in 226c4c8d3ee5
+Removing intermediate container 226c4c8d3ee5
+ ---> 0c822adc2cab
+Step 11/22 : RUN service postgresql start
+ ---> Running in d6994060ce0b
+Starting PostgreSQL 11 database server: main.
+Removing intermediate container d6994060ce0b
+ ---> 0039703036fe
+Step 12/22 : RUN pip install -r requirement.txt
+ ---> Running in 53ee611aaa18
+Collecting numpy
+  Downloading numpy-1.20.0-cp38-cp38-manylinux2014_aarch64.whl (12.7 MB)
+Collecting celery
+  Downloading celery-5.0.5-py3-none-any.whl (392 kB)
+Collecting Cython
+  Downloading Cython-0.29.21-py2.py3-none-any.whl (974 kB)
+Collecting paramiko
+  Downloading paramiko-2.7.2-py2.py3-none-any.whl (206 kB)
+Collecting sshtunnel
+  Downloading sshtunnel-0.4.0-py2.py3-none-any.whl (24 kB)
+Collecting requests
+  Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+Collecting pytz>dev
+  Downloading pytz-2020.5-py2.py3-none-any.whl (510 kB)
+Collecting click-plugins>=1.1.1
+  Downloading click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Collecting kombu<6.0,>=5.0.0
+  Downloading kombu-5.0.2-py2.py3-none-any.whl (180 kB)
+Collecting billiard<4.0,>=3.6.3.0
+  Downloading billiard-3.6.3.0-py3-none-any.whl (89 kB)
+Collecting click<8.0,>=7.0
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting click-didyoumean>=0.0.3
+  Downloading click-didyoumean-0.0.3.tar.gz (2.6 kB)
+Collecting click-repl>=0.1.6
+  Downloading click_repl-0.1.6-py3-none-any.whl (4.2 kB)
+Collecting vine<6.0,>=5.0.0
+  Downloading vine-5.0.0-py2.py3-none-any.whl (9.4 kB)
+Collecting six
+  Downloading six-1.15.0-py2.py3-none-any.whl (10 kB)
+Collecting prompt-toolkit
+  Downloading prompt_toolkit-3.0.14-py3-none-any.whl (359 kB)
+Collecting amqp<6.0.0,>=5.0.0
+  Downloading amqp-5.0.5-py3-none-any.whl (51 kB)
+Collecting pynacl>=1.0.1
+  Downloading PyNaCl-1.4.0.tar.gz (3.4 MB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting cryptography>=2.5
+  Downloading cryptography-3.3.1-cp36-abi3-manylinux2014_aarch64.whl (2.6 MB)
