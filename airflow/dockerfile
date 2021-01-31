@@ -6,7 +6,8 @@ WORKDIR /app
 RUN pip3 install --upgrade pip
 
 RUN apt-get update
-RUN apt-get install nano
+RUN apt-get install nano -y
+RUN apt-get install rsync -y
 
 RUN apt-get install postgresql -y
 
@@ -21,6 +22,7 @@ ENV AIRFLOW_HOME=/root/airflow
 ENV AIRFLOW_USER=airflow
 ENV AIRFLOW_PASSWORD=12345678
 ENV AIRFLOW_EMAIL=airflow@example.com
+ENV POSTGRES_DATA=/postgresql/data
 
 # install from pypi using pip
 RUN pip install 'apache-airflow[celery,async,ssh,samba,redis,password,rabbitmq,postgres,mysql]'

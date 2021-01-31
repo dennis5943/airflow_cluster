@@ -25,14 +25,22 @@ services:
         constraints: [node.labels.pi4==true]
     ports: 
       - 5432:5432
+    environment: 
+      - POSTGRES_DATA=/postgresql/data
     volumes: 
-      #- ./workspace/database:/var/lib/postgresql/11/main/base
+      - ./workspace/database:/postgresql/data/
+      - ./workspace/startup_postgresql.sh:/app/startup_postgresql.sh
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
     command: bash startup_postgresql.sh
 
 #部署
 #docker stack deploy -c docker-compose-base-service.yml airflow_base
 
+#移除部署
+#docker stack rm airflow_base
+
 #重新產生資料表
 #bash restdb.sh
 #airflow flower
+
+#git reset Head --force
