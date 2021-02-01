@@ -1,5 +1,41 @@
 version: '3.7'
 services:
+  RabbitMQ:
+    image: rabbitmq:management
+    ports: 
+      - 5672:5672
+      - 15672:15672
+    environment: 
+      - RABBITMQ_DEFAULT_USER=airflow
+      - RABBITMQ_DEFAULT_PASS=12345678
+      - RABBITMQ_DEFAULT_VHOST=airflow
+    deploy:
+      replicas: 1  # 從這個image開5個instance
+      placement:
+        constraints: [node.labels.pi4==true]
+
+  postgres_adminer:
+    image: adminer
+    deploy:
+      replicas: 1  # 從這個image開5個instance
+      placement:
+        constraints: [node.labels.pi4==true]
+    ports:
+      - 8080:8080
+  postgres_db:
+    image: airflow
+    deploy:
+      replicas: 1  # 從這個image開5個instance
+      placement:
+        constraints: [node.labels.pi4==true]
+    ports: 
+      - 5432:5432
+    environment: 
+      - POSTGRES_DATA=/postgresql/data
+    volumes: 
+      - ./workspace/database:/postgresql/data/
+      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+    command: bash startup_postgresql.sh
   flower:
     image: airflow
     deploy:
@@ -41,9 +77,8 @@ services:
       - '8989:8080'
     command: airflow webserver
 
-#部署
+#佈署
 #docker stack deploy -c docker-compose.yml airflow_cluster
 
-#重新產生資料表
-#bash restdb.sh
-#airflow flower
+#移除佈署
+#docker stack rm airflow_cluster
