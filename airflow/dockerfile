@@ -35,5 +35,5 @@ EXPOSE 5432
 RUN airflow db init
 
 # start the web server, default port is 8080
-CMD bash startup.sh
+CMD bash startup_local.sh
 
