@@ -12,14 +12,12 @@ services:
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
-        constraints: [node.labels.pi4==true]
+        constraints: [node.labels.service_type==master]
 
   postgres_adminer:
     image: adminer
     deploy:
       replicas: 1  # 從這個image開5個instance
-      placement:
-        constraints: [node.labels.pi4==true]
     ports:
       - 8080:8080
   postgres_db:
@@ -31,53 +29,54 @@ services:
       POSTGRES_DB: airflow
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - ./workspace/data:/var/lib/postgresql/data
+      - /mnt/airflow_ws/data:/var/lib/postgresql/data      
       
     ports:
       - 5432:5432
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
-        constraints: [node.labels.pi4==true]
+        constraints: [node.labels.service_type==master]
   flower:
-    image: airflow:2.0.1.1
+    image: dennis5943/airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
-      placement:
-        constraints: [node.labels.pi4==true]
     volumes:
-      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - /mnt/airflow_ws/airflow.cfg:/root/airflow/airflow.cfg
     ports:
       - '5555:5555'
     command: airflow celery flower
   worker:
-    image: airflow:2.0.1.1
+    image: dennis5943/airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
-        constraints: [node.labels.pi4==true]
+        constraints: [node.labels.service_type==worker]
     volumes:
-      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - /mnt/airflow_ws/airflow.cfg:/root/airflow/airflow.cfg
+      - /mnt/airflow_ws/dags:/root/airflow/dags
     command: airflow celery worker
   scheduler:
-    image: airflow:2.0.1.1
+    image: dennis5943/airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
-        constraints: [node.labels.pi4==true]
+        constraints: [node.labels.service_type==master]
     volumes:
-      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - /mnt/airflow_ws/airflow.cfg:/root/airflow/airflow.cfg
+      - /mnt/airflow_ws/dags:/root/airflow/dags
     command: bash -c "
           bash db_init.sh
           && airflow scheduler"
   web:
-    image: airflow:2.0.1.1
+    image: dennis5943/airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
-        constraints: [node.labels.pi4==true]
+        constraints: [node.labels.service_type==master]
     volumes:
-      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
+      - /mnt/airflow_ws/airflow.cfg:/root/airflow/airflow.cfg
+      - /mnt/airflow_ws/dags:/root/airflow/dags
     ports:
       - '8989:8080'
     command: airflow webserver

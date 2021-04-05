@@ -1,0 +1,51 @@
+The push refers to repository [docker.io/dennis5943/airflow]
+7f2ce96c0563: Preparing
+80a53abd5b45: Preparing
+091e7cbafc32: Preparing
+c43794e87a02: Preparing
+ceb5ae97fd47: Preparing
+89e6f3faa888: Preparing
+6da4ba15eb87: Preparing
+86f5e93249bd: Preparing
+ecf58b07b9de: Preparing
+d30bf3a80f21: Preparing
+49010ec17e26: Preparing
+7cfff61e99b4: Preparing
+768d0dfd7b02: Preparing
+b6cc673b268d: Preparing
+d8af944d7363: Preparing
+5404989e9c63: Preparing
+a09cc058b061: Preparing
+7ce7f234bab7: Preparing
+49010ec17e26: Waiting
+7cfff61e99b4: Waiting
+768d0dfd7b02: Waiting
+89e6f3faa888: Waiting
+b6cc673b268d: Waiting
+6da4ba15eb87: Waiting
+d8af944d7363: Waiting
+5404989e9c63: Waiting
+a09cc058b061: Waiting
+86f5e93249bd: Waiting
+7ce7f234bab7: Waiting
+ecf58b07b9de: Waiting
+d30bf3a80f21: Waiting
+091e7cbafc32: Layer already exists
+ceb5ae97fd47: Layer already exists
+89e6f3faa888: Layer already exists
+86f5e93249bd: Layer already exists
+ecf58b07b9de: Layer already exists
+d30bf3a80f21: Layer already exists
+49010ec17e26: Layer already exists
+7cfff61e99b4: Layer already exists
+768d0dfd7b02: Layer already exists
+b6cc673b268d: Layer already exists
+d8af944d7363: Layer already exists
+5404989e9c63: Layer already exists
+a09cc058b061: Layer already exists
+7ce7f234bab7: Layer already exists
+6da4ba15eb87: Pushed
+80a53abd5b45: Pushed
+c43794e87a02: Pushed
+7f2ce96c0563: Pushed
+2.0.1.1: digest: sha256:f6a9485045555650a9bf712619a5cc18d9d75155db215a0b32cc887b1d81483f size: 4118
