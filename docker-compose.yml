@@ -23,21 +23,24 @@ services:
     ports:
       - 8080:8080
   postgres_db:
-    image: airflow
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_USER: airflow
+      POSTGRES_DB: airflow
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./workspace/data:/var/lib/postgresql/data
+      
+    ports:
+      - 5432:5432
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
         constraints: [node.labels.pi4==true]
-    ports: 
-      - 5432:5432
-    environment: 
-      - POSTGRES_DATA=/postgresql/data
-    volumes: 
-      - ./workspace/database:/postgresql/data/
-      - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
-    command: bash startup_postgresql.sh
   flower:
-    image: airflow
+    image: airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
@@ -48,7 +51,7 @@ services:
       - '5555:5555'
     command: airflow celery flower
   worker:
-    image: airflow
+    image: airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
@@ -57,16 +60,18 @@ services:
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
     command: airflow celery worker
   scheduler:
-    image: airflow
+    image: airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:
         constraints: [node.labels.pi4==true]
     volumes:
       - ./workspace/airflow.cfg:/root/airflow/airflow.cfg
-    command: airflow scheduler
+    command: bash -c "
+          bash db_init.sh
+          && airflow scheduler"
   web:
-    image: airflow
+    image: airflow:2.0.1.1
     deploy:
       replicas: 1  # 從這個image開5個instance
       placement:

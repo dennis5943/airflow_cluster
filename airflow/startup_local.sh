@@ -1,8 +1,15 @@
-#將postgresql data搬移至指定folder中
-python3 /app/scripts/chgDBFolder.py
+service postgresql start
+su - postgres -c "createdb airflow"
+airflow db init
 
-#確認資料庫中是否已有airflow db，若沒有則重設它
-python3 /app/scripts/ResetdbIfNeed.py
+# create an admin user
+airflow users create \
+    --username $AIRFLOW_USER \
+    -p $AIRFLOW_PASSWORD \
+    --firstname airflow \
+    --lastname airflow \
+    --role Admin \
+    --email $AIRFLOW_EMAIL
 
 airflow webserver -p 8080 & airflow scheduler
 airflow worker
